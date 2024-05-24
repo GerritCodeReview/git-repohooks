@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+[tool.black]
+line-length = 80
+target-version = ['py36']
+exclude = 'tools/cpplint\.py$'
+
 [tool.pytest.ini_options]
 python_files = "*_unittest.py"
 markers = """

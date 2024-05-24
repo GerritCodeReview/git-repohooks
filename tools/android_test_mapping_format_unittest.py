@@ -190,121 +190,132 @@ class AndroidTestMappingFormatTests(unittest.TestCase):
 
     def setUp(self):
         self.tempdir = tempfile.mkdtemp()
-        self.test_mapping_file = os.path.join(self.tempdir, 'TEST_MAPPING')
+        self.test_mapping_file = os.path.join(self.tempdir, "TEST_MAPPING")
 
     def tearDown(self):
         shutil.rmtree(self.tempdir)
 
     def test_valid_test_mapping(self):
-        """Verify that the check doesn't raise any error for valid test mapping.
-        """
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        """Verify that the check doesn't raise errors for valid test mapping."""
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_VALID_TEST_MAPPING)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             android_test_mapping_format.process_file(file.read())
 
     def test_invalid_test_mapping_bad_json(self):
         """Verify that TEST_MAPPING file with bad json can be detected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_JSON)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
-                ValueError, android_test_mapping_format.process_file,
-                file.read())
+                ValueError,
+                android_test_mapping_format.process_file,
+                file.read(),
+            )
 
     def test_invalid_test_mapping_wrong_test_key(self):
         """Verify that test config using wrong key can be detected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_TEST_WRONG_KEY)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
                 android_test_mapping_format.InvalidTestMappingError,
                 android_test_mapping_format.process_file,
-                file.read())
+                file.read(),
+            )
 
     def test_invalid_test_mapping_wrong_test_value(self):
         """Verify that test config using wrong host value can be detected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_TEST_WRONG_HOST_VALUE)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
                 android_test_mapping_format.InvalidTestMappingError,
                 android_test_mapping_format.process_file,
-                file.read())
+                file.read(),
+            )
 
     def test_invalid_test_mapping_wrong_preferred_targets_value(self):
         """Verify invalid preferred_targets are rejected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_TEST_WRONG_PREFERRED_TARGETS_VALUE_NONE_LIST)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
                 android_test_mapping_format.InvalidTestMappingError,
                 android_test_mapping_format.process_file,
-                file.read())
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+                file.read(),
+            )
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_TEST_WRONG_PREFERRED_TARGETS_VALUE_WRONG_TYPE)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
                 android_test_mapping_format.InvalidTestMappingError,
                 android_test_mapping_format.process_file,
-                file.read())
+                file.read(),
+            )
 
     def test_invalid_test_mapping_wrong_test_option(self):
         """Verify that test config using wrong option can be detected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_TEST_WRONG_OPTION)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
                 android_test_mapping_format.InvalidTestMappingError,
                 android_test_mapping_format.process_file,
-                file.read())
+                file.read(),
+            )
 
     def test_invalid_test_mapping_wrong_import_key(self):
         """Verify that import setting using wrong key can be detected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_IMPORT_WRONG_KEY)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
                 android_test_mapping_format.InvalidTestMappingError,
                 android_test_mapping_format.process_file,
-                file.read())
+                file.read(),
+            )
 
     def test_invalid_test_mapping_wrong_import_value(self):
         """Verify that import setting using wrong value can be detected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_IMPORT_WRONG_IMPORT_VALUE)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
                 android_test_mapping_format.InvalidTestMappingError,
                 android_test_mapping_format.process_file,
-                file.read())
+                file.read(),
+            )
 
     def test_invalid_test_mapping_file_patterns_value(self):
         """Verify that file_patterns using wrong value can be detected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_BAD_FILE_PATTERNS)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
                 android_test_mapping_format.InvalidTestMappingError,
                 android_test_mapping_format.process_file,
-                file.read())
+                file.read(),
+            )
 
     def test_valid_test_mapping_file_with_supported_comments(self):
         """Verify that '//'-format comment can be filtered."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_TEST_MAPPING_WITH_SUPPORTED_COMMENTS)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             android_test_mapping_format.process_file(file.read())
 
     def test_valid_test_mapping_file_with_non_supported_comments(self):
         """Verify that non-supported comment can be detected."""
-        with open(self.test_mapping_file, 'w', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "w", encoding="utf-8") as file:
             file.write(_TEST_MAPPING_WITH_NON_SUPPORTED_COMMENTS)
-        with open(self.test_mapping_file, 'r', encoding='utf-8') as file:
+        with open(self.test_mapping_file, "r", encoding="utf-8") as file:
             self.assertRaises(
-                ValueError, android_test_mapping_format.process_file,
-                file.read())
+                ValueError,
+                android_test_mapping_format.process_file,
+                file.read(),
+            )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

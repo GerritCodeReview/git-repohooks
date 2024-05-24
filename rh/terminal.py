@@ -21,7 +21,7 @@ import os
 import sys
 from typing import List, Optional
 
-_path = os.path.realpath(__file__ + '/../..')
+_path = os.path.realpath(__file__ + "/../..")
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
 del _path
@@ -33,7 +33,7 @@ import rh.shell
 # This will erase all content in the current line after the cursor.  This is
 # useful for partial updates & progress messages as the terminal can display
 # it better.
-CSI_ERASE_LINE_AFTER = '\x1b[K'
+CSI_ERASE_LINE_AFTER = "\x1b[K"
 
 
 class Color(object):
@@ -41,9 +41,9 @@ class Color(object):
 
     BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
     BOLD = -1
-    COLOR_START = '\033[1;%dm'
-    BOLD_START = '\033[1m'
-    RESET = '\033[m'
+    COLOR_START = "\033[1;%dm"
+    BOLD_START = "\033[1m"
+    RESET = "\033[m"
 
     def __init__(self, enabled=None):
         """Create a new Color object, optionally disabling color output.
@@ -66,7 +66,7 @@ class Color(object):
         """
         if self.enabled:
             return self.COLOR_START % (color + 30)
-        return ''
+        return ""
 
     def stop(self):
         """Returns a stop color code.
@@ -77,7 +77,7 @@ class Color(object):
         """
         if self.enabled:
             return self.RESET
-        return ''
+        return ""
 
     def color(self, color, text):
         """Returns text with conditionally added color escape sequences.
@@ -102,9 +102,10 @@ class Color(object):
     def enabled(self):
         """See if the colorization is enabled."""
         if self._enabled is None:
-            if 'NOCOLOR' in os.environ:
+            if "NOCOLOR" in os.environ:
                 self._enabled = not rh.shell.boolean_shell_value(
-                    os.environ['NOCOLOR'], False)
+                    os.environ["NOCOLOR"], False
+                )
             else:
                 self._enabled = sys.stderr.isatty()
         return self._enabled
@@ -118,11 +119,11 @@ def print_status_line(line, print_newline=False):
       print_newline: Print a newline at the end, if sys.stderr is a TTY.
     """
     if sys.stderr.isatty():
-        output = '\r' + line + CSI_ERASE_LINE_AFTER
+        output = "\r" + line + CSI_ERASE_LINE_AFTER
         if print_newline:
-            output += '\n'
+            output += "\n"
     else:
-        output = line + '\n'
+        output = line + "\n"
 
     sys.stderr.write(output)
     sys.stderr.flush()
@@ -156,8 +157,13 @@ def str_prompt(
         raise
 
 
-def boolean_prompt(prompt='Do you want to continue?', default=True,
-                   true_value='yes', false_value='no', prolog=None):
+def boolean_prompt(
+    prompt="Do you want to continue?",
+    default=True,
+    true_value="yes",
+    false_value="no",
+    prolog=None,
+):
     """Helper function for processing boolean choice prompts.
 
     Args:
@@ -174,7 +180,8 @@ def boolean_prompt(prompt='Do you want to continue?', default=True,
     true_text, false_text = true_value, false_value
     if true_value == false_value:
         raise ValueError(
-            f'true_value and false_value must differ: got {true_value!r}')
+            f"true_value and false_value must differ: got {true_value!r}"
+        )
 
     if default:
         true_text = true_text[0].upper() + true_text[1:]
@@ -182,8 +189,8 @@ def boolean_prompt(prompt='Do you want to continue?', default=True,
         false_text = false_text[0].upper() + false_text[1:]
 
     if prolog:
-        prompt = f'\n{prolog}\n{prompt}'
-    prompt = '\n' + prompt
+        prompt = f"\n{prolog}\n{prompt}"
+    prompt = "\n" + prompt
 
     while True:
         response = str_prompt(prompt, choices=(true_text, false_text))

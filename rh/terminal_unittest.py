@@ -21,7 +21,7 @@ import os
 import sys
 import unittest
 
-_path = os.path.realpath(__file__ + '/../..')
+_path = os.path.realpath(__file__ + "/../..")
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
 del _path
@@ -36,7 +36,7 @@ class ColorTests(unittest.TestCase):
     """Verify behavior of Color class."""
 
     def setUp(self):
-        os.environ.pop('NOCOLOR', None)
+        os.environ.pop("NOCOLOR", None)
 
     def test_enabled_auto_tty(self):
         """Test automatic enable behavior based on tty."""
@@ -53,11 +53,11 @@ class ColorTests(unittest.TestCase):
         """Test automatic enable behavior based on $NOCOLOR."""
         stderr = io.StringIO()
         with contextlib.redirect_stderr(stderr):
-            os.environ['NOCOLOR'] = 'yes'
+            os.environ["NOCOLOR"] = "yes"
             c = rh.terminal.Color()
             self.assertFalse(c.enabled)
 
-            os.environ['NOCOLOR'] = 'no'
+            os.environ["NOCOLOR"] = "no"
             c = rh.terminal.Color()
             self.assertTrue(c.enabled)
 
@@ -66,14 +66,14 @@ class ColorTests(unittest.TestCase):
         stderr = io.StringIO()
         with contextlib.redirect_stderr(stderr):
             stderr.isatty = lambda: True
-            os.environ['NOCOLOR'] = 'no'
+            os.environ["NOCOLOR"] = "no"
             c = rh.terminal.Color()
             self.assertTrue(c.enabled)
             c = rh.terminal.Color(False)
             self.assertFalse(c.enabled)
 
             stderr.isatty = lambda: False
-            os.environ['NOCOLOR'] = 'yes'
+            os.environ["NOCOLOR"] = "yes"
             c = rh.terminal.Color()
             self.assertFalse(c.enabled)
             c = rh.terminal.Color(True)
@@ -82,17 +82,18 @@ class ColorTests(unittest.TestCase):
     def test_output_disabled(self):
         """Test output when coloring is disabled."""
         c = rh.terminal.Color(False)
-        self.assertEqual(c.start(rh.terminal.Color.BLACK), '')
-        self.assertEqual(c.color(rh.terminal.Color.BLACK, 'foo'), 'foo')
-        self.assertEqual(c.stop(), '')
+        self.assertEqual(c.start(rh.terminal.Color.BLACK), "")
+        self.assertEqual(c.color(rh.terminal.Color.BLACK, "foo"), "foo")
+        self.assertEqual(c.stop(), "")
 
     def test_output_enabled(self):
         """Test output when coloring is enabled."""
         c = rh.terminal.Color(True)
-        self.assertEqual(c.start(rh.terminal.Color.BLACK), '\x1b[1;30m')
-        self.assertEqual(c.color(rh.terminal.Color.BLACK, 'foo'),
-                         '\x1b[1;30mfoo\x1b[m')
-        self.assertEqual(c.stop(), '\x1b[m')
+        self.assertEqual(c.start(rh.terminal.Color.BLACK), "\x1b[1;30m")
+        self.assertEqual(
+            c.color(rh.terminal.Color.BLACK, "foo"), "\x1b[1;30mfoo\x1b[m"
+        )
+        self.assertEqual(c.stop(), "\x1b[m")
 
 
 class PrintStatusLine(unittest.TestCase):
@@ -103,18 +104,18 @@ class PrintStatusLine(unittest.TestCase):
         stderr = io.StringIO()
         stderr.isatty = lambda: True
         with contextlib.redirect_stderr(stderr):
-            rh.terminal.print_status_line('foo')
-            rh.terminal.print_status_line('bar', print_newline=True)
+            rh.terminal.print_status_line("foo")
+            rh.terminal.print_status_line("bar", print_newline=True)
         csi = rh.terminal.CSI_ERASE_LINE_AFTER
-        self.assertEqual(stderr.getvalue(), f'\rfoo{csi}\rbar{csi}\n')
+        self.assertEqual(stderr.getvalue(), f"\rfoo{csi}\rbar{csi}\n")
 
     def test_no_terminal(self):
         """Check tty-less behavior."""
         stderr = io.StringIO()
         with contextlib.redirect_stderr(stderr):
-            rh.terminal.print_status_line('foo')
-            rh.terminal.print_status_line('bar', print_newline=True)
-        self.assertEqual(stderr.getvalue(), 'foo\nbar\n')
+            rh.terminal.print_status_line("foo")
+            rh.terminal.print_status_line("bar", print_newline=True)
+        self.assertEqual(stderr.getvalue(), "foo\nbar\n")
 
 
 @contextlib.contextmanager
@@ -146,20 +147,21 @@ class StringPromptTests(unittest.TestCase):
         stdout = io.StringIO()
         with redirect_stdin(self.stdin), contextlib.redirect_stdout(stdout):
             # Test EOF behavior.
-            self.assertIsNone(rh.terminal.str_prompt('foo', ('a', 'b')))
+            self.assertIsNone(rh.terminal.str_prompt("foo", ("a", "b")))
 
             # Test enter behavior.
-            self.set_stdin('\n')
-            self.assertEqual(rh.terminal.str_prompt('foo', ('a', 'b')), '')
+            self.set_stdin("\n")
+            self.assertEqual(rh.terminal.str_prompt("foo", ("a", "b")), "")
 
             # Lowercase inputs.
-            self.set_stdin('Ok')
-            self.assertEqual(rh.terminal.str_prompt('foo', ('a', 'b')), 'ok')
+            self.set_stdin("Ok")
+            self.assertEqual(rh.terminal.str_prompt("foo", ("a", "b")), "ok")
 
             # Don't lowercase inputs.
-            self.set_stdin('Ok')
+            self.set_stdin("Ok")
             self.assertEqual(
-                rh.terminal.str_prompt('foo', ('a', 'b'), lower=False), 'Ok')
+                rh.terminal.str_prompt("foo", ("a", "b"), lower=False), "Ok"
+            )
 
 
 class BooleanPromptTests(unittest.TestCase):
@@ -180,20 +182,20 @@ class BooleanPromptTests(unittest.TestCase):
         stdout = io.StringIO()
         with redirect_stdin(self.stdin), contextlib.redirect_stdout(stdout):
             # Default values.  Will loop to EOF when it doesn't match anything.
-            for v in ('', '\n', 'oops'):
+            for v in ("", "\n", "oops"):
                 self.set_stdin(v)
                 self.assertTrue(rh.terminal.boolean_prompt())
 
             # False values.
-            for v in ('n', 'N', 'no', 'NO'):
+            for v in ("n", "N", "no", "NO"):
                 self.set_stdin(v)
                 self.assertFalse(rh.terminal.boolean_prompt())
 
             # True values.
-            for v in ('y', 'Y', 'ye', 'yes', 'YES'):
+            for v in ("y", "Y", "ye", "yes", "YES"):
                 self.set_stdin(v)
                 self.assertTrue(rh.terminal.boolean_prompt())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

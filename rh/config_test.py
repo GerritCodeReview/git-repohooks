@@ -32,25 +32,26 @@ def assertEqual(msg, exp, actual):
 
 def assertEnv(var, value):
     """Assert |var| is set in the environment as |value|."""
-    assert var in os.environ, f'${var} missing in environment'
-    assertEqual(f'env[{var}]', value, os.environ[var])
+    assert var in os.environ, f"${var} missing in environment"
+    assertEqual(f"env[{var}]", value, os.environ[var])
 
 
 def check_commit_id(commit):
     """Check |commit| looks like a git commit id."""
     assert len(commit) == 40, f'commit "{commit}" must be 40 chars'
-    assert re.match(r'^[a-f0-9]+$', commit), \
-        f'commit "{commit}" must be all hex'
+    assert re.match(
+        r"^[a-f0-9]+$", commit
+    ), f'commit "{commit}" must be all hex'
 
 
 def check_commit_msg(msg):
     """Check the ${PREUPLOAD_COMMIT_MESSAGE} setting."""
-    assert len(msg) > 1, f'commit message must be at least 2 bytes: {msg}'
+    assert len(msg) > 1, f"commit message must be at least 2 bytes: {msg}"
 
 
 def check_repo_root(root):
     """Check the ${REPO_ROOT} setting."""
-    assertEqual('REPO_ROOT', REPO_ROOT, root)
+    assertEqual("REPO_ROOT", REPO_ROOT, root)
 
 
 def check_files(files):
@@ -60,27 +61,26 @@ def check_files(files):
 
 def check_env():
     """Verify all exported env vars look sane."""
-    assertEnv('REPO_PROJECT', 'platform/tools/repohooks')
-    assertEnv('REPO_PATH', 'tools/repohooks')
-    assertEnv('REPO_REMOTE', 'aosp')
-    check_commit_id(os.environ['REPO_LREV'])
-    print(os.environ['REPO_RREV'])
-    check_commit_id(os.environ['PREUPLOAD_COMMIT'])
+    assertEnv("REPO_PROJECT", "platform/tools/repohooks")
+    assertEnv("REPO_PATH", "tools/repohooks")
+    assertEnv("REPO_REMOTE", "aosp")
+    check_commit_id(os.environ["REPO_LREV"])
+    print(os.environ["REPO_RREV"])
+    check_commit_id(os.environ["PREUPLOAD_COMMIT"])
 
 
 def get_parser():
     """Return a command line parser."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--check-env', action='store_true',
-                        help='Check all exported env vars.')
-    parser.add_argument('--commit-id',
-                        help='${PREUPLOAD_COMMIT} setting.')
-    parser.add_argument('--commit-msg',
-                        help='${PREUPLOAD_COMMIT_MESSAGE} setting.')
-    parser.add_argument('--repo-root',
-                        help='${REPO_ROOT} setting.')
-    parser.add_argument('files', nargs='+',
-                        help='${PREUPLOAD_FILES} paths.')
+    parser.add_argument(
+        "--check-env", action="store_true", help="Check all exported env vars."
+    )
+    parser.add_argument("--commit-id", help="${PREUPLOAD_COMMIT} setting.")
+    parser.add_argument(
+        "--commit-msg", help="${PREUPLOAD_COMMIT_MESSAGE} setting."
+    )
+    parser.add_argument("--repo-root", help="${REPO_ROOT} setting.")
+    parser.add_argument("files", nargs="+", help="${PREUPLOAD_FILES} paths.")
     return parser
 
 
@@ -100,11 +100,11 @@ def main(argv):
             check_repo_root(opts.repo_root)
         check_files(opts.files)
     except AssertionError as e:
-        print(f'error: {e}', file=sys.stderr)
+        print(f"error: {e}", file=sys.stderr)
         return 1
 
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))

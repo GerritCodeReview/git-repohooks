@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#
 # Copyright (C) 2024 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -155,5 +154,5 @@ limitations under the License.
         self.assertFalse(check_aosp_license.check_license(invalid_header))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
