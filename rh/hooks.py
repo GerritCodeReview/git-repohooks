@@ -383,6 +383,30 @@ def check_aosp_license(project, commit, _desc, diff, options=None):
     return _check_cmd('aosp_license', project, commit, cmd)
 
 
+def check_black(project, commit, _desc, diff, options=None):
+    """Checks that Python files are formatted with black."""
+    filtered = _filter_diff(diff, [r'\.py$'])
+    if not filtered:
+        return None
+
+    tool = options.tool_path('black')
+    tool_options = options.args((), filtered)
+    cmd = [tool, '--check'] + tool_options
+    fixup_cmd = [tool] + tool_options + ['--']
+
+    ret = []
+    for d in filtered:
+        data = rh.git.get_file_content(commit, d.file)
+        result = _run(cmd, input=data)
+        if result.stdout:
+            ret.append(rh.results.HookResult(
+                'black', project, commit,
+                error=result.stdout,
+                files=(d.file,),
+                fixup_cmd=fixup_cmd))
+    return ret
+
+
 def check_bpfmt(project, commit, _desc, diff, options=None):
     """Checks that Blueprint files are formatted with bpfmt."""
     filtered = _filter_diff(diff, [r'\.bp$'])
@@ -1109,6 +1133,7 @@ BUILTIN_HOOKS = {
     'aidl_format': check_aidl_format,
     'android_test_mapping_format': check_android_test_mapping,
     'aosp_license': check_aosp_license,
+    'black': check_black,
     'bpfmt': check_bpfmt,
     'checkpatch': check_checkpatch,
     'clang_format': check_clang_format,
@@ -1137,6 +1162,7 @@ TOOL_PATHS = {
     'aidl-format': 'aidl-format',
     'android-test-mapping-format':
         os.path.join(TOOLS_DIR, 'android_test_mapping_format.py'),
+    'black': 'black',
     'bpfmt': 'bpfmt',
     'clang-format': 'clang-format',
     'cpplint': os.path.join(TOOLS_DIR, 'cpplint.py'),

@@ -419,6 +419,21 @@ class BuiltinHooksTests(unittest.TestCase):
         )
         self.assertIsNotNone(ret)
 
+    def test_black(self, mock_check, _mock_run):
+        """Verify the black builtin hook."""
+        # First call should do nothing as there are no files to check.
+        ret = rh.hooks.check_black(
+            self.project, 'commit', 'desc', (), options=self.options)
+        self.assertIsNone(ret)
+        self.assertFalse(mock_check.called)
+
+        # Second call will have some results.
+        diff = [rh.git.RawDiffEntry(file='main.py')]
+        ret = rh.hooks.check_black(
+            self.project, 'commit', 'desc', diff, options=self.options)
+        self.assertIsNotNone(ret)
+        for result in ret:
+            self.assertIsNotNone(result.fixup_cmd)
 
     def test_bpfmt(self, mock_check, _mock_run):
         """Verify the bpfmt builtin hook."""
