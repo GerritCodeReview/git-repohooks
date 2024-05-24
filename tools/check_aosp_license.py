@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#
 # Copyright (C) 2024 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +21,7 @@ import re
 import sys
 from typing import List
 
-_path = os.path.realpath(__file__ + '/../..')
+_path = os.path.realpath(__file__ + "/../..")
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
 del _path
@@ -58,7 +57,7 @@ AOSP_LICENSE_HEADER = (
 LICENSE_RE = re.compile(AOSP_LICENSE_HEADER, re.MULTILINE)
 
 
-AOSP_LICENSE_SUBSTR = 'Licensed under the Apache License'
+AOSP_LICENSE_SUBSTR = "Licensed under the Apache License"
 
 
 def check_license(contents: str) -> bool:
@@ -70,17 +69,17 @@ def get_parser() -> argparse.ArgumentParser:
     """Returns a command line parser."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        'files',
-        nargs='+',
-        help='The file paths to check.',
+        "files",
+        nargs="+",
+        help="The file paths to check.",
     )
     parser.add_argument(
-        '--commit-hash',
-        '-c',
-        help='The commit hash to check.',
+        "--commit-hash",
+        "-c",
+        help="The commit hash to check.",
         # TODO(b/370907797): Read the contents on the file system by default
         # instead.
-        default='HEAD',
+        default="HEAD",
     )
     return parser
 
@@ -97,12 +96,12 @@ def main(argv: List[str]) -> int:
         contents = rh.git.get_file_content(commit_hash, file_path)
         if not check_license(contents):
             if AOSP_LICENSE_SUBSTR in contents:
-                print(f'{file_path}: Malformed AOSP license', file=sys.stderr)
+                print(f"{file_path}: Malformed AOSP license", file=sys.stderr)
             else:
-                print(f'{file_path}: Missing AOSP license', file=sys.stderr)
+                print(f"{file_path}: Missing AOSP license", file=sys.stderr)
             all_passed = False
     return 0 if all_passed else 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))

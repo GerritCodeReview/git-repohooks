@@ -18,7 +18,7 @@ import os
 import signal
 import sys
 
-_path = os.path.realpath(__file__ + '/../..')
+_path = os.path.realpath(__file__ + "/../..")
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
 del _path

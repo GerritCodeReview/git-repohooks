@@ -31,7 +31,7 @@ from typing import List, Optional
 # Assert some minimum Python versions as we don't test or support any others.
 # See README.md for what version we may require.
 if sys.version_info < (3, 6):
-    print('repohooks: error: Python-3.6+ is required', file=sys.stderr)
+    print("repohooks: error: Python-3.6+ is required", file=sys.stderr)
     sys.exit(1)
 
 
@@ -53,19 +53,19 @@ import rh.utils
 
 
 # Repohooks homepage.
-REPOHOOKS_URL = 'https://android.googlesource.com/platform/tools/repohooks/'
+REPOHOOKS_URL = "https://android.googlesource.com/platform/tools/repohooks/"
 
 
 class Output(object):
     """Class for reporting hook status."""
 
     COLOR = rh.terminal.Color()
-    COMMIT = COLOR.color(COLOR.CYAN, 'COMMIT')
-    RUNNING = COLOR.color(COLOR.YELLOW, 'RUNNING')
-    PASSED = COLOR.color(COLOR.GREEN, 'PASSED')
-    FAILED = COLOR.color(COLOR.RED, 'FAILED')
-    WARNING = COLOR.color(COLOR.YELLOW, 'WARNING')
-    FIXUP = COLOR.color(COLOR.MAGENTA, 'FIXUP')
+    COMMIT = COLOR.color(COLOR.CYAN, "COMMIT")
+    RUNNING = COLOR.color(COLOR.YELLOW, "RUNNING")
+    PASSED = COLOR.color(COLOR.GREEN, "PASSED")
+    FAILED = COLOR.color(COLOR.RED, "FAILED")
+    WARNING = COLOR.color(COLOR.YELLOW, "WARNING")
+    FIXUP = COLOR.color(COLOR.MAGENTA, "FIXUP")
 
     # How long a hook is allowed to run before we warn that it is "too slow".
     _SLOW_HOOK_DURATION = datetime.timedelta(seconds=30)
@@ -85,7 +85,7 @@ class Output(object):
         self.start_time = datetime.datetime.now()
         self.hook_start_time = None
         # Cache number of invisible characters in our banner.
-        self._banner_esc_chars = len(self.COLOR.color(self.COLOR.YELLOW, ''))
+        self._banner_esc_chars = len(self.COLOR.color(self.COLOR.YELLOW, ""))
 
     def set_num_commits(self, num_commits: int) -> None:
         """Keep track of how many commits we'll be running.
@@ -105,9 +105,9 @@ class Output(object):
           commit_summary: commit summary.
         """
         status_line = (
-            f'[{self.COMMIT} '
-            f'{self.commit_index}/{self.num_commits} '
-            f'{commit[0:12]}] {commit_summary}'
+            f"[{self.COMMIT} "
+            f"{self.commit_index}/{self.num_commits} "
+            f"{commit[0:12]}] {commit_summary}"
         )
         rh.terminal.print_status_line(status_line, print_newline=True)
         self.commit_index += 1
@@ -119,15 +119,15 @@ class Output(object):
 
     def hook_banner(self):
         """Display the banner for current set of hooks."""
-        pending = ', '.join(x.name for x in self.hooks)
+        pending = ", ".join(x.name for x in self.hooks)
         status_line = (
-            f'[{self.RUNNING} '
-            f'{self.num_hooks - len(self.hooks)}/{self.num_hooks}] '
-            f'{pending}'
+            f"[{self.RUNNING} "
+            f"{self.num_hooks - len(self.hooks)}/{self.num_hooks}] "
+            f"{pending}"
         )
         if self._banner_esc_chars and sys.stderr.isatty():
             cols = os.get_terminal_size(sys.stderr.fileno()).columns
-            status_line = status_line[0:cols + self._banner_esc_chars]
+            status_line = status_line[0 : cols + self._banner_esc_chars]
         rh.terminal.print_status_line(status_line)
 
     def hook_finish(self, hook, duration):
@@ -137,9 +137,10 @@ class Output(object):
             d = rh.utils.timedelta_str(duration)
             self.hook_warning(
                 hook,
-                f'This hook took {d} to finish which is fairly slow for '
-                'developers.\nPlease consider moving the check to the '
-                'server/CI system instead.')
+                f"This hook took {d} to finish which is fairly slow for "
+                "developers.\nPlease consider moving the check to the "
+                "server/CI system instead.",
+            )
 
         # Show any hooks still pending.
         if self.hooks:
@@ -152,7 +153,7 @@ class Output(object):
           hook: The hook that generated the output.
           error: error string.
         """
-        self.error(f'{hook.name} hook', error)
+        self.error(f"{hook.name} hook", error)
 
     def hook_warning(self, hook, warning):
         """Print a warning for a single hook.
@@ -161,7 +162,7 @@ class Output(object):
           hook: The hook that generated the output.
           warning: warning string.
         """
-        status_line = f'[{self.WARNING}] {hook.name}'
+        status_line = f"[{self.WARNING}] {hook.name}"
         rh.terminal.print_status_line(status_line, print_newline=True)
         print(warning, file=sys.stderr)
 
@@ -172,7 +173,7 @@ class Output(object):
           header: A unique identifier for the source of this error.
           error: error string.
         """
-        status_line = f'[{self.FAILED}] {header}'
+        status_line = f"[{self.FAILED}] {header}"
         rh.terminal.print_status_line(status_line, print_newline=True)
         print(error, file=sys.stderr)
         self.success = False
@@ -186,20 +187,21 @@ class Output(object):
         for result in (x for x in hook_results if x.fixup_cmd):
             cmd = result.fixup_cmd + list(result.files)
             for line in (
-                f'[{self.FIXUP}] {result.hook} has automated fixups available',
-                f'  cd {rh.shell.quote(project_results.workdir)} && \\',
-                f'    {rh.shell.cmd_to_str(cmd)}',
+                f"[{self.FIXUP}] {result.hook} has automated fixups available",
+                f"  cd {rh.shell.quote(project_results.workdir)} && \\",
+                f"    {rh.shell.cmd_to_str(cmd)}",
             ):
                 rh.terminal.print_status_line(line, print_newline=True)
 
     def finish(self):
         """Print summary for all the hooks."""
         header = self.PASSED if self.success else self.FAILED
-        status = 'passed' if self.success else 'failed'
+        status = "passed" if self.success else "failed"
         d = rh.utils.timedelta_str(datetime.datetime.now() - self.start_time)
         rh.terminal.print_status_line(
-            f'[{header}] repohooks for {self.project_name} {status} in {d}',
-            print_newline=True)
+            f"[{header}] repohooks for {self.project_name} {status} in {d}",
+            print_newline=True,
+        )
 
 
 def _process_hook_results(results):
@@ -220,15 +222,15 @@ def _process_hook_results(results):
     has_error = False
     has_warning = False
 
-    error_ret = ''
-    warning_ret = ''
+    error_ret = ""
+    warning_ret = ""
     for result in results:
         if result or result.is_warning():
-            ret = ''
+            ret = ""
             if result.files:
-                ret += f'  FILES: {rh.shell.cmd_to_str(result.files)}\n'
+                ret += f"  FILES: {rh.shell.cmd_to_str(result.files)}\n"
             lines = result.error.splitlines()
-            ret += '\n'.join(f'    {x}' for x in lines)
+            ret += "\n".join(f"    {x}" for x in lines)
             if result.is_warning():
                 has_warning = True
                 warning_ret += ret
@@ -236,8 +238,10 @@ def _process_hook_results(results):
                 has_error = True
                 error_ret += ret
 
-    return (error_ret if has_error else None,
-            warning_ret if has_warning else None)
+    return (
+        error_ret if has_error else None,
+        warning_ret if has_warning else None,
+    )
 
 
 def _get_project_config(from_git=False):
@@ -253,14 +257,14 @@ def _get_project_config(from_git=False):
     else:
         global_paths = (
             # Load the global config found in the manifest repo.
-            (os.path.join(rh.git.find_repo_root(), '.repo', 'manifests')),
+            (os.path.join(rh.git.find_repo_root(), ".repo", "manifests")),
             # Load the global config found in the root of the repo checkout.
             rh.git.find_repo_root(),
         )
 
     paths = (
         # Load the config for this git repo.
-        '.',
+        ".",
     )
     return rh.config.PreUploadSettings(paths=paths, global_paths=global_paths)
 
@@ -270,65 +274,75 @@ def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
     # Filter out any result that has a fixup.
     fixups = []
     for project_results in projects_results:
-        fixups.extend((project_results.workdir, x)
-                      for x in project_results.fixups)
+        fixups.extend(
+            (project_results.workdir, x) for x in project_results.fixups
+        )
     if not fixups:
         return
 
     if len(fixups) > 1:
-        banner = f'Multiple fixups ({len(fixups)}) are available.'
+        banner = f"Multiple fixups ({len(fixups)}) are available."
     else:
-        banner = 'Automated fixups are available.'
+        banner = "Automated fixups are available."
     print(Output.COLOR.color(Output.COLOR.MAGENTA, banner), file=sys.stderr)
 
     # If there's more than one fixup available, ask if they want to blindly run
     # them all, or prompt for them one-by-one.
-    mode = 'some'
+    mode = "some"
     if len(fixups) > 1:
         while True:
             response = rh.terminal.str_prompt(
-                'What would you like to do',
-                ('Run (A)ll', 'Run (S)ome', '(D)ry-run', '(N)othing [default]'))
+                "What would you like to do",
+                ("Run (A)ll", "Run (S)ome", "(D)ry-run", "(N)othing [default]"),
+            )
             if not response:
-                print('', file=sys.stderr)
+                print("", file=sys.stderr)
                 return
-            if response.startswith('a') or response.startswith('y'):
-                mode = 'all'
+            if response.startswith("a") or response.startswith("y"):
+                mode = "all"
                 break
-            elif response.startswith('s'):
-                mode = 'some'
+            elif response.startswith("s"):
+                mode = "some"
                 break
-            elif response.startswith('d'):
-                mode = 'dry-run'
+            elif response.startswith("d"):
+                mode = "dry-run"
                 break
-            elif response.startswith('n'):
-                print('', file=sys.stderr)
+            elif response.startswith("n"):
+                print("", file=sys.stderr)
                 return
 
     # Walk all the fixups and run them one-by-one.
     for workdir, result in fixups:
-        if mode == 'some':
+        if mode == "some":
             if not rh.terminal.boolean_prompt(
-                f'Run {result.hook} fixup for {result.commit}'
+                f"Run {result.hook} fixup for {result.commit}"
             ):
                 continue
 
         cmd = tuple(result.fixup_cmd) + tuple(result.files)
         print(
-            f'\n[{Output.RUNNING}] cd {rh.shell.quote(workdir)} && '
-            f'{rh.shell.cmd_to_str(cmd)}', file=sys.stderr)
-        if mode == 'dry-run':
+            f"\n[{Output.RUNNING}] cd {rh.shell.quote(workdir)} && "
+            f"{rh.shell.cmd_to_str(cmd)}",
+            file=sys.stderr,
+        )
+        if mode == "dry-run":
             continue
 
         cmd_result = rh.utils.run(cmd, cwd=workdir, check=False)
         if cmd_result.returncode:
-            print(f'[{Output.WARNING}] command exited {cmd_result.returncode}',
-                  file=sys.stderr)
+            print(
+                f"[{Output.WARNING}] command exited {cmd_result.returncode}",
+                file=sys.stderr,
+            )
         else:
-            print(f'[{Output.PASSED}] great success', file=sys.stderr)
+            print(f"[{Output.PASSED}] great success", file=sys.stderr)
 
-    print(f'\n[{Output.FIXUP}] Please amend & rebase your tree before '
-          'attempting to upload again.\n', file=sys.stderr)
+    print(
+        f"\n[{Output.FIXUP}] Please amend & rebase your tree before "
+        "attempting to upload again.\n",
+        file=sys.stderr,
+    )
+
 
 def _run_project_hooks_in_cwd(
     project_name: str,
@@ -359,7 +373,7 @@ def _run_project_hooks_in_cwd(
     try:
         config = _get_project_config(from_git)
     except rh.config.ValidationError as e:
-        output.error('Loading config files', str(e))
+        output.error("Loading config files", str(e))
         return ret._replace(internal_failure=True)
 
     builtin_hooks = list(config.callable_builtin_hooks())
@@ -374,8 +388,10 @@ def _run_project_hooks_in_cwd(
         remote = rh.git.get_upstream_remote()
         upstream_branch = rh.git.get_upstream_branch()
     except rh.utils.CalledProcessError as e:
-        output.error('Upstream remote/tracking branch lookup',
-                     f'{e}\nDid you run repo start?  Is your HEAD detached?')
+        output.error(
+            "Upstream remote/tracking branch lookup",
+            f"{e}\nDid you run repo start?  Is your HEAD detached?",
+        )
         return ret._replace(internal_failure=True)
 
     project = rh.Project(name=project_name, dir=proj_dir)
@@ -388,17 +404,20 @@ def _run_project_hooks_in_cwd(
     if not builtin_hooks and not custom_hooks:
         return ret
 
-    os.environ.update({
-        'REPO_LREV': rh.git.get_commit_for_ref(upstream_branch),
-        'REPO_PATH': rel_proj_dir,
-        'REPO_PROJECT': project_name,
-        'REPO_REMOTE': remote,
-        'REPO_RREV': rh.git.get_remote_revision(upstream_branch, remote),
-    })
+    os.environ.update(
+        {
+            "REPO_LREV": rh.git.get_commit_for_ref(upstream_branch),
+            "REPO_PATH": rel_proj_dir,
+            "REPO_PROJECT": project_name,
+            "REPO_REMOTE": remote,
+            "REPO_RREV": rh.git.get_remote_revision(upstream_branch, remote),
+        }
+    )
 
     if not commit_list:
         commit_list = rh.git.get_commits(
-            ignore_merged_commits=config.ignore_merged_commits)
+            ignore_merged_commits=config.ignore_merged_commits
+        )
     output.set_num_commits(len(commit_list))
 
     def _run_hook(hook, project, commit, desc, diff):
@@ -412,23 +431,33 @@ def _run_project_hooks_in_cwd(
     with concurrent.futures.ThreadPoolExecutor(max_workers=jobs) as executor:
         for commit in commit_list:
             # Mix in some settings for our hooks.
-            os.environ['PREUPLOAD_COMMIT'] = commit
+            os.environ["PREUPLOAD_COMMIT"] = commit
             diff = rh.git.get_affected_files(commit)
             desc = rh.git.get_commit_desc(commit)
-            os.environ['PREUPLOAD_COMMIT_MESSAGE'] = desc
+            os.environ["PREUPLOAD_COMMIT_MESSAGE"] = desc
 
-            commit_summary = desc.split('\n', 1)[0]
-            output.commit_start(builtin_hooks + custom_hooks, commit, commit_summary)
+            commit_summary = desc.split("\n", 1)[0]
+            output.commit_start(
+                builtin_hooks + custom_hooks, commit, commit_summary
+            )
 
             def run_hooks(hooks):
                 futures = (
-                    executor.submit(_run_hook, hook, project, commit, desc, diff)
+                    executor.submit(
+                        _run_hook, hook, project, commit, desc, diff
+                    )
                     for hook in hooks
                 )
                 future_results = (
                     x.result() for x in concurrent.futures.as_completed(futures)
                 )
-                for hook, hook_results, error, warning, duration in future_results:
+                for (
+                    hook,
+                    hook_results,
+                    error,
+                    warning,
+                    duration,
+                ) in future_results:
                     ret.add_results(hook_results)
                     if error is not None or warning is not None:
                         if warning is not None:
@@ -470,18 +499,22 @@ def _run_project_hooks(
     output = Output(project_name)
 
     if proj_dir is None:
-        cmd = ['repo', 'forall', project_name, '-c', 'pwd']
+        cmd = ["repo", "forall", project_name, "-c", "pwd"]
         result = rh.utils.run(cmd, capture_output=True)
         proj_dirs = result.stdout.split()
         if not proj_dirs:
-            print(f'{project_name} cannot be found.', file=sys.stderr)
-            print('Please specify a valid project.', file=sys.stderr)
+            print(f"{project_name} cannot be found.", file=sys.stderr)
+            print("Please specify a valid project.", file=sys.stderr)
             return False
         if len(proj_dirs) > 1:
-            print(f'{project_name} is associated with multiple directories.',
-                  file=sys.stderr)
-            print('Please specify a directory to help disambiguate.',
-                  file=sys.stderr)
+            print(
+                f"{project_name} is associated with multiple directories.",
+                file=sys.stderr,
+            )
+            print(
+                "Please specify a directory to help disambiguate.",
+                file=sys.stderr,
+            )
             return False
         proj_dir = proj_dirs[0]
 
@@ -490,8 +523,13 @@ def _run_project_hooks(
         # Hooks assume they are run from the root of the project.
         os.chdir(proj_dir)
         return _run_project_hooks_in_cwd(
-            project_name, proj_dir, output, jobs=jobs, from_git=from_git,
-            commit_list=commit_list)
+            project_name,
+            proj_dir,
+            output,
+            jobs=jobs,
+            from_git=from_git,
+            commit_list=commit_list,
+        )
     finally:
         output.finish()
         os.chdir(pwd)
@@ -533,7 +571,7 @@ def _run_projects_hooks(
             # If a repo had failures, add a blank line to help break up the
             # output.  If there were no failures, then the output should be
             # very minimal, so we don't add it then.
-            print('', file=sys.stderr)
+            print("", file=sys.stderr)
 
     _attempt_fixes(results)
     return not any(results)
@@ -559,10 +597,12 @@ def main(project_list, worktree_list=None, **_kwargs):
         worktree_list = [None] * len(project_list)
     if not _run_projects_hooks(project_list, worktree_list):
         color = rh.terminal.Color()
-        print(color.color(color.RED, 'FATAL') +
-              ': Preupload failed due to above error(s).\n'
-              f'For more info, see: {REPOHOOKS_URL}',
-              file=sys.stderr)
+        print(
+            color.color(color.RED, "FATAL")
+            + ": Preupload failed due to above error(s).\n"
+            f"For more info, see: {REPOHOOKS_URL}",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
 
@@ -574,20 +614,29 @@ def _identify_project(path, from_git=False):
       a blank string upon failure.
     """
     if from_git:
-        cmd = ['git', 'rev-parse', '--show-toplevel']
+        cmd = ["git", "rev-parse", "--show-toplevel"]
         project_path = rh.utils.run(cmd, capture_output=True).stdout.strip()
-        cmd = ['git', 'rev-parse', '--show-superproject-working-tree']
+        cmd = ["git", "rev-parse", "--show-superproject-working-tree"]
         superproject_path = rh.utils.run(
-            cmd, capture_output=True).stdout.strip()
-        module_path = project_path[len(superproject_path) + 1:]
-        cmd = ['git', 'config', '-f', '.gitmodules',
-               '--name-only', '--get-regexp', r'^submodule\..*\.path$',
-               f"^{module_path}$"]
-        module_name = rh.utils.run(cmd, cwd=superproject_path,
-                                   capture_output=True).stdout.strip()
-        return module_name[len('submodule.'):-len(".path")]
+            cmd, capture_output=True
+        ).stdout.strip()
+        module_path = project_path[len(superproject_path) + 1 :]
+        cmd = [
+            "git",
+            "config",
+            "-f",
+            ".gitmodules",
+            "--name-only",
+            "--get-regexp",
+            r"^submodule\..*\.path$",
+            f"^{module_path}$",
+        ]
+        module_name = rh.utils.run(
+            cmd, cwd=superproject_path, capture_output=True
+        ).stdout.strip()
+        return module_name[len("submodule.") : -len(".path")]
     else:
-        cmd = ['repo', 'forall', '.', '-c', 'echo ${REPO_PROJECT}']
+        cmd = ["repo", "forall", ".", "-c", "echo ${REPO_PROJECT}"]
         return rh.utils.run(cmd, capture_output=True, cwd=path).stdout.strip()
 
 
@@ -604,37 +653,49 @@ def direct_main(argv):
       BadInvocation: On some types of invocation errors.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--git', action='store_true',
-                        help='This hook is called from git instead of repo')
-    parser.add_argument('--dir', default=None,
-                        help='The directory that the project lives in.  If not '
-                        'specified, use the git project root based on the cwd.')
-    parser.add_argument('--project', default=None,
-                        help='The project repo path; this can affect how the '
-                        'hooks get run, since some hooks are project-specific.'
-                        'If not specified, `repo` will be used to figure this '
-                        'out based on the dir.')
-    parser.add_argument('-j', '--jobs', type=int,
-                        help='Run up to this many hooks in parallel. Setting '
-                        'to 1 forces serial execution, and the default '
-                        'automatically chooses an appropriate number for the '
-                        'current system.')
-    parser.add_argument('commits', nargs='*',
-                        help='Check specific commits')
+    parser.add_argument(
+        "--git",
+        action="store_true",
+        help="This hook is called from git instead of repo",
+    )
+    parser.add_argument(
+        "--dir",
+        default=None,
+        help="The directory that the project lives in.  If not "
+        "specified, use the git project root based on the cwd.",
+    )
+    parser.add_argument(
+        "--project",
+        default=None,
+        help="The project repo path; this can affect how the "
+        "hooks get run, since some hooks are project-specific."
+        "If not specified, `repo` will be used to figure this "
+        "out based on the dir.",
+    )
+    parser.add_argument(
+        "-j",
+        "--jobs",
+        type=int,
+        help="Run up to this many hooks in parallel. Setting "
+        "to 1 forces serial execution, and the default "
+        "automatically chooses an appropriate number for the "
+        "current system.",
+    )
+    parser.add_argument("commits", nargs="*", help="Check specific commits")
     opts = parser.parse_args(argv)
 
     # Check/normalize git dir; if unspecified, we'll use the root of the git
     # project from CWD.
     if opts.dir is None:
-        cmd = ['git', 'rev-parse', '--git-dir']
+        cmd = ["git", "rev-parse", "--git-dir"]
         git_dir = rh.utils.run(cmd, capture_output=True).stdout.strip()
         if not git_dir:
-            parser.error('The current directory is not part of a git project.')
+            parser.error("The current directory is not part of a git project.")
         opts.dir = os.path.dirname(os.path.abspath(git_dir))
     elif not os.path.isdir(opts.dir):
-        parser.error(f'Invalid dir: {opts.dir}')
+        parser.error(f"Invalid dir: {opts.dir}")
     elif not rh.git.is_git_repository(opts.dir):
-        parser.error(f'Not a git repository: {opts.dir}')
+        parser.error(f"Not a git repository: {opts.dir}")
 
     # Identify the project if it wasn't specified; this _requires_ the repo
     # tool to be installed and for the project to be part of a repo checkout.
@@ -644,14 +705,19 @@ def direct_main(argv):
             parser.error(f"Couldn't identify the project of {opts.dir}")
 
     try:
-        if _run_projects_hooks([opts.project], [opts.dir], jobs=opts.jobs,
-                               from_git=opts.git, commit_list=opts.commits):
+        if _run_projects_hooks(
+            [opts.project],
+            [opts.dir],
+            jobs=opts.jobs,
+            from_git=opts.git,
+            commit_list=opts.commits,
+        ):
             return 0
     except KeyboardInterrupt:
-        print('Aborting execution early due to user interrupt', file=sys.stderr)
+        print("Aborting execution early due to user interrupt", file=sys.stderr)
         return 128 + signal.SIGINT
     return 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(direct_main(sys.argv[1:]))

@@ -20,7 +20,7 @@ import os
 import shutil
 import sys
 
-_path = os.path.realpath(__file__ + '/../..')
+_path = os.path.realpath(__file__ + "/../..")
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
 del _path
@@ -35,20 +35,37 @@ import rh.utils
 def get_parser():
     """Return a command line parser."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--google-java-format', default='google-java-format',
-                        help='The path of the google-java-format executable.')
-    parser.add_argument('--google-java-format-diff',
-                        default='google-java-format-diff.py',
-                        help='The path of the google-java-format-diff script.')
-    parser.add_argument('--fix', action='store_true',
-                        help='Fix any formatting errors automatically.')
-    parser.add_argument('--commit', type=str, default='HEAD',
-                        help='Specify the commit to validate.')
-    parser.add_argument('--skip-sorting-imports', action='store_true',
-                        help='If true, imports will not be sorted.')
-    parser.add_argument('files', nargs='*',
-                        help='If specified, only consider differences in '
-                             'these files.')
+    parser.add_argument(
+        "--google-java-format",
+        default="google-java-format",
+        help="The path of the google-java-format executable.",
+    )
+    parser.add_argument(
+        "--google-java-format-diff",
+        default="google-java-format-diff.py",
+        help="The path of the google-java-format-diff script.",
+    )
+    parser.add_argument(
+        "--fix",
+        action="store_true",
+        help="Fix any formatting errors automatically.",
+    )
+    parser.add_argument(
+        "--commit",
+        type=str,
+        default="HEAD",
+        help="Specify the commit to validate.",
+    )
+    parser.add_argument(
+        "--skip-sorting-imports",
+        action="store_true",
+        help="If true, imports will not be sorted.",
+    )
+    parser.add_argument(
+        "files",
+        nargs="*",
+        help="If specified, only consider differences in " "these files.",
+    )
     return parser
 
 
@@ -60,31 +77,31 @@ def main(argv):
     format_path = shutil.which(opts.google_java_format)
     if not format_path:
         print(
-            f'Unable to find google-java-format at: {opts.google_java_format}',
-            file=sys.stderr
+            f"Unable to find google-java-format at: {opts.google_java_format}",
+            file=sys.stderr,
         )
         return 1
 
     # TODO: Delegate to the tool once this issue is resolved:
     # https://github.com/google/google-java-format/issues/107
-    diff_cmd = ['git', 'diff', '--no-ext-diff', '-U0', f'{opts.commit}^!']
-    diff_cmd.extend(['--'] + opts.files)
+    diff_cmd = ["git", "diff", "--no-ext-diff", "-U0", f"{opts.commit}^!"]
+    diff_cmd.extend(["--"] + opts.files)
     diff = rh.utils.run(diff_cmd, capture_output=True).stdout
 
-    cmd = [opts.google_java_format_diff, '-p1', '--aosp', '-b', format_path]
+    cmd = [opts.google_java_format_diff, "-p1", "--aosp", "-b", format_path]
     if opts.fix:
-        cmd.extend(['-i'])
+        cmd.extend(["-i"])
     if opts.skip_sorting_imports:
-        cmd.extend(['--skip-sorting-imports'])
+        cmd.extend(["--skip-sorting-imports"])
 
     stdout = rh.utils.run(cmd, input=diff, capture_output=True).stdout
     if stdout:
-        print('One or more files in your commit have Java formatting errors.')
-        print(f'You can run: {sys.argv[0]} --fix {rh.shell.cmd_to_str(argv)}')
+        print("One or more files in your commit have Java formatting errors.")
+        print(f"You can run: {sys.argv[0]} --fix {rh.shell.cmd_to_str(argv)}")
         return 1
 
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))

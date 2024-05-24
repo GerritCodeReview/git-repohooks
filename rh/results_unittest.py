@@ -19,7 +19,7 @@ import os
 import sys
 import unittest
 
-_path = os.path.realpath(__file__ + '/../..')
+_path = os.path.realpath(__file__ + "/../..")
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
 del _path
@@ -43,12 +43,12 @@ class HookResultTests(unittest.TestCase):
     def test_error_warning(self):
         """Check error & warning handling."""
         # No errors.
-        result = rh.results.HookResult('hook', 'project', 'HEAD', False)
+        result = rh.results.HookResult("hook", "project", "HEAD", False)
         self.assertFalse(result)
         self.assertFalse(result.is_warning())
 
         # An error.
-        result = rh.results.HookResult('hook', 'project', 'HEAD', True)
+        result = rh.results.HookResult("hook", "project", "HEAD", True)
         self.assertTrue(result)
         self.assertFalse(result.is_warning())
 
@@ -60,19 +60,22 @@ class HookCommandResultTests(unittest.TestCase):
         """Check error & warning handling."""
         # No errors.
         result = rh.results.HookCommandResult(
-            'hook', 'project', 'HEAD', COMPLETED_PROCESS_PASS)
+            "hook", "project", "HEAD", COMPLETED_PROCESS_PASS
+        )
         self.assertFalse(result)
         self.assertFalse(result.is_warning())
 
         # An error.
         result = rh.results.HookCommandResult(
-            'hook', 'project', 'HEAD', COMPLETED_PROCESS_FAIL)
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FAIL
+        )
         self.assertTrue(result)
         self.assertFalse(result.is_warning())
 
         # A warning.
         result = rh.results.HookCommandResult(
-            'hook', 'project', 'HEAD', COMPLETED_PROCESS_WARN)
+            "hook", "project", "HEAD", COMPLETED_PROCESS_WARN
+        )
         self.assertFalse(result)
         self.assertTrue(result.is_warning())
 
@@ -83,23 +86,28 @@ class ProjectResultsTests(unittest.TestCase):
     def test_error_warning(self):
         """Check error & warning handling."""
         # No errors.
-        result = rh.results.ProjectResults('project', 'workdir')
+        result = rh.results.ProjectResults("project", "workdir")
         self.assertFalse(result)
 
         # Warnings are not errors.
-        result.add_results([
-            rh.results.HookResult('hook', 'project', 'HEAD', False),
-            rh.results.HookCommandResult(
-                'hook', 'project', 'HEAD', COMPLETED_PROCESS_WARN),
-        ])
+        result.add_results(
+            [
+                rh.results.HookResult("hook", "project", "HEAD", False),
+                rh.results.HookCommandResult(
+                    "hook", "project", "HEAD", COMPLETED_PROCESS_WARN
+                ),
+            ]
+        )
         self.assertFalse(result)
 
         # Errors are errors.
-        result.add_results([
-            rh.results.HookResult('hook', 'project', 'HEAD', True),
-        ])
+        result.add_results(
+            [
+                rh.results.HookResult("hook", "project", "HEAD", True),
+            ]
+        )
         self.assertTrue(result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

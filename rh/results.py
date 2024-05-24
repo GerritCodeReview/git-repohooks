@@ -18,7 +18,7 @@ import os
 import sys
 from typing import List, NamedTuple, Optional
 
-_path = os.path.realpath(__file__ + '/../..')
+_path = os.path.realpath(__file__ + "/../..")
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
 del _path
@@ -71,11 +71,16 @@ class HookResult(object):
 class HookCommandResult(HookResult):
     """A single hook result based on a CompletedProcess."""
 
-    def __init__(self, hook, project, commit, result, files=(),
-                 fixup_cmd=None):
-        HookResult.__init__(self, hook, project, commit,
-                            result.stderr if result.stderr else result.stdout,
-                            files=files, fixup_cmd=fixup_cmd)
+    def __init__(self, hook, project, commit, result, files=(), fixup_cmd=None):
+        HookResult.__init__(
+            self,
+            hook,
+            project,
+            commit,
+            result.stderr if result.stderr else result.stdout,
+            files=files,
+            fixup_cmd=fixup_cmd,
+        )
         self.result = result
 
     def __bool__(self):

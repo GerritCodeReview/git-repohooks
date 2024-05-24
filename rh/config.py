@@ -21,7 +21,7 @@ import os
 import shlex
 import sys
 
-_path = os.path.realpath(__file__ + '/../..')
+_path = os.path.realpath(__file__ + "/../..")
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
 del _path
@@ -79,12 +79,12 @@ class RawConfigParser(configparser.RawConfigParser):
 class PreUploadConfig(object):
     """A single (abstract) config used for `repo upload` hooks."""
 
-    CUSTOM_HOOKS_SECTION = 'Hook Scripts'
-    BUILTIN_HOOKS_SECTION = 'Builtin Hooks'
-    BUILTIN_HOOKS_OPTIONS_SECTION = 'Builtin Hooks Options'
-    BUILTIN_HOOKS_EXCLUDE_SECTION = 'Builtin Hooks Exclude Paths'
-    TOOL_PATHS_SECTION = 'Tool Paths'
-    OPTIONS_SECTION = 'Options'
+    CUSTOM_HOOKS_SECTION = "Hook Scripts"
+    BUILTIN_HOOKS_SECTION = "Builtin Hooks"
+    BUILTIN_HOOKS_OPTIONS_SECTION = "Builtin Hooks Options"
+    BUILTIN_HOOKS_EXCLUDE_SECTION = "Builtin Hooks Exclude Paths"
+    TOOL_PATHS_SECTION = "Tool Paths"
+    OPTIONS_SECTION = "Options"
     VALID_SECTIONS = {
         CUSTOM_HOOKS_SECTION,
         BUILTIN_HOOKS_SECTION,
@@ -94,7 +94,7 @@ class PreUploadConfig(object):
         OPTIONS_SECTION,
     }
 
-    OPTION_IGNORE_MERGED_COMMITS = 'ignore_merged_commits'
+    OPTION_IGNORE_MERGED_COMMITS = "ignore_merged_commits"
     VALID_OPTIONS = {OPTION_IGNORE_MERGED_COMMITS}
 
     def __init__(self, config=None, source=None):
@@ -117,24 +117,34 @@ class PreUploadConfig(object):
 
     def custom_hook(self, hook):
         """The command to execute for |hook|."""
-        return shlex.split(self.config.get(
-            self.CUSTOM_HOOKS_SECTION, hook, fallback=''))
+        return shlex.split(
+            self.config.get(self.CUSTOM_HOOKS_SECTION, hook, fallback="")
+        )
 
     @property
     def builtin_hooks(self):
         """List of all enabled builtin hooks (their keys/names)."""
-        return [k for k, v in self.config.items(self.BUILTIN_HOOKS_SECTION, ())
-                if rh.shell.boolean_shell_value(v, None)]
+        return [
+            k
+            for k, v in self.config.items(self.BUILTIN_HOOKS_SECTION, ())
+            if rh.shell.boolean_shell_value(v, None)
+        ]
 
     def builtin_hook_option(self, hook):
         """The options to pass to |hook|."""
-        return shlex.split(self.config.get(
-            self.BUILTIN_HOOKS_OPTIONS_SECTION, hook, fallback=''))
+        return shlex.split(
+            self.config.get(
+                self.BUILTIN_HOOKS_OPTIONS_SECTION, hook, fallback=""
+            )
+        )
 
     def builtin_hook_exclude_paths(self, hook):
         """List of paths for which |hook| should not be executed."""
-        return shlex.split(self.config.get(
-            self.BUILTIN_HOOKS_EXCLUDE_SECTION, hook, fallback=''))
+        return shlex.split(
+            self.config.get(
+                self.BUILTIN_HOOKS_EXCLUDE_SECTION, hook, fallback=""
+            )
+        )
 
     @property
     def tool_paths(self):
@@ -145,9 +155,9 @@ class PreUploadConfig(object):
         """Yield a CallableHook for each hook to be executed."""
         scope = rh.hooks.ExclusionScope([])
         for hook in self.custom_hooks:
-            options = rh.hooks.HookOptions(hook,
-                                           self.custom_hook(hook),
-                                           self.tool_paths)
+            options = rh.hooks.HookOptions(
+                hook, self.custom_hook(hook), self.tool_paths
+            )
             func = functools.partial(rh.hooks.check_custom, options=options)
             yield rh.hooks.CallableHook(hook, func, scope)
 
@@ -155,22 +165,28 @@ class PreUploadConfig(object):
         """Yield a CallableHook for each hook to be executed."""
         scope = rh.hooks.ExclusionScope([])
         for hook in self.builtin_hooks:
-            options = rh.hooks.HookOptions(hook,
-                                           self.builtin_hook_option(hook),
-                                           self.tool_paths)
-            func = functools.partial(rh.hooks.BUILTIN_HOOKS[hook],
-                                     options=options)
+            options = rh.hooks.HookOptions(
+                hook, self.builtin_hook_option(hook), self.tool_paths
+            )
+            func = functools.partial(
+                rh.hooks.BUILTIN_HOOKS[hook], options=options
+            )
             scope = rh.hooks.ExclusionScope(
-                self.builtin_hook_exclude_paths(hook))
+                self.builtin_hook_exclude_paths(hook)
+            )
             yield rh.hooks.CallableHook(hook, func, scope)
 
     @property
     def ignore_merged_commits(self):
         """Whether to skip hooks for merged commits."""
         return rh.shell.boolean_shell_value(
-            self.config.get(self.OPTIONS_SECTION,
-                            self.OPTION_IGNORE_MERGED_COMMITS, fallback=None),
-            False)
+            self.config.get(
+                self.OPTIONS_SECTION,
+                self.OPTION_IGNORE_MERGED_COMMITS,
+                fallback=None,
+            ),
+            False,
+        )
 
     def update(self, preupload_config):
         """Merge settings from |preupload_config| into ourself."""
@@ -184,13 +200,15 @@ class PreUploadConfig(object):
         bad_sections = set(config.sections()) - self.VALID_SECTIONS
         if bad_sections:
             raise ValidationError(
-                f'{self.source}: unknown sections: {bad_sections}')
+                f"{self.source}: unknown sections: {bad_sections}"
+            )
 
         # Reject blank custom hooks.
         for hook in self.custom_hooks:
             if not config.get(self.CUSTOM_HOOKS_SECTION, hook):
                 raise ValidationError(
-                    f'{self.source}: custom hook "{hook}" cannot be blank')
+                    f'{self.source}: custom hook "{hook}" cannot be blank'
+                )
 
         # Reject unknown builtin hooks.
         valid_builtin_hooks = set(rh.hooks.BUILTIN_HOOKS.keys())
@@ -199,17 +217,21 @@ class PreUploadConfig(object):
             bad_hooks = hooks - valid_builtin_hooks
             if bad_hooks:
                 raise ValidationError(
-                    f'{self.source}: unknown builtin hooks: {bad_hooks}')
+                    f"{self.source}: unknown builtin hooks: {bad_hooks}"
+                )
         elif config.has_section(self.BUILTIN_HOOKS_OPTIONS_SECTION):
-            raise ValidationError('Builtin hook options specified, but missing '
-                                  'builtin hook settings')
+            raise ValidationError(
+                "Builtin hook options specified, but missing "
+                "builtin hook settings"
+            )
 
         if config.has_section(self.BUILTIN_HOOKS_OPTIONS_SECTION):
             hooks = set(config.options(self.BUILTIN_HOOKS_OPTIONS_SECTION))
             bad_hooks = hooks - valid_builtin_hooks
             if bad_hooks:
                 raise ValidationError(
-                    f'{self.source}: unknown builtin hook options: {bad_hooks}')
+                    f"{self.source}: unknown builtin hook options: {bad_hooks}"
+                )
 
         # Verify hooks are valid shell strings.
         for hook in self.custom_hooks:
@@ -236,7 +258,8 @@ class PreUploadConfig(object):
             bad_tools = tools - valid_tools
             if bad_tools:
                 raise ValidationError(
-                    f'{self.source}: unknown tools: {bad_tools}')
+                    f"{self.source}: unknown tools: {bad_tools}"
+                )
 
         # Reject unknown options.
         if config.has_section(self.OPTIONS_SECTION):
@@ -244,7 +267,8 @@ class PreUploadConfig(object):
             bad_options = options - self.VALID_OPTIONS
             if bad_options:
                 raise ValidationError(
-                    f'{self.source}: unknown options: {bad_options}')
+                    f"{self.source}: unknown options: {bad_options}"
+                )
 
 
 class PreUploadFile(PreUploadConfig):
@@ -256,6 +280,7 @@ class PreUploadFile(PreUploadConfig):
     Attributes:
       path: The path of the file.
     """
+
     FILENAME = None
 
     def __init__(self, path):
@@ -270,7 +295,7 @@ class PreUploadFile(PreUploadConfig):
         try:
             self.config.read(path)
         except configparser.ParsingError as e:
-            raise ValidationError(f'{path}: {e}') from e
+            raise ValidationError(f"{path}: {e}") from e
 
         self._validate()
 
@@ -292,7 +317,8 @@ class PreUploadFile(PreUploadConfig):
 
 class LocalPreUploadFile(PreUploadFile):
     """A single config file for a project (PREUPLOAD.cfg)."""
-    FILENAME = 'PREUPLOAD.cfg'
+
+    FILENAME = "PREUPLOAD.cfg"
 
     def _validate(self):
         super()._validate()
@@ -300,13 +326,15 @@ class LocalPreUploadFile(PreUploadFile):
         # Reject Exclude Paths section for local config.
         if self.config.has_section(self.BUILTIN_HOOKS_EXCLUDE_SECTION):
             raise ValidationError(
-                f'{self.path}: [{self.BUILTIN_HOOKS_EXCLUDE_SECTION}] is not '
-                'valid in local files')
+                f"{self.path}: [{self.BUILTIN_HOOKS_EXCLUDE_SECTION}] is not "
+                "valid in local files"
+            )
 
 
 class GlobalPreUploadFile(PreUploadFile):
     """A single config file for a repo (GLOBAL-PREUPLOAD.cfg)."""
-    FILENAME = 'GLOBAL-PREUPLOAD.cfg'
+
+    FILENAME = "GLOBAL-PREUPLOAD.cfg"
 
 
 class PreUploadSettings(PreUploadConfig):
@@ -316,7 +344,7 @@ class PreUploadSettings(PreUploadConfig):
     settings for a particular project.
     """
 
-    def __init__(self, paths=('',), global_paths=()):
+    def __init__(self, paths=("",), global_paths=()):
         """Initialize.
 
         All the config files found will be merged together in order.
@@ -329,12 +357,12 @@ class PreUploadSettings(PreUploadConfig):
 
         self.paths = []
         for config in itertools.chain(
-                GlobalPreUploadFile.from_paths(global_paths),
-                LocalPreUploadFile.from_paths(paths)):
+            GlobalPreUploadFile.from_paths(global_paths),
+            LocalPreUploadFile.from_paths(paths),
+        ):
             self.paths.append(config.path)
             self.update(config)
 
-
         # We validated configs in isolation, now do one final pass altogether.
-        self.source = '{' + '|'.join(self.paths) + '}'
+        self.source = "{" + "|".join(self.paths) + "}"
         self._validate()

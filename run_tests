@@ -42,10 +42,26 @@ def run_pytest(argv: List[str]) -> int:
     return pytest.main(argv)
 
 
+def run_black() -> int:
+    """Returns the exit code from black."""
+    # Black by default only matches .py files.  We have to list standalone
+    # scripts manually.
+    extra_programs = [
+        "run_tests",
+    ]
+    return subprocess.run(
+        [sys.executable, "-m", "black", "--verbose", "--check", ROOT_DIR]
+        + extra_programs,
+        check=False,
+        cwd=ROOT_DIR,
+    ).returncode
+
+
 def main(argv):
     """The main entry."""
     checks = (
         functools.partial(run_pytest, argv),
+        run_black,
     )
     # Run all the tests all the time to get full feedback.  Don't exit on the
     # first error as that makes it more difficult to iterate in the CQ.
