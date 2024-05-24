@@ -181,6 +181,8 @@ canned hooks already included geared towards AOSP style guidelines.
 * `aosp_license`: Check if all new-added file have valid AOSP license headers.
 * `android_test_mapping_format`: Validate TEST_MAPPING files in Android source
   code. Refer to go/test-mapping for more details.
+* `black`: Run Python files (.py) through `black`.  Settings can be stored in
+  `pyproject.toml` in the root of the project.
 * `bpfmt`: Run Blueprint files (.bp) through `bpfmt`.
 * `checkpatch`: Run commits through the Linux kernel's `checkpatch.pl` script.
 * `clang_format`: Run git-clang-format against the commit. The default style is
@@ -280,6 +282,7 @@ distros/versions.  The following tools are recognized:
 * `aidl-format`: used for the `aidl_format` builtin hook.
 * `android-test-mapping-format`: used for the `android_test_mapping_format`
   builtin hook.
+* `black`: used for the `black` builtin hook.
 * `bpfmt`: used for the `bpfmt` builtin hook.
 * `clang-format`: used for the `clang_format` builtin hook.
 * `cpplint`: used for the `cpplint` builtin hook.
