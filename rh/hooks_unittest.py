@@ -20,6 +20,8 @@ import sys
 import unittest
 from unittest import mock
 
+import pytest
+
 _path = os.path.realpath(__file__ + '/../..')
 if sys.path[0] != _path:
     sys.path.insert(0, _path)
@@ -235,6 +237,7 @@ class ExclusionScopeTests(unittest.TestCase):
 class HookOptionsTests(unittest.TestCase):
     """Verify behavior of HookOptions object."""
 
+    @pytest.mark.skip_cq("TODO: Relies on .repo dir")
     @mock.patch.object(rh.hooks, '_get_build_os_name', return_value='vapier os')
     def testExpandVars(self, m):
         """Verify expand_vars behavior."""
@@ -247,6 +250,7 @@ class HookOptionsTests(unittest.TestCase):
         exp_args = ['who', 'goes', 'there ?', f'{m.return_value} is great']
         self.assertEqual(exp_args, rh.hooks.HookOptions.expand_vars(args))
 
+    @pytest.mark.skip_cq("TODO: Relies on .repo dir")
     def testArgs(self):
         """Verify args behavior."""
         # Verify initial args to __init__ has higher precedent.
@@ -261,6 +265,7 @@ class HookOptionsTests(unittest.TestCase):
         self.assertEqual(options.args(), [])
         self.assertEqual(options.args(default_args=args), args)
 
+    @pytest.mark.skip_cq("TODO: Relies on .repo dir")
     def testToolPath(self):
         """Verify tool_path behavior."""
         options = rh.hooks.HookOptions('hook name', [], {
