@@ -561,6 +561,8 @@ class BuiltinHooksTests(unittest.TestCase):
                 "subj\n\nBug: 1234\n",
                 "subj\n\nBug: 1234\nChange-Id: blah\n",
                 "subj\n\nFix: 1234\n",
+                "subj\n\nBug: http://b/1234\n",
+                "subj\n\nBug: https://github.com/android/ndk/issues/12345\n",
             ),
         )
 

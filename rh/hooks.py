@@ -585,7 +585,7 @@ def check_ktfmt(project, commit, _desc, diff, options=None):
 def check_commit_msg_bug_field(project, commit, desc, _diff, options=None):
     """Check the commit message for a 'Bug:' or 'Fix:' line."""
     field = "Bug"
-    regex = r"^(Bug|Fix): (None|[0-9]+(, [0-9]+)*)$"
+    regex = r"^(Bug|Fix): (None|[0-9]+(, [0-9]+)*|http(s)?:\/\/.+)$"
     check_re = re.compile(regex)
 
     if options.args():
