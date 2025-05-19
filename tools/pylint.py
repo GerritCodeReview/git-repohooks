@@ -172,7 +172,7 @@ def get_parser():
     parser.add_argument(
         "--no-rcfile",
         dest="use_default_conf",
-        help="Specify to use the executable's default " "configuration.",
+        help="Specify to use the executable's default configuration.",
         action="store_true",
     )
     parser.add_argument("files", nargs="+")
