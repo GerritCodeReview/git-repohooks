@@ -59,7 +59,7 @@ def get_parser():
         "--extensions",
         metavar="EXTENSIONS",
         type=str,
-        help="Comma-separated list of file extensions to " "format.",
+        help="Comma-separated list of file extensions to format.",
     )
     parser.add_argument(
         "--fix",
@@ -85,7 +85,7 @@ def get_parser():
         "files",
         type=str,
         nargs="*",
-        help="If specified, only consider differences in " "these files.",
+        help="If specified, only consider differences in these files.",
     )
     return parser
 

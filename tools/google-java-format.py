@@ -64,7 +64,7 @@ def get_parser():
     parser.add_argument(
         "files",
         nargs="*",
-        help="If specified, only consider differences in " "these files.",
+        help="If specified, only consider differences in these files.",
     )
     return parser
 
