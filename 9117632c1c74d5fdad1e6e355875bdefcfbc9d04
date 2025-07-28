@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "328ab81a_045b6a08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-07-28T19:59:34Z",
+      "side": 1,
+      "message": "`hooks: add alint support`",
+      "revId": "9117632c1c74d5fdad1e6e355875bdefcfbc9d04",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ac189a2_b6f502db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-07-28T19:59:34Z",
+      "side": 1,
+      "message": "it doesn\u0027t look like you ran the tests.  please fix those up first.",
+      "revId": "9117632c1c74d5fdad1e6e355875bdefcfbc9d04",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b320fd2d_5a769323",
+        "filename": "rh/hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-07-28T19:59:34Z",
+      "side": 1,
+      "message": "unused",
+      "revId": "9117632c1c74d5fdad1e6e355875bdefcfbc9d04",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60a7b4e0_77900c87",
+        "filename": "rh/hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-07-28T19:59:34Z",
+      "side": 1,
+      "message": "unused",
+      "revId": "9117632c1c74d5fdad1e6e355875bdefcfbc9d04",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
