@@ -1288,10 +1288,23 @@ def check_aidl_format(project, commit, _desc, diff, options=None):
     return ret
 
 
+def check_alint(project, commit, _desc, diff, options=None):
+    """Runs alint on the commit."""
+    alint_path = options.tool_path("alint")
+
+    if options.args():
+        raise ValueError("alint check takes no options")
+
+    cmd = [alint_path]
+
+    return _check_cmd("alint", project, commit, cmd)
+
+
 # Hooks that projects can opt into.
 # Note: Make sure to keep the top level README.md up to date when adding more!
 BUILTIN_HOOKS = {
     "aidl_format": check_aidl_format,
+    "alint": check_alint,
     "android_test_mapping_format": check_android_test_mapping,
     "aosp_license": check_aosp_license,
     "black": check_black,
@@ -1320,6 +1333,7 @@ BUILTIN_HOOKS = {
 # Note: Make sure to keep the top level README.md up to date when adding more!
 TOOL_PATHS = {
     "aidl-format": "aidl-format",
+    "alint": "alint",
     "android-test-mapping-format": os.path.join(
         TOOLS_DIR, "android_test_mapping_format.py"
     ),
