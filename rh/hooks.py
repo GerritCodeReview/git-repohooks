@@ -356,6 +356,30 @@ def check_custom(project, commit, _desc, diff, options=None, **kwargs):
         options.name, project, commit, options.args((), diff), **kwargs
     )
 
+def check_alint(project, commit, _desc, diff, options=None):
+    """Runs alint on the commit."""
+    filtered = _filter_diff(diff, [r".*"])
+    if not filtered:
+        return None
+
+    # alint is not a standard tool, so we construct path to it.
+    repo_root = rh.git.find_repo_root(outer=True)
+    alint_path = os.path.join(repo_root, "vendor/google/tools/alint")
+
+    if not os.path.exists(alint_path):
+        return [
+            rh.results.HookResult(
+                "alint",
+                project,
+                commit,
+                error=f"alint not found at {alint_path}",
+                warning=True,
+            )
+        ]
+
+    cmd = ["/bin/sh", alint_path] + options.args(("${PREUPLOAD_FILES}",), filtered)
+    return _check_cmd("alint", project, commit, cmd)
+
 
 def check_aosp_license(project, commit, _desc, diff, options=None):
     """Checks that if all new added files has AOSP licenses"""
@@ -1292,6 +1316,7 @@ def check_aidl_format(project, commit, _desc, diff, options=None):
 # Note: Make sure to keep the top level README.md up to date when adding more!
 BUILTIN_HOOKS = {
     "aidl_format": check_aidl_format,
+    "alint": check_alint,
     "android_test_mapping_format": check_android_test_mapping,
     "aosp_license": check_aosp_license,
     "black": check_black,
@@ -1320,6 +1345,7 @@ BUILTIN_HOOKS = {
 # Note: Make sure to keep the top level README.md up to date when adding more!
 TOOL_PATHS = {
     "aidl-format": "aidl-format",
+    "alint": "alint",
     "android-test-mapping-format": os.path.join(
         TOOLS_DIR, "android_test_mapping_format.py"
     ),
