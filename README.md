@@ -178,6 +178,7 @@ This section allows for turning on common/builtin hooks.  There are a bunch of
 canned hooks already included geared towards AOSP style guidelines.
 
 * `aidl_format`: Run AIDL files (.aidl) through `aidl-format`.
+* `alint`: Run most frequently used analyzers on the CL to be uploaded.
 * `aosp_license`: Check if all new-added file have valid AOSP license headers.
 * `android_test_mapping_format`: Validate TEST_MAPPING files in Android source
   code. Refer to go/test-mapping for more details.
@@ -280,6 +281,7 @@ provide consistent behavior for developers across different OS and Linux
 distros/versions.  The following tools are recognized:
 
 * `aidl-format`: used for the `aidl_format` builtin hook.
+* `alint`: used for the `alint` builtin hook.
 * `android-test-mapping-format`: used for the `android_test_mapping_format`
   builtin hook.
 * `black`: used for the `black` builtin hook.
