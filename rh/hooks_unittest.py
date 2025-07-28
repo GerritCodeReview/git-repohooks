@@ -19,6 +19,7 @@ import os
 import sys
 import unittest
 from unittest import mock
+from pathlib import Path
 
 import pytest
 
@@ -1174,6 +1175,22 @@ class BuiltinHooksTests(unittest.TestCase):
         )
         self.assertIsNotNone(ret)
 
+    def test_alint(self, mock_check, _mock_run):
+        """Verify the alint builtin hooks."""
+        # First call should do nothing as there are no files to check.
+        ret = rh.hooks.check_alint(
+            self.project, "commit", "desc", (), options=self.options
+        )
+        self.assertIsNone(ret)
+        self.assertFalse(mock_check.called)
+
+        # Second call will have some results.
+        diff = [rh.git.RawDiffEntry(file="IFoo.go")]
+        ret = rh.hooks.check_gofmt(
+            self.project, "commit", "desc", diff, options=self.options
+        )
+        self.assertIsNotNone(ret)
 
 if __name__ == "__main__":
     unittest.main()
+
