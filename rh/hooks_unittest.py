@@ -767,10 +767,7 @@ class BuiltinHooksTests(unittest.TestCase):
                 'subj\n\nRelnote: "This is a \\"release note\\"."\n\nBug: 1234',
                 "subj\n\nRelnote: This is a release note.\nChange-Id: 1234",
                 "subj\n\nRelnote: This is a release note.\n\nChange-Id: 1234",
-                (
-                    'subj\n\nRelnote: "This is a release note."\n\n'
-                    "Change-Id: 1234"
-                ),
+                'subj\n\nRelnote: "This is a release note."\n\nChange-Id: 1234',
                 (
                     "subj\n\nRelnote: This is a release note.\n\n"
                     "It has more info, but it is not part of the release note"
@@ -834,10 +831,7 @@ class BuiltinHooksTests(unittest.TestCase):
                     'And another empty line."""\n\n'
                     "Bug: 1234"
                 ),
-                (
-                    'subj\n\nRelnote: """This is a release note."""\n\n'
-                    "Bug: 1234"
-                ),
+                'subj\n\nRelnote: """This is a release note."""\n\nBug: 1234',
                 (
                     'subj\n\nRelnote: """This is a release note.\n'
                     'It has a second line."""\n\n'
@@ -1173,6 +1167,29 @@ class BuiltinHooksTests(unittest.TestCase):
             self.project, "commit", "desc", diff, options=self.options
         )
         self.assertIsNotNone(ret)
+
+    def test_alint(self, mock_check, mock_run):
+        """Verify the alint builtin hook."""
+        commit = """Add test to the manifest 
+        Bug: 11111 
+        Test: ... 
+        Flag: ... """
+        diff = [rh.git.RawDiffEntry(file="file.txt", status="A")]
+        ret = rh.hooks.check_alint(
+            self.project, commit, "desc", diff, options=self.options
+        )
+        self.assertIsNotNone(ret)
+        self.assertFalse(mock_check.called)
+
+        commit = """Add test to the manifest 
+        Bug: 11111 
+        Test: atest 
+        Flag: NONE, repo change """
+        diff = [rh.git.RawDiffEntry(file="file.txt", status="A")]
+        ret = rh.hooks.check_alint(
+            self.project, commit, "desc", diff, options=self.options
+        )
+        self.assertIsNone(ret)
 
 
 if __name__ == "__main__":
