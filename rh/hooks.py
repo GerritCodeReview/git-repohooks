@@ -69,10 +69,9 @@ class Placeholders(object):
         for arg in args:
             if arg.endswith("${PREUPLOAD_FILES_PREFIXED}"):
                 if arg == "${PREUPLOAD_FILES_PREFIXED}":
-                    assert len(ret) > 1, (
-                        "PREUPLOAD_FILES_PREFIXED cannot be "
-                        "the 1st or 2nd argument"
-                    )
+                    assert (
+                        len(ret) > 1
+                    ), "PREUPLOAD_FILES_PREFIXED cannot be the 1st or 2nd argument"
                     prev_arg = ret[-1]
                     ret = ret[0:-1]
                     for file in self.get("PREUPLOAD_FILES"):
@@ -172,8 +171,8 @@ class ExclusionScope(object):
         """Initialize.
 
         Args:
-          scope: A list of shell-style wildcards (fnmatch) or regular
-              expression. Regular expressions must start with the ^ character.
+          scope: A list of shell-style wildcards (fnmatch) or regular expression.
+            Regular expressions must start with the ^ character.
         """
         self._scope = []
         for path in scope:
@@ -295,12 +294,12 @@ def _filter_diff(diff, include_list, exclude_list=()):
 
     Args:
       diff: list of diff objects to filter.
-      include_list: list of regex that when matched with a file path will cause
-          it to be added to the output list unless the file is also matched with
-          a regex in the exclude_list.
+      include_list: list of regex that when matched with a file path will cause it
+        to be added to the output list unless the file is also matched with a
+        regex in the exclude_list.
       exclude_list: list of regex that when matched with a file will prevent it
-          from being added to the output list, even if it is also matched with a
-          regex in the include_list.
+        from being added to the output list, even if it is also matched with a
+        regex in the include_list.
 
     Returns:
       A list of filepaths that contain files matched in the include_list and not
@@ -355,6 +354,31 @@ def check_custom(project, commit, _desc, diff, options=None, **kwargs):
     return _check_cmd(
         options.name, project, commit, options.args((), diff), **kwargs
     )
+
+
+def check_alint(project, commit, _desc, diff, options=None):
+    """Runs alint on the commit."""
+
+    # alint is not a standard tool, so we construct path to it.
+    repo_root = rh.git.find_repo_root(outer=True)
+    alint_path = get_helper_path(repo_root + "/vendor/google/tools/alint")
+
+    if not os.path.exists(alint_path):
+        return [
+            rh.results.HookResult(
+                "alint",
+                project,
+                commit,
+                error=f"alint not found at {alint_path}",
+                warning=True,
+            )
+        ]
+
+    cmd = ["/bin/sh", alint_path] + HookOptions.expand_vars(
+        ("${PREUPLOAD_FILES}",)
+    )
+
+    return _check_cmd("alint", project, commit, cmd)
 
 
 def check_aosp_license(project, commit, _desc, diff, options=None):
@@ -631,10 +655,7 @@ def check_commit_msg_changeid_field(project, commit, desc, _diff, options=None):
             f"following case-sensitive regex:\n\n    {regex}"
         )
     elif len(found) > 1:
-        error = (
-            f'Commit message has too many "{field}:" lines.  There can be '
-            "only one."
-        )
+        error = f'Commit message has too many "{field}:" lines.  There can be only one.'
     else:
         return None
 
@@ -1292,6 +1313,7 @@ def check_aidl_format(project, commit, _desc, diff, options=None):
 # Note: Make sure to keep the top level README.md up to date when adding more!
 BUILTIN_HOOKS = {
     "aidl_format": check_aidl_format,
+    "alint": check_alint,
     "android_test_mapping_format": check_android_test_mapping,
     "aosp_license": check_aosp_license,
     "black": check_black,
@@ -1302,7 +1324,9 @@ BUILTIN_HOOKS = {
     "commit_msg_changeid_field": check_commit_msg_changeid_field,
     "commit_msg_prebuilt_apk_fields": check_commit_msg_prebuilt_apk_fields,
     "commit_msg_relnote_field_format": check_commit_msg_relnote_field_format,
-    "commit_msg_relnote_for_current_txt": check_commit_msg_relnote_for_current_txt,
+    "commit_msg_relnote_for_current_txt": (
+        check_commit_msg_relnote_for_current_txt
+    ),
     "commit_msg_test_field": check_commit_msg_test_field,
     "cpplint": check_cpplint,
     "gofmt": check_gofmt,
@@ -1320,6 +1344,7 @@ BUILTIN_HOOKS = {
 # Note: Make sure to keep the top level README.md up to date when adding more!
 TOOL_PATHS = {
     "aidl-format": "aidl-format",
+    "alint": "alint",
     "android-test-mapping-format": os.path.join(
         TOOLS_DIR, "android_test_mapping_format.py"
     ),
