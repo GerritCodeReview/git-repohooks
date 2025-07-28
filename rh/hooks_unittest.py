@@ -1174,6 +1174,18 @@ class BuiltinHooksTests(unittest.TestCase):
         )
         self.assertIsNotNone(ret)
 
+    def test_alint(self, mock_check, mock_run):
+        """Verify the alint builtin hook."""
+        commit = """Add test to the manifest 
+        Bug: 11111 
+        Test: ... 
+        Flag: ... """
+        diff = [rh.git.RawDiffEntry(file="file.txt", status="A")]
+        ret = rh.hooks.check_alint(
+            self.project, commit, "desc", diff, options=self.options
+        )
+        self.assertIsNotNone(ret)
+
 
 if __name__ == "__main__":
     unittest.main()
