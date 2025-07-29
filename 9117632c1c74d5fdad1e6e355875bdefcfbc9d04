@@ -71,6 +71,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b9ca9a_f97f1540",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-07-29T19:54:59Z",
+      "side": 1,
+      "message": "The issue was with the formatter. Needed to use black.\nhttps://g3doc.corp.google.com/third_party/py/black/README.md?cl\u003dhead",
+      "parentUuid": "bd7eba6a_fffeff28",
+      "revId": "9117632c1c74d5fdad1e6e355875bdefcfbc9d04",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b320fd2d_5a769323",
