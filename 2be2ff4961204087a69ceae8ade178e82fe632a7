@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "391eca1b_f249a78e",
+        "filename": "rh/hooks.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-07-31T15:31:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "167a3971_e3a9aa77",
+      "range": {
+        "startLine": 361,
+        "startChar": 36,
+        "endLine": 361,
+        "endChar": 40
+      },
+      "revId": "2be2ff4961204087a69ceae8ade178e82fe632a7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29046570_1067b845",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05fa36be_be3f65c8",
+        "filename": "rh/hooks.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-07-31T15:31:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29046570_1067b845",
+      "range": {
+        "startLine": 365,
+        "startChar": 63,
+        "endLine": 367,
+        "endChar": 69
+      },
+      "revId": "2be2ff4961204087a69ceae8ade178e82fe632a7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e84b6299_51208582",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-07-30T19:10:16Z",
       "side": 1,
       "message": "L427 looks like it does something similar, do we need `expand_vars` here?",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 41
+      },
+      "revId": "2be2ff4961204087a69ceae8ade178e82fe632a7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08f84b45_b5134255",
+        "filename": "rh/hooks.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-07-31T15:31:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e84b6299_51208582",
       "range": {
         "startLine": 381,
         "startChar": 0,
