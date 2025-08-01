@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "446fb5d9_fe5fdc19",
+        "filename": "README.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-01T03:23:29Z",
+      "side": 1,
+      "message": "this is a vague description.  most people will read much more into this than is really here.\n\n```suggestion\n* `alint`: Run AyeAye analyzers. This is an internal Android service which is only available to Google employees currently.\n```",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8572d58_a131f724",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-01T03:23:29Z",
+      "side": 1,
+      "message": "did you make this change ?  or let black do it ?  the current black-25.1 doesn\u0027t change this code",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2549b557_4ac618cd",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-01T03:23:29Z",
+      "side": 1,
+      "message": "what is causing these strings to be rewritten ?  2 space hanging indent is incorrect.",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3848263b_f03acc15",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-01T03:23:29Z",
+      "side": 1,
+      "message": "no, you should only pull it from $PATH by default.  let the manifest override and set the full path.",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c800d93_d63fcab6",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-01T03:23:29Z",
+      "side": 1,
+      "message": "do not run things through the shell",
+      "fixSuggestions": [
+        {
+          "fixId": "44f39769_a916cb0c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "rh/hooks.py",
+              "range": {
+                "startLine": 377,
+                "startChar": 0,
+                "endLine": 378,
+                "endChar": 0
+              },
+              "replacement": "    cmd \u003d [alint_path] + HookOptions.expand_vars(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
