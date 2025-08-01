@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7730e4fa_6b0c15a2",
+        "filename": "README.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-01T09:21:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "446fb5d9_fe5fdc19",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8572d58_a131f724",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-01T03:23:29Z",
       "side": 1,
       "message": "did you make this change ?  or let black do it ?  the current black-25.1 doesn\u0027t change this code",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10dd46ec_fc03118c",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-01T09:21:19Z",
+      "side": 1,
+      "message": "All changes that do not involve Alint has been made by black. Tried re-running it with black-25.1 upon seeing this comment but it leaves the files the same as they are in here.\nhttps://screenshot.googleplex.com/3b6TpRH2w95sLVL.png",
+      "parentUuid": "f8572d58_a131f724",
       "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "096fb27f_264f7268",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-01T09:21:19Z",
+      "side": 1,
+      "message": "Black formatter, as mentioned in above comment.",
+      "parentUuid": "2549b557_4ac618cd",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3848263b_f03acc15",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-08-01T03:23:29Z",
       "side": 1,
       "message": "no, you should only pull it from $PATH by default.  let the manifest override and set the full path.",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba05d28_278f9bc2",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-01T09:21:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3848263b_f03acc15",
       "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -100,6 +172,24 @@
           ]
         }
       ],
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f64540a_4c304a6e",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-01T09:21:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c800d93_d63fcab6",
       "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
