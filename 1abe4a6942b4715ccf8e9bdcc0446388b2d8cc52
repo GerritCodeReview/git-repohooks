@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3ae2900_4c27be11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1152325
+      },
+      "writtenOn": "2025-08-04T13:24:36Z",
+      "side": 1,
+      "message": "Thanks Dogancan for working on this. LGTM rom my side, but please also wait for Mike / Gavin\u0027s review",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
