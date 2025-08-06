@@ -16,6 +16,75 @@
       "message": "Thanks Dogancan for working on this. LGTM rom my side, but please also wait for Mike / Gavin\u0027s review",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bedfeec_7a4e96c3",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-06T03:39:46Z",
+      "side": 1,
+      "message": "error out if extra args are passed in since they aren\u0027t supported\n\n```\n    if options.args():\n        raise ValueError(f\"alint check takes no options\")\n```",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4036eed_ce4b8ad6",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-06T03:39:46Z",
+      "side": 1,
+      "message": "delete this check",
+      "fixSuggestions": [
+        {
+          "fixId": "34c9ebdf_a9d89463",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "rh/hooks.py",
+              "range": {
+                "startLine": 362,
+                "startChar": 0,
+                "endLine": 374,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "893c2c51_7e79114d",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-06T03:39:46Z",
+      "side": 1,
+      "message": "alint should be running on specific commits, not on files directly.  otherwise if you upload a stack of commits, it\u0027s only going to lint the latest version, not the state as it exists in older commits.  how do you tell alint to operate on a git commit or diff ?",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
