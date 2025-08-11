@@ -193,6 +193,24 @@
       "parentUuid": "ddd9ccb1_f6d96636",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d709a9db_904890b1",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-11T16:19:05Z",
+      "side": 1,
+      "message": "how exactly does alint know what state to run on when you haven\u0027t told it to ?  what is `alint` analyzing ?\n\ni can\u0027t tell from your screencast because the log is chopped and moves too fast, and the output is generally silenced.",
+      "parentUuid": "a8169bd5_ad68a05c",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
