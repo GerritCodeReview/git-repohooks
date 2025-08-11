@@ -139,6 +139,24 @@
       "parentUuid": "893c2c51_7e79114d",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "841a58a0_e91b5677",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-11T13:26:36Z",
+      "side": 1,
+      "message": "this is a problem\n\nrepohooks are run on each commit.  if alint itself loads the list of commits and runs on all of them, we\u0027re left with exponential overhead.  uploading multiple commits at a time is not an unusual scenario.\n\nso if my local branch has 10 commits, repohooks fires on each commit (including running alint).  if running alint once runs on all 10 commits, that means alint runs 10 commits 10 tens for 100 total checks.",
+      "parentUuid": "cd0bf092_63ba76be",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

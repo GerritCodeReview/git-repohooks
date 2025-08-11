@@ -1,0 +1,79 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86731479_aafe4339",
+        "filename": "README.md",
+        "patchSetId": 26
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-11T13:26:36Z",
+      "side": 1,
+      "message": "```suggestion\n* `alint`: Run AyeAye (Google Android service) analyzers on the CL to be uploaded.\n```",
+      "revId": "687ab27eadc11a050209249f42048711fdc196fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48639503_318142f0",
+        "filename": "rh/hooks.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-11T13:26:36Z",
+      "side": 1,
+      "message": "```suggestion\n    \"\"\"Runs alint on the commit.\"\"\"\n    if options.args():\n        raise ValueError(\"alint check takes no options\")\n\n    alint_path \u003d options.tool_path(\"alint\")\n```",
+      "range": {
+        "startLine": 1292,
+        "startChar": 0,
+        "endLine": 1293,
+        "endChar": 43
+      },
+      "revId": "687ab27eadc11a050209249f42048711fdc196fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e47e6518_0898a0d8",
+        "filename": "rh/hooks_unittest.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-11T13:26:36Z",
+      "side": 1,
+      "message": "i don\u0027t think trailing whitespace is needed for this lint, so drop it",
+      "fixSuggestions": [
+        {
+          "fixId": "25e10cab_6d59f2cf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "rh/hooks_unittest.py",
+              "range": {
+                "startLine": 1179,
+                "startChar": 0,
+                "endLine": 1182,
+                "endChar": 0
+              },
+              "replacement": "        commit \u003d \"\"\"Add test to the manifest\n        Bug: 11111\n        Test: ...\n"
+            }
+          ]
+        }
+      ],
+      "revId": "687ab27eadc11a050209249f42048711fdc196fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
