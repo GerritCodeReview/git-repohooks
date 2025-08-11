@@ -211,6 +211,24 @@
       "parentUuid": "a8169bd5_ad68a05c",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b61b45e_9286ee77",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1152325
+      },
+      "writtenOn": "2025-08-11T16:21:22Z",
+      "side": 1,
+      "message": "We just need to trigger the shell script (alint) without params at repo upload. \n\nIt figures out the diff itself by running the relevant commands. \nhttps://source.corp.google.com/piper///depot/google3/wireless/android/busytown/ayeaye/alint/run.go;l\u003d212",
+      "parentUuid": "d709a9db_904890b1",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
