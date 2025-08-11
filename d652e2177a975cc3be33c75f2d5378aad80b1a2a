@@ -107,6 +107,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ca1fd02_0cd9f1b6",
+        "filename": "rh/hooks.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-11T11:37:25Z",
+      "side": 1,
+      "message": "I copied and pasted the whole file from code search, added my changes and reran black. Those changes must\u0027ve been made before I found out black was the main formatter and when I ran black, it didn\u0027t revert the changes that had been made by the other formatter. The issue seems to be resolved now.",
+      "parentUuid": "21536f06_baf34155",
+      "revId": "d652e2177a975cc3be33c75f2d5378aad80b1a2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2549b557_4ac618cd",

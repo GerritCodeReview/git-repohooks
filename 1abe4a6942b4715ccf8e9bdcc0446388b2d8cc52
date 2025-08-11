@@ -35,6 +35,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbbce89d_cc4aecc9",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-11T11:37:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bedfeec_7a4e96c3",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4036eed_ce4b8ad6",
@@ -70,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68831d4a_e503713a",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-11T11:37:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4036eed_ce4b8ad6",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "893c2c51_7e79114d",
@@ -83,6 +119,24 @@
       "writtenOn": "2025-08-06T03:39:46Z",
       "side": 1,
       "message": "alint should be running on specific commits, not on files directly.  otherwise if you upload a stack of commits, it\u0027s only going to lint the latest version, not the state as it exists in older commits.  how do you tell alint to operate on a git commit or diff ?",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd0bf092_63ba76be",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-11T11:37:25Z",
+      "side": 1,
+      "message": "I removed the addition from that line as the sole purpose here is to run alint. After that, it does its thing without needing an argument of a file or a commit.",
+      "parentUuid": "893c2c51_7e79114d",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
