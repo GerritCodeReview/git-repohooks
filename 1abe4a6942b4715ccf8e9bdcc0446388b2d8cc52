@@ -229,6 +229,24 @@
       "parentUuid": "d709a9db_904890b1",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a266710_8979832c",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2025-08-11T17:27:39Z",
+      "side": 1,
+      "message": "offline chat \u0026 that link confirm that alint always operates on `git diff HEAD~1` (so the latest commit), so alint will need some work first before we can integrate it",
+      "parentUuid": "3b61b45e_9286ee77",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
