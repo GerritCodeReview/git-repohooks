@@ -247,6 +247,24 @@
       "parentUuid": "3b61b45e_9286ee77",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69d46a36_4ab40734",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1152325
+      },
+      "writtenOn": "2025-08-11T19:12:10Z",
+      "side": 1,
+      "message": "Looking at AyeAye it seems to be doing the same? \n\nQuick 1-Pager to check we are on the same page:\nhttps://docs.google.com/document/d/13xNE-66YE6dRqiczmkzwfXIN60EGrrM11BWe1XlsfC8/edit?resourcekey\u003d0-3wIh-su8qEwMfEmkVmKKoQ\u0026tab\u003dt.0",
+      "parentUuid": "1a266710_8979832c",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
