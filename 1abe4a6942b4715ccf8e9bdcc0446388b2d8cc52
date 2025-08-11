@@ -157,6 +157,24 @@
       "parentUuid": "cd0bf092_63ba76be",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddd9ccb1_f6d96636",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1152325
+      },
+      "writtenOn": "2025-08-11T14:08:21Z",
+      "side": 1,
+      "message": "Sorry, just chiming in here. \n\nAlint does not need anything to run, we just want to run on repo upload. \n\nCan we not pass in anything here? \n\nAlso, if it is easier, we can schedule in 15 minutes to discuss this rather than back and forth over the CL?",
+      "parentUuid": "841a58a0_e91b5677",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
