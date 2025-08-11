@@ -175,6 +175,24 @@
       "parentUuid": "841a58a0_e91b5677",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8169bd5_ad68a05c",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-11T14:15:55Z",
+      "side": 1,
+      "message": "Just to give some visual examples:\n\nThis is repo upload with multiple commits with Alint:\nhttps://screencast.googleplex.com/cast/NjAwODA4NTM3Mjk5MzUzNnxmZjRlZTMxZC1mNw\n\nThis is repo upload with multiple commits w/o Alint:\nhttps://screencast.googleplex.com/cast/NDY5NTk0MDExNDkzOTkwNHxlYjdiMTFlMy0zNw\n\nAlint is just an addition to what\u0027s already happening with all the other analyzers",
+      "parentUuid": "ddd9ccb1_f6d96636",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
