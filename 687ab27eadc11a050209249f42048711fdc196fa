@@ -107,6 +107,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af3e01ff_02adcb28",
+        "filename": "rh/hooks.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-19T15:07:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3444ea11_a429f3e2",
+      "range": {
+        "startLine": 1292,
+        "startChar": 0,
+        "endLine": 1293,
+        "endChar": 43
+      },
+      "revId": "687ab27eadc11a050209249f42048711fdc196fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e47e6518_0898a0d8",
