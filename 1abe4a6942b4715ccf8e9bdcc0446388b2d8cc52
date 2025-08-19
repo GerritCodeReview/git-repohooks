@@ -265,6 +265,24 @@
       "parentUuid": "1a266710_8979832c",
       "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b173427f_01d911b1",
+        "filename": "rh/hooks.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2025-08-19T11:47:05Z",
+      "side": 1,
+      "message": "cl/794564509 and cl/796819050 fixes the issue we talked about here.\n@vapier@google.com to have another look at this CL and let us know if everything seems to be in order.",
+      "parentUuid": "69d46a36_4ab40734",
+      "revId": "1abe4a6942b4715ccf8e9bdcc0446388b2d8cc52",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
