@@ -16,6 +16,24 @@
       "message": "That is a bit weird to not commit in the Android tree for code that is in the tree but anyway.",
       "revId": "3368a4fb926dfba52ac74f55fab1cb656f21710c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1283f6d_ab1aca06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1150568
+      },
+      "writtenOn": "2026-01-31T00:18:37Z",
+      "side": 1,
+      "message": "And pretty annoying to have to install a dependency to run the formater just for python, no other formater act like this 😞",
+      "parentUuid": "d0689dd2_ec5e54f5",
+      "revId": "3368a4fb926dfba52ac74f55fab1cb656f21710c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
