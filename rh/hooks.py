@@ -549,9 +549,11 @@ def check_ktfmt(project, commit, _desc, diff, options=None):
     include_dirs = [
         x[len("--include-dirs=") :].split(",") for x in include_dir_args
     ]
-    patterns = [rf"^{x}/.*\.kt$" for dir_list in include_dirs for x in dir_list]
+    patterns = [
+        rf"^{x}/.*\.kts?$" for dir_list in include_dirs for x in dir_list
+    ]
     if not patterns:
-        patterns = [r"\.kt$"]
+        patterns = [r"\.kts?$"]
 
     filtered = _filter_diff(diff, patterns)
 
