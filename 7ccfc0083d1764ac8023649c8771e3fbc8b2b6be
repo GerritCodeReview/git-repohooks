@@ -34,6 +34,24 @@
       "parentUuid": "7d1783bc_9bfc04d8",
       "revId": "7ccfc0083d1764ac8023649c8771e3fbc8b2b6be",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "829eab4c_84e0a5ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-02-13T01:41:17Z",
+      "side": 1,
+      "message": "if you\u0027re referring to `repo upload` requiring a Bug number, they all accept `None`.  that has been the case for a decade now.\n\nif a project wants a real bug, putting in a garbage bug like this doesn\u0027t sound correct",
+      "parentUuid": "3fd502fc_ecef1188",
+      "revId": "7ccfc0083d1764ac8023649c8771e3fbc8b2b6be",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
