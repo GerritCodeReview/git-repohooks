@@ -16,6 +16,24 @@
       "message": "i don\u0027t know why you have or used this bug, but please don\u0027t do it again",
       "revId": "7ccfc0083d1764ac8023649c8771e3fbc8b2b6be",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd502fc_ecef1188",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1150568
+      },
+      "writtenOn": "2026-02-13T01:30:25Z",
+      "side": 1,
+      "message": "In a lot of gerrit location, a bug number is required.\n\nHowever, when doing changes like this, it doesn\u0027t seems to add any benefits to create a dedicated bug that will be a duplicate of the commit message.",
+      "parentUuid": "7d1783bc_9bfc04d8",
+      "revId": "7ccfc0083d1764ac8023649c8771e3fbc8b2b6be",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
