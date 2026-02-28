@@ -23,8 +23,6 @@ import subprocess
 import sys
 from typing import List
 
-import pytest
-
 
 ROOT_DIR = Path(__file__).resolve().parent
 
@@ -78,11 +76,38 @@ def run_black() -> int:
     ).returncode
 
 
+def run_pylint() -> int:
+    """Returns the exit code from pylint."""
+    argv = ["--version"]
+    log_cmd("pylint", argv)
+    subprocess.run(
+        [sys.executable, "-m", "pylint"] + argv,
+        check=True,
+        cwd=ROOT_DIR,
+    )
+
+    argv = [
+        "--rc-file=tools/pylintrc",
+        "pre-upload.py",
+        "run_tests",
+        "rh/*.py",
+        "tools/*.py",
+        "tools/cpplint.py-update",
+    ]
+    log_cmd("pylint", argv)
+    return subprocess.run(
+        [sys.executable, "-m", "pylint"] + argv,
+        check=False,
+        cwd=ROOT_DIR,
+    ).returncode
+
+
 def main(argv):
     """The main entry."""
     checks = (
         functools.partial(run_pytest, argv),
         run_black,
+        run_pylint,
     )
     # Run all the tests all the time to get full feedback.  Don't exit on the
     # first error as that makes it more difficult to iterate in the CQ.
