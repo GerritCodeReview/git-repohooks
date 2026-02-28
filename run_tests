@@ -18,6 +18,7 @@
 import functools
 import os
 from pathlib import Path
+import shlex
 import subprocess
 import sys
 from typing import List
@@ -26,6 +27,11 @@ import pytest
 
 
 ROOT_DIR = Path(__file__).resolve().parent
+
+
+def log_cmd(cmd: str, argv: list[str]) -> None:
+    """Log a debug message to make history easier to track."""
+    print("+", cmd, shlex.join(str(x) for x in argv), file=sys.stderr)
 
 
 @functools.lru_cache()
@@ -39,19 +45,34 @@ def run_pytest(argv: List[str]) -> int:
     if is_ci():
         argv = ["-m", "not skip_cq"] + argv
 
-    return pytest.main(argv)
+    log_cmd("pytest", argv)
+    return subprocess.run(
+        [sys.executable, "-m", "pytest"] + argv,
+        check=False,
+        cwd=ROOT_DIR,
+    ).returncode
 
 
 def run_black() -> int:
     """Returns the exit code from black."""
+    argv = ["--version"]
+    log_cmd("black", argv)
+    subprocess.run(
+        [sys.executable, "-m", "black"] + argv,
+        check=True,
+        cwd=ROOT_DIR,
+    )
+
     # Black by default only matches .py files.  We have to list standalone
     # scripts manually.
     extra_programs = [
         "run_tests",
+        "tools/cpplint.py-update",
     ]
+    argv = ["--diff", "--check", ROOT_DIR] + extra_programs
+    log_cmd("black", argv)
     return subprocess.run(
-        [sys.executable, "-m", "black", "--verbose", "--check", ROOT_DIR]
-        + extra_programs,
+        [sys.executable, "-m", "black"] + argv,
         check=False,
         cwd=ROOT_DIR,
     ).returncode
