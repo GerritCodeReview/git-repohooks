@@ -1305,6 +1305,7 @@ def check_alint(project, commit, _desc, diff, options=None):
 # Hooks that projects can opt into.
 # Note: Make sure to keep the top level README.md up to date when adding more!
 BUILTIN_HOOKS = {
+    # pylint: disable=line-too-long
     "aidl_format": check_aidl_format,
     "alint": check_alint,
     "android_test_mapping_format": check_android_test_mapping,

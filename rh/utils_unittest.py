@@ -97,7 +97,7 @@ class CalledProcessErrorTests(unittest.TestCase):
 
     def test_basic(self):
         """Basic test we can create a normal instance."""
-        rh.utils.CalledProcessError(0, ["mycmd"])
+        _ = rh.utils.CalledProcessError(0, ["mycmd"])
 
     def test_stringify(self):
         """Check stringify() handling."""
