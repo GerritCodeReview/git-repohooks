@@ -442,6 +442,7 @@ def _run_project_hooks_in_cwd(
             )
 
             def run_hooks(hooks):
+                # pylint: disable=cell-var-from-loop
                 futures = (
                     executor.submit(
                         _run_hook, hook, project, commit, desc, diff
