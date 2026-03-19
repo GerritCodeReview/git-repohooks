@@ -31,10 +31,11 @@ import rh
 import rh.results
 import rh.utils
 
-
 COMPLETED_PROCESS_PASS = rh.utils.CompletedProcess(returncode=0)
 COMPLETED_PROCESS_FAIL = rh.utils.CompletedProcess(returncode=1)
 COMPLETED_PROCESS_WARN = rh.utils.CompletedProcess(returncode=77)
+COMPLETED_PROCESS_FIX_ERR = rh.utils.CompletedProcess(returncode=5)
+COMPLETED_PROCESS_FIX_WARN = rh.utils.CompletedProcess(returncode=6)
 
 
 class HookResultTests(unittest.TestCase):
@@ -64,6 +65,7 @@ class HookCommandResultTests(unittest.TestCase):
         )
         self.assertFalse(result)
         self.assertFalse(result.is_warning())
+        self.assertIsNone(result.fixup_cmd)
 
         # An error.
         result = rh.results.HookCommandResult(
@@ -71,6 +73,7 @@ class HookCommandResultTests(unittest.TestCase):
         )
         self.assertTrue(result)
         self.assertFalse(result.is_warning())
+        self.assertIsNone(result.fixup_cmd)
 
         # A warning.
         result = rh.results.HookCommandResult(
@@ -78,6 +81,31 @@ class HookCommandResultTests(unittest.TestCase):
         )
         self.assertFalse(result)
         self.assertTrue(result.is_warning())
+        self.assertIsNone(result.fixup_cmd)
+
+        # An error with a potential fix, but not provided.
+        result = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FIX_ERR
+        )
+        self.assertTrue(result)
+        self.assertFalse(result.is_warning())
+        self.assertIsNone(result.fixup_cmd)
+
+        # A warning with a potential fix, but not provided.
+        result = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FIX_WARN
+        )
+        self.assertFalse(result)
+        self.assertTrue(result.is_warning())
+        self.assertIsNone(result.fixup_cmd)
+
+        # An error with a fix.
+        result = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FAIL, fixup_cmd=["fix"]
+        )
+        self.assertTrue(result)
+        self.assertFalse(result.is_warning())
+        self.assertIsNotNone(result.fixup_cmd)
 
 
 class ProjectResultsTests(unittest.TestCase):
@@ -107,6 +135,29 @@ class ProjectResultsTests(unittest.TestCase):
             ]
         )
         self.assertTrue(result)
+
+
+    def test_fixups(self):
+        """Check fixups property."""
+        result = rh.results.ProjectResults("project", "workdir")
+        error_with_fix = rh.results.HookResult(
+            "hook", "project", "HEAD", "error", fixup_cmd=["fix"]
+        )
+        warning_with_fix = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FIX_WARN,
+            fixup_cmd=["fix"]
+        )
+        error_no_fix = rh.results.HookResult(
+            "hook", "project", "HEAD", "error"
+        )
+
+        result.add_results([error_with_fix, warning_with_fix, error_no_fix])
+
+        # Only error_with_fix should be in fixups, because warning_with_fix
+        # is a warning (x is False).
+        fixups = list(result.fixups)
+        self.assertEqual(len(fixups), 1)
+        self.assertEqual(fixups[0], error_with_fix)
 
 
 if __name__ == "__main__":

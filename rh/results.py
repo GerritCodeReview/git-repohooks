@@ -85,11 +85,11 @@ class HookCommandResult(HookResult):
 
     def __bool__(self):
         """Whether this result is an error."""
-        return self.result.returncode not in (None, 0, 77)
+        return self.result.returncode not in (None, 0, 6, 77)
 
     def is_warning(self):
         """Whether this result is a non-fatal warning."""
-        return self.result.returncode == 77
+        return self.result.returncode in (6, 77)
 
 
 class ProjectResults(NamedTuple):
