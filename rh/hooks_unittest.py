@@ -362,6 +362,12 @@ class BuiltinHooksTests(unittest.TestCase):
     def setUp(self):
         self.project = rh.Project(name="project-name", dir="/.../repo/dir")
         self.options = rh.hooks.HookOptions("hook name", [], {})
+        mock.patch.object(
+            rh.git, "find_repo_root", side_effect=mock_find_repo_root
+        ).start()
+
+    def tearDown(self):
+        mock.patch.stopall()
 
     def _test_commit_messages(self, func, accept, msgs, files=None):
         """Helper for testing commit message hooks.
@@ -1181,10 +1187,44 @@ class BuiltinHooksTests(unittest.TestCase):
         Test: ...
         Flag: ..."""
         diff = [rh.git.RawDiffEntry(file="file.txt", status="A")]
+
+        # Test success.
+        mock_run.return_value = rh.utils.CompletedProcess(returncode=0)
         ret = rh.hooks.check_alint(
             self.project, commit, "desc", diff, options=self.options
         )
         self.assertIsNotNone(ret)
+        self.assertIsNone(ret[0].fixup_cmd)
+
+        # Test error with fix.
+        mock_run.return_value = rh.utils.CompletedProcess(returncode=5)
+        ret = rh.hooks.check_alint(
+            self.project, commit, "desc", diff, options=self.options
+        )
+        self.assertIsNotNone(ret)
+        self.assertEqual(ret[0].fixup_cmd, ["alint", "fix", "--no_amend"])
+        self.assertFalse(ret[0].is_warning())
+        self.assertEqual(ret[0].result.returncode, 5)
+
+        # Test warning with fix.
+        mock_run.return_value = rh.utils.CompletedProcess(returncode=6)
+        ret = rh.hooks.check_alint(
+            self.project, commit, "desc", diff, options=self.options
+        )
+        self.assertIsNotNone(ret)
+        self.assertEqual(ret[0].fixup_cmd, ["alint", "fix", "--no_amend"])
+        self.assertFalse(ret[0].is_warning())
+        self.assertEqual(ret[0].result.returncode, 6)
+
+        # Test warning without fix.
+        mock_run.return_value = rh.utils.CompletedProcess(returncode=77)
+        ret = rh.hooks.check_alint(
+            self.project, commit, "desc", diff, options=self.options
+        )
+        self.assertIsNotNone(ret)
+        self.assertIsNone(ret[0].fixup_cmd)
+        self.assertTrue(ret[0].is_warning())
+        self.assertEqual(ret[0].result.returncode, 77)
 
 
 if __name__ == "__main__":
