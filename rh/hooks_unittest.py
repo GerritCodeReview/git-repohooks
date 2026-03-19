@@ -1181,10 +1181,33 @@ class BuiltinHooksTests(unittest.TestCase):
         Test: ...
         Flag: ..."""
         diff = [rh.git.RawDiffEntry(file="file.txt", status="A")]
-        ret = rh.hooks.check_alint(
-            self.project, commit, "desc", diff, options=self.options
-        )
-        self.assertIsNotNone(ret)
+
+        with mock.patch.object(
+            rh.git, "find_repo_root", side_effect=mock_find_repo_root
+        ):
+            # Test success.
+            mock_run.return_value = rh.utils.CompletedProcess(returncode=0)
+            ret = rh.hooks.check_alint(
+                self.project, commit, "desc", diff, options=self.options
+            )
+            self.assertIsNotNone(ret)
+            self.assertIsNone(ret[0].fixup_cmd)
+
+            # Test error with fix.
+            mock_run.return_value = rh.utils.CompletedProcess(returncode=5)
+            ret = rh.hooks.check_alint(
+                self.project, commit, "desc", diff, options=self.options
+            )
+            self.assertIsNotNone(ret)
+            self.assertEqual(ret[0].fixup_cmd, ["alint", "fix", "--no_amend"])
+
+            # Test warning with fix.
+            mock_run.return_value = rh.utils.CompletedProcess(returncode=6)
+            ret = rh.hooks.check_alint(
+                self.project, commit, "desc", diff, options=self.options
+            )
+            self.assertIsNotNone(ret)
+            self.assertEqual(ret[0].fixup_cmd, ["alint", "fix", "--no_amend"])
 
 
 if __name__ == "__main__":
