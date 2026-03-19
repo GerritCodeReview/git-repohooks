@@ -31,10 +31,11 @@ import rh
 import rh.results
 import rh.utils
 
-
 COMPLETED_PROCESS_PASS = rh.utils.CompletedProcess(returncode=0)
 COMPLETED_PROCESS_FAIL = rh.utils.CompletedProcess(returncode=1)
 COMPLETED_PROCESS_WARN = rh.utils.CompletedProcess(returncode=77)
+COMPLETED_PROCESS_FIX_ERR = rh.utils.CompletedProcess(returncode=5)
+COMPLETED_PROCESS_FIX_WARN = rh.utils.CompletedProcess(returncode=6)
 
 
 class HookResultTests(unittest.TestCase):
@@ -64,6 +65,7 @@ class HookCommandResultTests(unittest.TestCase):
         )
         self.assertFalse(result)
         self.assertFalse(result.is_warning())
+        self.assertFalse(result.has_fix)
 
         # An error.
         result = rh.results.HookCommandResult(
@@ -71,6 +73,7 @@ class HookCommandResultTests(unittest.TestCase):
         )
         self.assertTrue(result)
         self.assertFalse(result.is_warning())
+        self.assertFalse(result.has_fix)
 
         # A warning.
         result = rh.results.HookCommandResult(
@@ -78,6 +81,23 @@ class HookCommandResultTests(unittest.TestCase):
         )
         self.assertFalse(result)
         self.assertTrue(result.is_warning())
+        self.assertFalse(result.has_fix)
+
+        # An error with a fix.
+        result = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FIX_ERR
+        )
+        self.assertTrue(result)
+        self.assertFalse(result.is_warning())
+        self.assertTrue(result.has_fix)
+
+        # A warning with a fix.
+        result = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FIX_WARN
+        )
+        self.assertFalse(result)
+        self.assertTrue(result.is_warning())
+        self.assertTrue(result.has_fix)
 
 
 class ProjectResultsTests(unittest.TestCase):
