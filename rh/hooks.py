@@ -1300,7 +1300,20 @@ def check_alint(project, commit, _desc, diff, options=None):
 
     cmd = [alint_path] + options.args((), diff) + ["--commit", commit]
 
-    return _check_cmd("alint", project, commit, cmd)
+    result = _run(cmd)
+
+    # alint returns exit code 5 or 6 if there are findings with fixes available.
+    fixup_cmd = (
+        [alint_path, "fix", "--no_amend"]
+        if result.returncode in (5, 6)
+        else None
+    )
+
+    return [
+        rh.results.HookCommandResult(
+            "alint", project, commit, result, fixup_cmd=fixup_cmd
+        )
+    ]
 
 
 # Hooks that projects can opt into.
