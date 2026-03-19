@@ -67,6 +67,11 @@ class HookResult(object):
         """Whether this result is a non-fatal warning."""
         return self._warning
 
+    @property
+    def has_fix(self):
+        """Whether this result has a suggested fix."""
+        return self.fixup_cmd is not None
+
 
 class HookCommandResult(HookResult):
     """A single hook result based on a CompletedProcess."""
@@ -85,11 +90,16 @@ class HookCommandResult(HookResult):
 
     def __bool__(self):
         """Whether this result is an error."""
-        return self.result.returncode not in (None, 0, 77)
+        return self.result.returncode not in (None, 0, 6, 77)
 
     def is_warning(self):
         """Whether this result is a non-fatal warning."""
-        return self.result.returncode == 77
+        return self.result.returncode in (6, 77)
+
+    @property
+    def has_fix(self):
+        """Whether this result has a suggested fix."""
+        return self.result.returncode in (5, 6) or HookResult.has_fix.fget(self)
 
 
 class ProjectResults(NamedTuple):
@@ -113,7 +123,7 @@ class ProjectResults(NamedTuple):
     @property
     def fixups(self):
         """Yield results that have a fixup available."""
-        yield from (x for x in self.results if x and x.fixup_cmd)
+        yield from (x for x in self.results if x.has_fix)
 
     def __bool__(self):
         """Whether there are any errors in this set of results."""
