@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fcfadf4_fc08eb12",
+        "filename": "rh/hooks.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-03-23T22:48:43Z",
+      "side": 1,
+      "message": "period at the end of sentences\n```suggestion\n    # alint returns exit code 5 or 6 if there are findings with fixes available.\n```",
+      "revId": "e205f8bf211aff92b6749f405a8b802012f38eee",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba135670_11be4ff0",
+        "filename": "rh/hooks_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-03-23T22:48:43Z",
+      "side": 1,
+      "message": "why do you need this mock ?",
+      "revId": "e205f8bf211aff92b6749f405a8b802012f38eee",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
