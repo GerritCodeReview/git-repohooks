@@ -216,9 +216,14 @@ class PreUploadConfig(object):
             hooks = set(config.options(self.BUILTIN_HOOKS_SECTION))
             bad_hooks = hooks - valid_builtin_hooks
             if bad_hooks:
-                raise ValidationError(
-                    f"{self.source}: unknown builtin hooks: {bad_hooks}"
-                )
+                msg = f"{self.source}: unknown builtin hooks: {bad_hooks}"
+                if "GLOBAL-PREUPLOAD.cfg" in self.source:
+                    msg += (
+                        ". If you are adding a new hook, ensure its "
+                        "implementation is merged in "
+                        "platform/tools/repohooks first."
+                    )
+                raise ValidationError(msg)
         elif config.has_section(self.BUILTIN_HOOKS_OPTIONS_SECTION):
             raise ValidationError(
                 "Builtin hook options specified, but missing "
@@ -257,9 +262,14 @@ class PreUploadConfig(object):
             tools = set(config.options(self.TOOL_PATHS_SECTION))
             bad_tools = tools - valid_tools
             if bad_tools:
-                raise ValidationError(
-                    f"{self.source}: unknown tools: {bad_tools}"
-                )
+                msg = f"{self.source}: unknown tools: {bad_tools}"
+                if "GLOBAL-PREUPLOAD.cfg" in self.source:
+                    msg += (
+                        ". If you are adding a new tool, ensure its "
+                        "definition is merged in "
+                        "platform/tools/repohooks first."
+                    )
+                raise ValidationError(msg)
 
         # Reject unknown options.
         if config.has_section(self.OPTIONS_SECTION):
