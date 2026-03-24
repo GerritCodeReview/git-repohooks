@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a066d641_128a29a2",
+        "filename": "rh/hooks.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-03-24T10:23:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fcfadf4_fc08eb12",
+      "revId": "e205f8bf211aff92b6749f405a8b802012f38eee",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba135670_11be4ff0",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-23T22:48:43Z",
       "side": 1,
       "message": "why do you need this mock ?",
+      "revId": "e205f8bf211aff92b6749f405a8b802012f38eee",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "445d3276_3462837c",
+        "filename": "rh/hooks_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-03-24T10:23:58Z",
+      "side": 1,
+      "message": "The mock is required because check_alint calls options.tool_path(\"alint\"), which triggers an eager expansion of all placeholders. This process includes evaluating ${REPO_ROOT}, which calls rh.git.find_repo_root().\n\nSince test_alint specifically mocks rh.utils.run to return a CompletedProcess object (which has stdout\u003dNone by default), find_repo_root would otherwise crash when attempting to .strip() that output. This mock prevents the crash and ensures the test remains hermetic by avoiding actual filesystem/git lookups.",
+      "parentUuid": "ba135670_11be4ff0",
       "revId": "e205f8bf211aff92b6749f405a8b802012f38eee",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
