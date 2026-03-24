@@ -65,6 +65,7 @@ def run_black() -> int:
     # scripts manually.
     extra_programs = [
         "run_tests",
+        "tools/check_builtin_hooks.py",
         "tools/cpplint.py-update",
     ]
     argv = ["--diff", "--check", ROOT_DIR] + extra_programs
