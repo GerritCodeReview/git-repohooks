@@ -111,9 +111,23 @@ ignore_merged_commits = true
     def testUnknownBuiltin(self):
         """Reject unknown builtin hooks."""
         path = self._write_config("[Builtin Hooks]\nbooga = borg!")
-        self.assertRaises(
-            rh.config.ValidationError, rh.config.PreUploadFile, path
-        )
+        with self.assertRaises(rh.config.ValidationError) as cm:
+            rh.config.PreUploadFile(path)
+        self.assertIn("ensure its implementation is merged", str(cm.exception))
+
+    def testUnknownBuiltinGlobal(self):
+        """Reject unknown builtin hooks in global config."""
+        path = self._write_global_config("[Builtin Hooks]\nbooga = borg!")
+        with self.assertRaises(rh.config.ValidationError) as cm:
+            rh.config.GlobalPreUploadFile(path)
+        self.assertIn("ensure its implementation is merged", str(cm.exception))
+
+    def testUnknownToolGlobal(self):
+        """Reject unknown tools in global config."""
+        path = self._write_global_config("[Tool Paths]\nbooga = borg!")
+        with self.assertRaises(rh.config.ValidationError) as cm:
+            rh.config.GlobalPreUploadFile(path)
+        self.assertIn("ensure its definition is merged", str(cm.exception))
 
     def testEmptyCustomHook(self):
         """Reject empty custom hooks."""

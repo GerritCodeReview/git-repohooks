@@ -217,7 +217,9 @@ class PreUploadConfig(object):
             bad_hooks = hooks - valid_builtin_hooks
             if bad_hooks:
                 raise ValidationError(
-                    f"{self.source}: unknown builtin hooks: {bad_hooks}"
+                    f"{self.source}: unknown builtin hooks: {bad_hooks}. "
+                    "If you are adding a new hook, ensure its "
+                    "implementation is merged in the repohooks project first."
                 )
         elif config.has_section(self.BUILTIN_HOOKS_OPTIONS_SECTION):
             raise ValidationError(
@@ -258,7 +260,9 @@ class PreUploadConfig(object):
             bad_tools = tools - valid_tools
             if bad_tools:
                 raise ValidationError(
-                    f"{self.source}: unknown tools: {bad_tools}"
+                    f"{self.source}: unknown tools: {bad_tools}. "
+                    "If you are adding a new tool, ensure its "
+                    "definition is merged in the repohooks project first."
                 )
 
         # Reject unknown options.
