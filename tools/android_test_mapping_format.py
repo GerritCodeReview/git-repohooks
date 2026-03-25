@@ -25,14 +25,15 @@ The goal of this script is to validate the format of TEST_MAPPING files:
 import argparse
 import json
 import os
+from pathlib import Path
 import re
 import sys
 from typing import Any, Dict
 
-_path = os.path.realpath(__file__ + "/../..")
-if sys.path[0] != _path:
-    sys.path.insert(0, _path)
-del _path
+
+THIS_FILE = Path(__file__).resolve()
+THIS_DIR = THIS_FILE.parent
+sys.path.insert(0, str(THIS_DIR.parent))
 
 # We have to import our local modules after the sys.path tweak.  We can't use
 # relative imports because this is an executable program, not a module.
