@@ -16,14 +16,15 @@
 """Unittests for the hooks module."""
 
 import os
+from pathlib import Path
 import sys
 import unittest
 from unittest import mock
 
-_path = os.path.realpath(__file__ + "/../..")
-if sys.path[0] != _path:
-    sys.path.insert(0, _path)
-del _path
+
+THIS_FILE = Path(__file__).resolve()
+THIS_DIR = THIS_FILE.parent
+sys.path.insert(0, str(THIS_DIR.parent))
 
 # We have to import our local modules after the sys.path tweak.  We can't use
 # relative imports because this is an executable program, not a module.
@@ -46,10 +47,7 @@ class HooksDocsTests(unittest.TestCase):
     """
 
     def setUp(self):
-        self.readme = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
-            "README.md",
-        )
+        self.readme = THIS_DIR.parent / "README.md"
 
     def _grab_section(self, section):
         """Extract the |section| text out of the readme."""

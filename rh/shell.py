@@ -14,14 +14,14 @@
 
 """Functions for working with shell code."""
 
-import os
+from pathlib import Path
 import pathlib
 import sys
 
-_path = os.path.realpath(__file__ + "/../..")
-if sys.path[0] != _path:
-    sys.path.insert(0, _path)
-del _path
+
+THIS_FILE = Path(__file__).resolve()
+THIS_DIR = THIS_FILE.parent
+sys.path.insert(0, str(THIS_DIR.parent))
 
 
 # For use by ShellQuote.  Match all characters that the shell might treat

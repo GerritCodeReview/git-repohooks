@@ -18,13 +18,14 @@ This module handles terminal interaction including ANSI color codes.
 """
 
 import os
+from pathlib import Path
 import sys
 from typing import List, Optional
 
-_path = os.path.realpath(__file__ + "/../..")
-if sys.path[0] != _path:
-    sys.path.insert(0, _path)
-del _path
+
+THIS_FILE = Path(__file__).resolve()
+THIS_DIR = THIS_FILE.parent
+sys.path.insert(0, str(THIS_DIR.parent))
 
 # pylint: disable=wrong-import-position
 import rh.shell
