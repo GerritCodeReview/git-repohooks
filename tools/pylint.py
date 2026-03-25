@@ -18,6 +18,7 @@
 import argparse
 import errno
 import os
+from pathlib import Path
 import sys
 import subprocess
 from typing import Dict, List, Optional, Set
@@ -31,9 +32,9 @@ assert (sys.version_info.major, sys.version_info.minor) >= (
 ), f"Python 3.6 or newer is required; found {sys.version}"
 
 
-DEFAULT_PYLINTRC_PATH = os.path.join(
-    os.path.dirname(os.path.realpath(__file__)), "pylintrc"
-)
+THIS_FILE = Path(__file__).resolve()
+THIS_DIR = THIS_FILE.parent
+DEFAULT_PYLINTRC_PATH = str(THIS_DIR / "pylintrc")
 
 
 def run_lint(
@@ -69,9 +70,11 @@ def run_lint(
         )
     except OSError as e:
         if e.errno == errno.ENOENT:
-            print(f"{__file__}: unable to run `{cmd[0]}`: {e}", file=sys.stderr)
             print(
-                f"{__file__}: Try installing pylint: sudo apt-get install "
+                f"{THIS_FILE}: unable to run `{cmd[0]}`: {e}", file=sys.stderr
+            )
+            print(
+                f"{THIS_FILE}: Try installing pylint: sudo apt-get install "
                 f"{os.path.basename(cmd[0])}",
                 file=sys.stderr,
             )
@@ -80,7 +83,7 @@ def run_lint(
         raise
 
     if result.returncode:
-        print(f"{__file__}: Using pylintrc: {pylintrc}")
+        print(f"{THIS_FILE}: Using pylintrc: {pylintrc}")
         print(result.stdout)
         return False
 
@@ -101,7 +104,7 @@ def find_parent_dirs_with_pylintrc(
 
     if not key.startswith(rootdir):
         sys.exit(
-            f"{__file__}: The search directory {key} is outside the "
+            f"{THIS_FILE}: The search directory {key} is outside the "
             f"repo dir {rootdir}"
         )
 
@@ -155,7 +158,7 @@ def map_pyfiles_to_pylintrc(files: List[str]) -> Dict[str, Set[str]]:
                 pylintrc_map[rc_dir].add(f)
                 break
         else:
-            sys.exit(f"{__file__}: Failed to map file {f} to a pylintrc file.")
+            sys.exit(f"{THIS_FILE}: Failed to map file {f} to a pylintrc file.")
 
     return pylintrc_map
 
@@ -195,7 +198,7 @@ def main(argv):
                 first = False
                 assert os.path.abspath(rc_dir) == os.path.abspath(
                     "."
-                ), f"{__file__}: pylintrc in top dir not first in list"
+                ), f"{THIS_FILE}: pylintrc in top dir not first in list"
                 if not os.path.exists(pylintrc):
                     pylintrc = DEFAULT_PYLINTRC_PATH
             if not run_lint(

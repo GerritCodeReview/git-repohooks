@@ -17,12 +17,15 @@
 
 import argparse
 import os
+from pathlib import Path
 import re
 import sys
 
 
-REPOTOOLS = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-REPO_ROOT = os.path.dirname(os.path.dirname(REPOTOOLS))
+THIS_FILE = Path(__file__).resolve()
+THIS_DIR = THIS_FILE.parent
+# This default assumes an Android checkout.
+REPO_ROOT = THIS_DIR.parent.parent.parent
 
 
 def assertEqual(msg, exp, actual):
