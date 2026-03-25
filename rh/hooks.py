@@ -343,10 +343,10 @@ def _check_cmd(hook_name, project, commit, cmd, fixup_cmd=None, **kwargs):
 
 
 # Where helper programs exist.
-TOOLS_DIR = os.path.realpath(__file__ + "/../../tools")
+TOOLS_DIR = THIS_DIR.parent / "tools"
 
 
-def get_helper_path(tool):
+def get_helper_path(tool: str) -> str:
     """Return the full path to the helper |tool|."""
     return os.path.join(TOOLS_DIR, tool)
 
@@ -1338,13 +1338,13 @@ BUILTIN_HOOKS = {
 TOOL_PATHS = {
     "aidl-format": "aidl-format",
     "alint": "alint",
-    "android-test-mapping-format": os.path.join(
-        TOOLS_DIR, "android_test_mapping_format.py"
+    "android-test-mapping-format": get_helper_path(
+        "android_test_mapping_format.py"
     ),
     "black": "black",
     "bpfmt": "bpfmt",
     "clang-format": "clang-format",
-    "cpplint": os.path.join(TOOLS_DIR, "cpplint.py"),
+    "cpplint": get_helper_path("cpplint.py"),
     "git-clang-format": "git-clang-format",
     "gofmt": "gofmt",
     "google-java-format": "google-java-format",
