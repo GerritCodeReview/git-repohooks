@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a22787_4592a649",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-03-25T18:02:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71c8f9eb_c464d7a4",
+      "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4341d80f_ba12dbc0",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-25T16:21:52Z",
       "side": 1,
       "message": "sorry, i missed results was being updated too.  the hooks changes make sense for alint, but i\u0027m not seeing why we should generalize alint-specific behavior.\n\nthe `77` exit code is semi-common in the OSS world as a \"skip\" exit status (e.g. GNU autotest).\n\nwhy can\u0027t the alint hook itself internalize this and then decide whether to set/return a fixup_cmd ?",
+      "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "020fdd8a_9e430547",
+        "filename": "rh/results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-03-25T18:02:09Z",
+      "side": 1,
+      "message": "You\u0027re right we can continue to just use the presence of a fixup_cmd instead of checking the exit code to know whether fixes are available. I\u0027ve made that change.\n\nHowever, I\u0027d still like to be able to add an additional warning exit code so we can distinguish between the four possible scenarios (listed below). We can\u0027t re-use 77 because the hook won\u0027t know whether or not it should return the fixup_cmd in that case.\n\nblocking with fixup - [exit code: 5, fixup_cmd: true]\nblocking without fixup - [exit code: 3, fixup_cmd: false]\nnonblocking with fixup - [exit code: 6, fixup_cmd: true]\nnonblocking without fixup [exit code: 77, fixup_cmd: false]",
+      "parentUuid": "4341d80f_ba12dbc0",
       "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
