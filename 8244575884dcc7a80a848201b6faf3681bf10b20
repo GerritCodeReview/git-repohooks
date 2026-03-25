@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71c8f9eb_c464d7a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-03-25T16:21:52Z",
+      "side": 1,
+      "message": "`hooks: alint: ...`, not `--`",
+      "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4341d80f_ba12dbc0",
+        "filename": "rh/results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-03-25T16:21:52Z",
+      "side": 1,
+      "message": "sorry, i missed results was being updated too.  the hooks changes make sense for alint, but i\u0027m not seeing why we should generalize alint-specific behavior.\n\nthe `77` exit code is semi-common in the OSS world as a \"skip\" exit status (e.g. GNU autotest).\n\nwhy can\u0027t the alint hook itself internalize this and then decide whether to set/return a fixup_cmd ?",
+      "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
