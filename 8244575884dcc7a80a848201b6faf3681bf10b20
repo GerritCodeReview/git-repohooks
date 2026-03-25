@@ -69,6 +69,24 @@
       "parentUuid": "4341d80f_ba12dbc0",
       "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73b7b951_8f0e7319",
+        "filename": "rh/results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-03-25T21:58:48Z",
+      "side": 1,
+      "message": "we can\u0027t do that with the current hooks structure.  hooks are using `_check_cmd` to pass the exit code of arbitrary external programs we don\u0027t control directly back to the framework.\n\ni think allowing 77 because very few people use that range, and the ones that do, seem to have common meaning.\n\nfor what you want to do, i don\u0027t think we need to support 6.  if you really want to do pursue this, i think we\u0027d need a thin translation framework from the underlying program to repohooks constants/enums.",
+      "parentUuid": "020fdd8a_9e430547",
+      "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
