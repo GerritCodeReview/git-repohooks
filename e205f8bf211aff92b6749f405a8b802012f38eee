@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1384c45_98b63a3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-03-25T11:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc8faa3b_8290ca54",
+      "revId": "e205f8bf211aff92b6749f405a8b802012f38eee",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fcfadf4_fc08eb12",
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "that sounds like it affects multiple hooks, not just this one.  so we should move this to setUp \u0026 tearDown in this class.\n\n```\ndef setUp...\n  ...\n  mock.patch.object(rh.git, \"find_repo_root\", side_effect\u003dmock_find_repo_root).start()\n\ndef tearDown...\n  mock.patch.stopall()\n```\n\nif you really wanted to scope it to this one test, then a decorator would be better rather than a with block that nests the entire body.  we do that many times in here already -- see testExpandVars as one example.",
       "parentUuid": "445d3276_3462837c",
+      "revId": "e205f8bf211aff92b6749f405a8b802012f38eee",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3905ffa2_61be3727",
+        "filename": "rh/hooks_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-03-25T11:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "511a0e8e_ebf7972b",
       "revId": "e205f8bf211aff92b6749f405a8b802012f38eee",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
