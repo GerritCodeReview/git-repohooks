@@ -1309,6 +1309,12 @@ def check_alint(project, commit, _desc, diff, options=None):
         else None
     )
 
+    # If alint returns 6, it means there are findings with fixes, but it
+    # should be non-blocking.  Map it to 77 (the standard non-blocking
+    # warning exit code).
+    if result.returncode == 6:
+        result.returncode = 77
+
     return [
         rh.results.HookCommandResult(
             "alint", project, commit, result, fixup_cmd=fixup_cmd
