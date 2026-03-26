@@ -87,6 +87,24 @@
       "parentUuid": "020fdd8a_9e430547",
       "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9be98280_65952e54",
+        "filename": "rh/results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-03-26T15:25:36Z",
+      "side": 1,
+      "message": "Ok I\u0027ve reverted all changes to results. I wonder if we can allow fixups for warnings, but I can follow up on that separately as I\u0027d like to get this submitted ASAP.",
+      "parentUuid": "73b7b951_8f0e7319",
+      "revId": "8244575884dcc7a80a848201b6faf3681bf10b20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
