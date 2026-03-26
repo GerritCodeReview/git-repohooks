@@ -61,7 +61,7 @@ class HookResult(object):
 
     def __bool__(self):
         """Whether this result is an error."""
-        return bool(self.error) and not self._warning
+        return bool(self.error) and not self.is_warning()
 
     def is_warning(self):
         """Whether this result is a non-fatal warning."""
@@ -71,13 +71,23 @@ class HookResult(object):
 class HookCommandResult(HookResult):
     """A single hook result based on a CompletedProcess."""
 
-    def __init__(self, hook, project, commit, result, files=(), fixup_cmd=None):
+    def __init__(
+        self,
+        hook,
+        project,
+        commit,
+        result,
+        warning: bool = False,
+        files=(),
+        fixup_cmd: Optional[List[str]] = None,
+    ):
         HookResult.__init__(
             self,
             hook,
             project,
             commit,
             result.stderr if result.stderr else result.stdout,
+            warning=warning,
             files=files,
             fixup_cmd=fixup_cmd,
         )
@@ -85,11 +95,11 @@ class HookCommandResult(HookResult):
 
     def __bool__(self):
         """Whether this result is an error."""
-        return self.result.returncode not in (None, 0, 77)
+        return not self.is_warning() and self.result.returncode not in (None, 0)
 
     def is_warning(self):
         """Whether this result is a non-fatal warning."""
-        return self.result.returncode == 77
+        return self._warning or self.result.returncode == 77
 
 
 class ProjectResults(NamedTuple):
@@ -113,7 +123,9 @@ class ProjectResults(NamedTuple):
     @property
     def fixups(self):
         """Yield results that have a fixup available."""
-        yield from (x for x in self.results if x and x.fixup_cmd)
+        yield from (
+            x for x in self.results if (x or x.is_warning()) and x.fixup_cmd
+        )
 
     def __bool__(self):
         """Whether there are any errors in this set of results."""
