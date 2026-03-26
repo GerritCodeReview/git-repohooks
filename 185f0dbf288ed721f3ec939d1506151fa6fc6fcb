@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a48997f_66d309c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3d62b8d_afc547e0",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4295d968_29afffe4",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-03-25T16:58:13Z",
       "side": 1,
       "message": "this project doesn\u0027t use `Flag`",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f159c87e_28e4ba14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4295d968_29afffe4",
       "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a96ab305_6416612a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "This is being integrated into the platform/manifest project via a PREUPLOAD.cfg hook (ag/39104036).\nOnce that lands, this script will automatically run whenever GLOBAL-PREUPLOAD.cfg is modified. It acts as a gatekeeper to ensure that any new builtin hooks or tools added to the global config are actually implemented in the repohooks project first, preventing accidental breakages for all developers.",
+      "parentUuid": "d7d37746_8b480e66",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f21b6860_bfcdbec8",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-03-25T16:58:13Z",
       "side": 1,
       "message": "this message doesn\u0027t feel like it\u0027s unique to GLOBAL-PREUPLOAD.cfg.  why special case it ?",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfc12881_486f134f",
+        "filename": "rh/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "I\u0027ve removed the special casing so this extra context is now consistently included in the error message whenever an unknown hook or tool is detected. I also updated the unit tests to verify this behavior for local config files.",
+      "parentUuid": "f21b6860_bfcdbec8",
       "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -86,6 +158,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b9aa8c8_b1b3fbdd",
+        "filename": "run_tests",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done. I\u0027ve removed tools/check_builtin_hooks.py from the extra_programs list since it ends in .py and will be automatically scanned by black when it processes the root directory.",
+      "parentUuid": "055ea87c_90d0c125",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d07c05d_387a7001",
@@ -103,6 +193,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58a934fe_7a7aaa94",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done. I\u0027ve renamed the script to tools/check_config.py and updated the documentation within the file to reflect that it performs a comprehensive validation of the configuration (including sections, tools, and syntax), not just builtin hooks. I\u0027ve also updated the dependent manifest CL to point to the new filename.",
+      "parentUuid": "6d07c05d_387a7001",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8db873c_6fc729c0",
@@ -116,6 +224,24 @@
       "writtenOn": "2026-03-25T16:58:13Z",
       "side": 1,
       "message": "why limit it to GLOBAL-PREUPLOAD.cfg ?  seems like this would handle PREUPLOAD.cfg easily too.",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "540b5f2d_63a02fcb",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done. I\u0027ve removed the filename restriction and switched to using the base PreUploadFile class. The script can now be used to validate any preupload configuration file (e.g., PREUPLOAD.cfg or GLOBAL-PREUPLOAD.cfg).",
+      "parentUuid": "d8db873c_6fc729c0",
       "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -143,6 +269,54 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c02001a_d09f73fb",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "1e2f88a1_f4d4eed0",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 9
+      },
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b1ae799_12d13547",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "1e2f88a1_f4d4eed0",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 9
+      },
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0adcfa8b_bbdac7f2",
@@ -156,6 +330,24 @@
       "writtenOn": "2026-03-25T16:58:13Z",
       "side": 1,
       "message": "unused -\u003e delete",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82d9be4d_d64c3128",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done. I\u0027ve removed the unused import rh.hooks statement.",
+      "parentUuid": "0adcfa8b_bbdac7f2",
       "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -177,6 +369,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6435c1b_85fe6e2b",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done. I\u0027ve added type hints to the main function and refactored it to return an exit code instead of calling sys.exit directly, providing a cleaner interface for the entry point.",
+      "parentUuid": "5453227d_f9380c9d",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8869594f_05985fe2",
@@ -190,6 +400,24 @@
       "writtenOn": "2026-03-25T16:58:13Z",
       "side": 1,
       "message": "use `type\u003dPath`",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "578d3c66_cbc31f6b",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done. I\u0027ve updated the argparse configuration to use type\u003dpathlib.Path for the files argument.",
+      "parentUuid": "8869594f_05985fe2",
       "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -211,6 +439,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ca32a6_f466e652",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done. Renamed the parsed arguments variable from args to opts to better distinguish it from the raw input arguments.",
+      "parentUuid": "f616a874_cfeff1ef",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd9fdd22_11de6ad2",
@@ -224,6 +470,24 @@
       "writtenOn": "2026-03-25T16:58:13Z",
       "side": 1,
       "message": "use `GlobalPreUploadFile.FILENAME`",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13b2240f_8d239750",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Done. I\u0027ve updated the script to use rh.config.GlobalPreUploadFile.FILENAME for matching. It now correctly instantiates GlobalPreUploadFile for global configs and fallbacks to PreUploadFile for other files, allowing it to remain generic while being more precise.",
+      "parentUuid": "cd9fdd22_11de6ad2",
       "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -251,6 +515,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9066351c_1a4cbd6d",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "2f365734_7ee83611",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 19
+      },
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c72c165_0d0e9af2",
@@ -264,6 +552,24 @@
       "writtenOn": "2026-03-25T16:58:13Z",
       "side": 1,
       "message": "```suggestion\n    sys.exit(main(sys.argv[1:]))\n```",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7f476fc_94608634",
+        "filename": "tools/check_builtin_hooks.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-26T16:24:22Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "2c72c165_0d0e9af2",
       "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
