@@ -108,6 +108,35 @@ class ProjectResultsTests(unittest.TestCase):
         )
         self.assertTrue(result)
 
+    def test_fixups(self):
+        """Check fixups handling."""
+        result = rh.results.ProjectResults("project", "workdir")
+        
+        # A warning with a fixup.
+        warn_fix = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_WARN, fixup_cmd=["fix"]
+        )
+        # An error with a fixup.
+        err_fix = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FAIL, fixup_cmd=["fix"]
+        )
+        # A warning WITHOUT a fixup.
+        warn_no_fix = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_WARN
+        )
+        # An error WITHOUT a fixup.
+        err_no_fix = rh.results.HookCommandResult(
+            "hook", "project", "HEAD", COMPLETED_PROCESS_FAIL
+        )
+
+        result.add_results([warn_fix, err_fix, warn_no_fix, err_no_fix])
+        
+        fixups = list(result.fixups)
+        self.assertIn(warn_fix, fixups)
+        self.assertIn(err_fix, fixups)
+        self.assertNotIn(warn_no_fix, fixups)
+        self.assertNotIn(err_no_fix, fixups)
+
 
 if __name__ == "__main__":
     unittest.main()
