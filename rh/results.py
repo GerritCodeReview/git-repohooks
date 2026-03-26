@@ -113,7 +113,9 @@ class ProjectResults(NamedTuple):
     @property
     def fixups(self):
         """Yield results that have a fixup available."""
-        yield from (x for x in self.results if x and x.fixup_cmd)
+        yield from (
+            x for x in self.results if (x or x.is_warning()) and x.fixup_cmd
+        )
 
     def __bool__(self):
         """Whether there are any errors in this set of results."""
