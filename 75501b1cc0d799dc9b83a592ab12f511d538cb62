@@ -16,6 +16,24 @@
       "message": "```suggestion\nhooks: alint: add fixup_cmd when alint exits with codes (5, 6)\n```",
       "revId": "75501b1cc0d799dc9b83a592ab12f511d538cb62",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e141b0_25ee098a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-03-27T10:24:06Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "141e19c4_c2bdbd58",
+      "revId": "75501b1cc0d799dc9b83a592ab12f511d538cb62",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
