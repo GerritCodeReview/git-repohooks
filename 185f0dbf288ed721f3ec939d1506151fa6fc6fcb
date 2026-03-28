@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b3e52b9_89dc9e87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-03-28T04:16:14Z",
+      "side": 1,
+      "message": "platform/manifest isn\u0027t included in any manifest which means no one runs `repo upload` which means PREUPLOAD.cfg isn\u0027t checked by anything.  so what is parsing that config \u0026 invoking the tool ?",
+      "parentUuid": "a96ab305_6416612a",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f21b6860_bfcdbec8",
         "filename": "rh/config.py",
         "patchSetId": 5
