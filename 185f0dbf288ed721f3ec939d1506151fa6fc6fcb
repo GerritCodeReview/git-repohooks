@@ -124,6 +124,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35f85954_f7a937dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4241811
+      },
+      "writtenOn": "2026-03-31T13:42:47Z",
+      "side": 1,
+      "message": "1. This CL lands the validation logic (tools/check_config.py) and a standard hook definition. This is a prerequisite.\n2. Once this lands, the next step is to update the server-side presubmit configuration to invoke this script for every change to the manifest repo.\n\nBy having the script inside the repo, we ensure the CI always uses the version of the validation logic that matches the current branch state.",
+      "parentUuid": "2b3e52b9_89dc9e87",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f21b6860_bfcdbec8",
