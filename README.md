@@ -23,7 +23,53 @@ sometimes there are valid reasons for this.  You can simply use the option
 `--ignore-hooks` when running `repo upload` to ignore all hook errors.
 This will ignore **all** hook errors and not just specific ones.
 
-# Config Files
+# Post-sync Hooks
+
+These hooks run after a successful repository synchronization (e.g. `repo sync`).
+They are dispatched via `post-sync.py` and allow projects to perform
+maintenance, update local tools, or provide status information after the
+checkout has been updated.
+
+## Usage
+
+Post-sync hooks are registered in the manifest repository using a
+`GLOBAL-POSTSYNC.cfg` file.
+
+## GLOBAL-POSTSYNC.cfg
+
+This file is located in the manifest git repo at `.repo/manifests/GLOBAL-POSTSYNC.cfg`.
+It follows the same format as `PREUPLOAD.cfg`.
+
+Example:
+```
+[Hook Scripts]
+post-sync-hook = vendor/google/tools/post-sync.py
+```
+
+### Hook Interface
+
+Hooks are executed as standalone subprocesses.  The following environment
+variables are passed to each hook:
+
+*   `REPO_ROOT`: Absolute path to the root of the repo checkout.
+*   `REPO_HOOK_SYNC_DURATION_SECONDS`: The total time taken by the sync
+    operation.
+
+#### Post-sync Placeholders
+
+The following placeholders can be used in `GLOBAL-POSTSYNC.cfg` and will be
+expanded before execution:
+
+*   `${REPO_ROOT}`: Absolute path to the root of the repo checkout.
+*   `${REPO_SYNC_DURATION}`: The total time taken by the sync operation.
+
+Example:
+```ini
+[Hook Scripts]
+repomon-promotion = vendor/google/tools/repo_utils/post-sync.py --sync-duration-seconds=${REPO_SYNC_DURATION}
+```
+
+# Pre-upload Config Files
 
 There are two types of config files:
 * Repo project-wide settings (e.g. all of AOSP).  These set up defaults for all
