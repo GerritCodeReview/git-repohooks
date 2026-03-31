@@ -1204,7 +1204,7 @@ class BuiltinHooksTests(unittest.TestCase):
             self.project, commit, "desc", diff, options=self.options
         )
         self.assertIsNotNone(ret)
-        self.assertEqual(ret[0].fixup_cmd, ["alint", "fix", "--no_amend"])
+        self.assertEqual(ret[0].fixup_cmd, ["alint", "fix", "--no_amend", "--commit", commit])
         self.assertFalse(ret[0].is_warning())
         self.assertEqual(ret[0].result.returncode, 5)
 
@@ -1214,7 +1214,7 @@ class BuiltinHooksTests(unittest.TestCase):
             self.project, commit, "desc", diff, options=self.options
         )
         self.assertIsNotNone(ret)
-        self.assertEqual(ret[0].fixup_cmd, ["alint", "fix", "--no_amend"])
+        self.assertEqual(ret[0].fixup_cmd, ["alint", "fix", "--no_amend", "--commit", commit])
         self.assertFalse(ret[0].is_warning())
         self.assertEqual(ret[0].result.returncode, 6)
 
