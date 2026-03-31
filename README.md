@@ -1,34 +1,69 @@
-# AOSP Preupload Hooks
+# Reference Repo Hooks
 
-This repo holds hooks that get run by [repo] during the upload phase.  They
-perform various checks automatically such as running linters on your code.
-
-Note: Currently all hooks are disabled by default.  Each repo must explicitly
-turn on any hook it wishes to enforce.
+This repo holds hooks that get run by [repo] during various phases of the
+development lifecycle.
 
 [TOC]
 
+# Pre-upload Hooks
+
+These hooks run during the upload phase (e.g. `repo upload`). They perform
+various checks automatically such as running linters on your code.
+
+Note: Currently all pre-upload hooks are disabled by default. Each repo must
+explicitly turn on any hook it wishes to enforce.
+
 ## Usage
 
-Normally these execute automatically when you run `repo upload`.  If you want to
-run them by hand, you can execute `pre-upload.py` directly.  By default, that
+Normally these execute automatically when you run `repo upload`. If you want to
+run them by hand, you can execute `pre-upload.py` directly. By default, that
 will scan the active repo and process all commits that haven't yet been merged.
 See its help for more info.
 
 ### Bypassing
 
-Sometimes you might want to bypass the upload checks.  While this is **strongly
+Sometimes you might want to bypass the upload checks. While this is **strongly
 discouraged** (often failures you add will affect others and block them too),
-sometimes there are valid reasons for this.  You can simply use the option
+sometimes there are valid reasons for this. You can simply use the option
 `--ignore-hooks` when running `repo upload` to ignore all hook errors.
 This will ignore **all** hook errors and not just specific ones.
 
-# Config Files
+# Post-sync Hooks
 
-There are two types of config files:
-* Repo project-wide settings (e.g. all of AOSP).  These set up defaults for all
+These hooks run after a successful repository synchronization (e.g. `repo sync`).
+They are dispatched via `post-sync.py` and allow projects to perform
+maintenance, update local tools, or provide status information after the
+checkout has been updated.
+
+## Usage
+
+Post-sync hooks are registered in the manifest repository using a
+`GLOBAL-POSTSYNC.cfg` file.
+
+## GLOBAL-POSTSYNC.cfg
+
+This file is located in the manifest git repo at `.repo/manifests/GLOBAL-POSTSYNC.cfg`.
+It follows the same format as `PREUPLOAD.cfg`.
+
+Example:
+```
+[Hook Scripts]
+post-sync-hook = vendor/google/tools/post-sync.py
+```
+
+### Hook Interface
+
+Hooks are executed as standalone subprocesses. The following environment
+variables are passed to each hook:
+
+*   `REPO_TOPDIR`: Absolute path to the root of the repo checkout.
+
+# Pre-upload Config Files
+
+There are two types of config files for pre-upload hooks:
+* Repo project-wide settings (e.g. all of AOSP). These set up defaults for all
   projects that are checked out via a single manifest.
-* Project-local settings (e.g. a single .git repo).  These control settings for
+* Project-local settings (e.g. a single .git repo). These control settings for
   the local project you're working on.
 
 The merging of these config files control the hooks/checks that get run when
@@ -48,7 +83,7 @@ settings on top.
 
 ## PREUPLOAD.cfg
 
-This file is checked in the top of a specific git repository.  Stacking them
+This file is checked in the top of a specific git repository. Stacking them
 in subdirectories (to try and override parent settings) is not supported.
 
 ## Example
@@ -75,7 +110,7 @@ clang-format = /usr/bin/clang-format
 
 ## Environment
 
-Hooks are executed in the top directory of the git repository.  All paths should
+Hooks are executed in the top directory of the git repository. All paths should
 generally be relative to that point.
 
 A few environment variables are set so scripts don't need to discover things.
@@ -96,8 +131,8 @@ A few environment variables are set so scripts don't need to discover things.
 
 ## Placeholders
 
-A few keywords are recognized to pass down settings.  These are **not**
-environment variables, but are expanded inline.  Files with whitespace and
+A few keywords are recognized to pass down settings. These are **not**
+environment variables, but are expanded inline. Files with whitespace and
 such will be expanded correctly via argument positions, so do not try to
 force your own quote handling.
 
@@ -109,14 +144,14 @@ force your own quote handling.
 * `${PREUPLOAD_COMMIT}`: Commit hash.
 * `${PREUPLOAD_COMMIT_MESSAGE}`: Commit message.
 
-Some variables are available to make it easier to handle OS differences.  These
+Some variables are available to make it easier to handle OS differences. These
 are automatically expanded for you:
 
 * `${REPO_PATH}`: The path to the project relative to the root.
   e.g. `tools/repohooks`
 * `${REPO_PROJECT}`: The name of the project.
   e.g. `platform/tools/repohooks`
-* `${REPO_ROOT}`: The absolute path of the root of the repo checkout.  If the
+* `${REPO_ROOT}`: The absolute path of the root of the repo checkout. If the
   project is in a submanifest, this points to the root of the submanifest.
 * `${REPO_OUTER_ROOT}`: The absolute path of the root of the repo checkout.
   This always points to the root of the overall repo checkout.
@@ -143,10 +178,10 @@ programs with the arguments:
 ## [Options]
 
 This section allows for setting options that affect the overall behavior of the
-pre-upload checks.  The following options are recognized:
+pre-upload checks. The following options are recognized:
 
 * `ignore_merged_commits`: If set to `true`, the hooks will not run on commits
-  that are merged.  Hooks will still run on the merge commit itself.
+  that are merged. Hooks will still run on the merge commit itself.
 
 ## [Hook Scripts]
 
@@ -160,13 +195,13 @@ Whitespace in the key name is OK!
 
 The keys must be unique as duplicates will silently clobber earlier values.
 
-You do not need to send stderr to stdout.  The tooling will take care of
+You do not need to send stderr to stdout. The tooling will take care of
 merging them together for you automatically.
 
 ```
 [Hook Scripts]
 my first hook = program --gogog ${PREUPLOAD_FILES}
-another hook = funtimes --i-need "some space" ${PREUPLOAD_FILES}
+another hook = funtimes --i-need \"some space\" ${PREUPLOAD_FILES}
 some fish = linter --ate-a-cat ${PREUPLOAD_FILES}
 some cat = formatter --cat-commit ${PREUPLOAD_COMMIT}
 some dog = tool --no-cat-in-commit-message ${PREUPLOAD_COMMIT_MESSAGE}
@@ -174,7 +209,7 @@ some dog = tool --no-cat-in-commit-message ${PREUPLOAD_COMMIT_MESSAGE}
 
 ## [Builtin Hooks]
 
-This section allows for turning on common/builtin hooks.  There are a bunch of
+This section allows for turning on common/builtin hooks. There are a bunch of
 canned hooks already included geared towards AOSP style guidelines.
 
 * `aidl_format`: Run AIDL files (.aidl) through `aidl-format`.
@@ -182,7 +217,7 @@ canned hooks already included geared towards AOSP style guidelines.
 * `aosp_license`: Check if all new-added file have valid AOSP license headers.
 * `android_test_mapping_format`: Validate TEST_MAPPING files in Android source
   code. Refer to go/test-mapping for more details.
-* `black`: Run Python files (.py) through `black`.  Settings can be stored in
+* `black`: Run Python files (.py) through `black`. Settings can be stored in
   `pyproject.toml` in the root of the project.
 * `bpfmt`: Run Blueprint files (.bp) through `bpfmt`.
 * `checkpatch`: Run commits through the Linux kernel's `checkpatch.pl` script.
@@ -215,7 +250,7 @@ canned hooks already included geared towards AOSP style guidelines.
 * `rustfmt`: Run Rust code through `rustfmt`.
 * `xmllint`: Run XML code through `xmllint`.
 
-Note: Builtin hooks tend to match specific filenames (e.g. `.json`).  If no
+Note: Builtin hooks tend to match specific filenames (e.g. `.json`). If no
 files match in a specific commit, then the hook will be skipped for that commit.
 
 ```
@@ -228,12 +263,12 @@ gofmt = false
 
 ## [Builtin Hooks Options]
 
-Used to customize the behavior of specific `[Builtin Hooks]`.  Any arguments set
-here will be passed directly to the linter in question.  This will completely
+Used to customize the behavior of specific `[Builtin Hooks]`. Any arguments set
+here will be passed directly to the linter in question. This will completely
 override any existing default options, so be sure to include everything you need
 (especially `${PREUPLOAD_FILES}` -- see below).
 
-Quoting is handled naturally.  i.e. use `"a b c"` to pass an argument with
+Quoting is handled naturally. i.e. use `\"a b c\"` to pass an argument with
 whitespace.
 
 See [Placeholders](#Placeholders) for variables you can expand automatically.
@@ -263,10 +298,10 @@ expression](https://docs.python.org/howto/regex.html) by using the `^` prefix.
 ```
 [Builtin Hooks Exclude Paths]
 # Run cpplint on all projects except ones under external/ and vendor/.
-# The "external" and "vendor" projects, if they exist, will still run cpplint.
+# The \"external\" and \"vendor\" projects, if they exist, will still run cpplint.
 cpplint = external/* vendor/*
 
-# Run rustfmt on all projects except ones under external/.  All projects under
+# Run rustfmt on all projects except ones under external/. All projects under
 # hardware/ will be excluded except for ones starting with hardware/google (due to
 # the negative regex match).
 rustfmt = external/ ^hardware/(!?google)
@@ -274,11 +309,11 @@ rustfmt = external/ ^hardware/(!?google)
 
 ## [Tool Paths]
 
-Some builtin hooks need to call external executables to work correctly.  By
+Some builtin hooks need to call external executables to work correctly. By
 default it will call those tools from the user's `$PATH`, but the paths of those
-executables can be overridden through `[Tool Paths]`.  This is helpful to
+executables can be overridden through `[Tool Paths]`. This is helpful to
 provide consistent behavior for developers across different OS and Linux
-distros/versions.  The following tools are recognized:
+distros/versions. The following tools are recognized:
 
 * `aidl-format`: used for the `aidl_format` builtin hook.
 * `alint`: used for the `alint` builtin hook.
@@ -312,36 +347,36 @@ clang-format = ${REPO_ROOT}/prebuilts/clang/host/${BUILD_OS}/clang-stable/bin/cl
 
 These are notes for people updating the `pre-upload.py` hook itself:
 
-* Don't worry about namespace collisions.  The `pre-upload.py` script is loaded
-  and exec-ed in its own context.  The only entry-point that matters is `main`.
-* New hooks can be added in `rh/hooks.py`.  Be sure to keep the list up-to-date
+* Don't worry about namespace collisions. The `pre-upload.py` script is loaded
+  and exec-ed in its own context. The only entry-point that matters is `main`.
+* New hooks can be added in `rh/hooks.py`. Be sure to keep the list up-to-date
   with the documentation in this file.
 * Python versions
   * Code loaded & run by end users (i.e. during `repo upload`) should stick to
-    older versions of Python.  We expect users to run on a variety of platforms
-    where Python is not the latest (e.g. Ubuntu LTS that is years behind).  We
-    currently require **Python 3.6**.  This aligns with [repo's supported Python
+    older versions of Python. We expect users to run on a variety of platforms
+    where Python is not the latest (e.g. Ubuntu LTS that is years behind). We
+    currently require **Python 3.6**. This aligns with [repo's supported Python
     versions](https://gerrit.googlesource.com/git-repo/+/HEAD/docs/python-support.md).
   * Code only run by repohooks developers may use much newer versions of Python
     to keep things simple, especially as we don't readily test older versions.
 
 ## Warnings
 
-If the return code of a hook is 77, then it is assumed to be a warning.  The
+If the return code of a hook is 77, then it is assumed to be a warning. The
 output will be printed to the terminal, but uploading will still be allowed
 without a bypass being required.
 
 # TODO/Limitations
 
-* Some checkers operate on the files as they exist in the filesystem.  This is
+* Some checkers operate on the files as they exist in the filesystem. This is
   not easy to fix because the linters require not just the modified file but the
-  entire repo in order to perform full checks.  e.g. `pylint` needs to know what
-  other modules exist locally to verify their API.  We can support this case by
+  entire repo in order to perform full checks. e.g. `pylint` needs to know what
+  other modules exist locally to verify their API. We can support this case by
   doing a full checkout of the repo in a temp dir, but this can slow things down
-  a lot.  Will need to consider a `PREUPLOAD.cfg` knob.
+  a lot. Will need to consider a `PREUPLOAD.cfg` knob.
 * We need to add `pylint` tool to the AOSP manifest and use that local copy
   instead of relying on the version that is in $PATH.
-* Should make file extension filters configurable.  All hooks currently declare
+* Should make file extension filters configurable. All hooks currently declare
   their own list of files like `.cc` and `.py` and `.xml`.
 * Add more checkers.
   * `clang-check`: Runs static analyzers against code.
