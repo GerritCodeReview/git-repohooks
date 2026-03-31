@@ -61,9 +61,9 @@ def run_black() -> int:
         cwd=ROOT_DIR,
     )
 
-    # Black by default only matches .py files.  We have to list standalone
-    # scripts manually.
     extra_programs = [
+        "post-sync.py",
+        "post-sync_unittest.py",
         "run_tests",
         "tools/cpplint.py-update",
     ]
@@ -88,8 +88,7 @@ def run_pylint() -> int:
 
     argv = [
         "--rc-file=tools/pylintrc",
-        "pre-upload.py",
-        "run_tests",
+        "*.py",
         "rh/*.py",
         "tools/*.py",
         "tools/cpplint.py-update",
