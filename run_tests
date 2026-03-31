@@ -88,8 +88,8 @@ def run_pylint() -> int:
 
     argv = [
         "--rc-file=tools/pylintrc",
-        "pre-upload.py",
         "run_tests",
+        "*.py",
         "rh/*.py",
         "tools/*.py",
         "tools/cpplint.py-update",
