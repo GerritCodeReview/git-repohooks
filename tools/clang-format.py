@@ -19,7 +19,6 @@ import argparse
 from pathlib import Path
 import sys
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -29,7 +28,6 @@ sys.path.insert(0, str(THIS_DIR.parent))
 # pylint: disable=wrong-import-position,import-error
 import rh.shell
 import rh.utils
-
 
 # Since we're asking git-clang-format to print a diff, all modified filenames
 # that have formatting errors are printed with this prefix.

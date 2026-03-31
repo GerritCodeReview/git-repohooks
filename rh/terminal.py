@@ -22,14 +22,12 @@ from pathlib import Path
 import sys
 from typing import List, Optional
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
 
 # pylint: disable=wrong-import-position
 import rh.shell
-
 
 # This will erase all content in the current line after the cursor.  This is
 # useful for partial updates & progress messages as the terminal can display

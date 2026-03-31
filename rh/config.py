@@ -22,7 +22,6 @@ from pathlib import Path
 import shlex
 import sys
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -367,3 +366,52 @@ class PreUploadSettings(PreUploadConfig):
         # We validated configs in isolation, now do one final pass altogether.
         self.source = "{" + "|".join(self.paths) + "}"
         self._validate()
+
+
+class PostSyncSettings(PreUploadConfig):
+    """Settings for `repo post-sync` hooks."""
+
+    VALID_SECTIONS = {PreUploadConfig.CUSTOM_HOOKS_SECTION}
+
+    def __init__(self, path):
+        """Initialize.
+
+        Args:
+          path: The config file to load (GLOBAL-POSTSYNC.cfg).
+        """
+        super().__init__(source=path)
+        self.path = path
+        if os.path.exists(path):
+            try:
+                self.config.read(path)
+            except configparser.ParsingError as e:
+                raise ValidationError(f"{path}: {e}") from e
+
+        self._validate()
+
+    def _validate(self):
+        """Run consistency checks on the config settings."""
+        config = self.config
+
+        # Reject unknown sections.
+        bad_sections = set(config.sections()) - self.VALID_SECTIONS
+        if bad_sections:
+            raise ValidationError(
+                f"{self.source}: unknown sections: {bad_sections}"
+            )
+
+        # Reject blank custom hooks.
+        for hook in self.custom_hooks:
+            if not config.get(self.CUSTOM_HOOKS_SECTION, hook):
+                raise ValidationError(
+                    f'{self.source}: custom hook "{hook}" cannot be blank'
+                )
+
+        # Verify hooks are valid shell strings.
+        for hook in self.custom_hooks:
+            try:
+                self.custom_hook(hook)
+            except ValueError as e:
+                raise ValidationError(
+                    f'{self.source}: hook "{hook}" command line is invalid: {e}'
+                ) from e

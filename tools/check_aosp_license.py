@@ -21,7 +21,6 @@ import re
 import sys
 from typing import List
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -30,7 +29,6 @@ sys.path.insert(0, str(THIS_DIR.parent))
 # relative imports because this is an executable program, not a module.
 # pylint: disable=import-error,wrong-import-position
 import rh.git
-
 
 # AOSP uses the Apache2 License: https://source.android.com/source/licenses.html
 # Spaces and comment identifiers in different languages are allowed at the
