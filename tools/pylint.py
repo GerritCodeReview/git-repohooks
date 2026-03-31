@@ -23,7 +23,6 @@ import sys
 import subprocess
 from typing import Dict, List, Optional, Set
 
-
 # This script is run by repohooks users.
 # See README.md for what version we may require.
 assert (sys.version_info.major, sys.version_info.minor) >= (

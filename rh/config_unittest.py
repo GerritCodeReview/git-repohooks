@@ -22,7 +22,6 @@ import sys
 import tempfile
 import unittest
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -85,8 +84,7 @@ class PreUploadFileTests(FileTestCase):
 
     def testValid(self):
         """Verify a fully valid file works."""
-        path = self._write_config(
-            """# This be a comment me matey.
+        path = self._write_config("""# This be a comment me matey.
 [Hook Scripts]
 name = script --with "some args"
 
@@ -98,8 +96,7 @@ cpplint = --some 'more args'
 
 [Options]
 ignore_merged_commits = true
-"""
-        )
+""")
         rh.config.PreUploadFile(path)
 
     def testUnknownSection(self):
@@ -132,11 +129,9 @@ ignore_merged_commits = true
 
     def testInvalidString(self):
         """Catch invalid string quoting."""
-        path = self._write_config(
-            """[Hook Scripts]
+        path = self._write_config("""[Hook Scripts]
 name = script --'bad-quotes
-"""
-        )
+""")
         self.assertRaises(
             rh.config.ValidationError, rh.config.PreUploadFile, path
         )
@@ -147,11 +142,9 @@ class LocalPreUploadFileTests(FileTestCase):
 
     def testInvalidSectionConfig(self):
         """Reject local config that uses invalid sections."""
-        path = self._write_config(
-            """[Builtin Hooks Exclude Paths]
+        path = self._write_config("""[Builtin Hooks Exclude Paths]
 cpplint = external/ 'test directory' ^vendor/(?!google/)
-"""
-        )
+""")
         self.assertRaises(
             rh.config.ValidationError, rh.config.LocalPreUploadFile, path
         )
@@ -162,17 +155,13 @@ class PreUploadSettingsTests(FileTestCase):
 
     def testGlobalConfigs(self):
         """Verify global configs stack properly."""
-        self._write_global_config(
-            """[Builtin Hooks]
+        self._write_global_config("""[Builtin Hooks]
 commit_msg_bug_field = true
 commit_msg_changeid_field = true
-commit_msg_test_field = false"""
-        )
-        self._write_local_config(
-            """[Builtin Hooks]
+commit_msg_test_field = false""")
+        self._write_local_config("""[Builtin Hooks]
 commit_msg_bug_field = false
-commit_msg_test_field = true"""
-        )
+commit_msg_test_field = true""")
         config = rh.config.PreUploadSettings(
             paths=(self.tempdir,), global_paths=(self.tempdir,)
         )
@@ -183,11 +172,9 @@ commit_msg_test_field = true"""
 
     def testGlobalExcludeScope(self):
         """Verify exclude scope is valid for global config."""
-        self._write_global_config(
-            """[Builtin Hooks Exclude Paths]
+        self._write_global_config("""[Builtin Hooks Exclude Paths]
 cpplint = external/ 'test directory' ^vendor/(?!google/)
-"""
-        )
+""")
         rh.config.PreUploadSettings(global_paths=(self.tempdir,))
 
 
