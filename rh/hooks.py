@@ -1304,7 +1304,7 @@ def check_alint(project, commit, _desc, diff, options=None):
 
     # alint returns exit code 5 or 6 if there are findings with fixes available.
     fixup_cmd = (
-        [alint_path, "fix", "--no_amend"]
+        [alint_path, "fix", "--no_amend", "--commit", commit]
         if result.returncode in (5, 6)
         else None
     )
