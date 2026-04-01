@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0bec0b83_564de198",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-01T18:07:28Z",
+      "side": 1,
+      "message": "what is (2) ?  are you referring to a custom ayaaye checker ?  or something else ?\n\ni\u0027m not against having a validator, i\u0027m trying to make sure it\u0027s actually used, and your expectations match reality.  CrOS includes its manifest project inside the manifest specifically so that we can use standard `repo upload` \u0026 presubmit checks like any other project, but Android does not do that.",
+      "parentUuid": "35f85954_f7a937dd",
+      "revId": "185f0dbf288ed721f3ec939d1506151fa6fc6fcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f21b6860_bfcdbec8",
         "filename": "rh/config.py",
         "patchSetId": 5
