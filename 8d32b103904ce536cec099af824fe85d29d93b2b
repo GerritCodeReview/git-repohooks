@@ -33,6 +33,92 @@
       "message": "Wow, we\u0027re up to post-sync already, nice.",
       "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9fcabb9_c785c33e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-02T00:04:31Z",
+      "side": 1,
+      "message": "post_sync.py and related files should be post-sync.py as per https://gerrit.googlesource.com/git-repo/+/refs/heads/main/docs/repo-hooks.md#post_sync",
+      "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7a1bfb_461daab9",
+        "filename": "README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-02T00:04:31Z",
+      "side": 1,
+      "message": "repo doesn\u0027t pass this yet. are you planning on making a followup change to git-repo itself?",
+      "range": {
+        "startLine": 65,
+        "startChar": 5,
+        "endLine": 65,
+        "endChar": 36
+      },
+      "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cefb0616_fca3c048",
+        "filename": "post_sync.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-02T00:04:31Z",
+      "side": 1,
+      "message": "I assume you won\u0027t want to hardcode this and will replace it when repo pases sync_duration_seconds? might be good to put a TODO if that\u0027s your intention",
+      "range": {
+        "startLine": 120,
+        "startChar": 18,
+        "endLine": 120,
+        "endChar": 44
+      },
+      "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a4a9f77_acd56e07",
+        "filename": "run_tests",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-02T00:04:31Z",
+      "side": 1,
+      "message": "duped?",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
