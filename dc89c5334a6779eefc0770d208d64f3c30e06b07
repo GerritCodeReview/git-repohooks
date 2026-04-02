@@ -1,0 +1,390 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddcd9085_092d3b2e",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "```suggestion\n# Reference Repo Hooks\n```",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "230ee366_511a720d",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "this is inconsistent organization.  look at the rendered [TOC] and see how post-sync overview+configs are merged, but pre-upload overview \u0026 configs are sep sections.",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c39f7d43_c6ab1487",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "there is no need for this.  it\u0027s in an env var already, and the config file should pass it along only if requested.",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c2f7072_a93da81a",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "don\u0027t require every post-sync hook to implement the same CLI",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8cbbdc5_18bd7cc2",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "then don\u0027t merge it now",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ac926a_3dc93eeb",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "```suggestion\n# Pre-upload Config Files\n```",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45a188c8_9f6a327e",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "drop all the unrelated style changes",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b99034b3_580d635b",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "add typing to new code",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a760cb_5d476928",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "comments are full sentences which mean they end in periods",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff9874f9_a160db39",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "new code should use pathlib, not os.path APIs",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "412b2385_9f989b11",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "manifests should contain GLOBAL-xxx configs, not non-global",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb6fc55_da22df28",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "we already have standard names for this.  don\u0027t pick completely different ones.  the README.md explains it in detail.",
+      "range": {
+        "startLine": 70,
+        "startChar": 18,
+        "endLine": 70,
+        "endChar": 29
+      },
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebcbe8e6_bcf107b7",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "don\u0027t export random Python kwargs to the env",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1003b4e_f745e0a8",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "don\u0027t invent a new config format.  we already have a standardized form with PREUPLOAD.cfg.  stick to that.",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d41ef94e_9075e222",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "no, let the script define its own shebang, and we respect it",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19bca950_a9d9dc24",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "do not catch Exception.  there\u0027s no reason to in the first place.",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d32ef520_0a3d51aa",
+        "filename": "post-sync_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "this doesn\u0027t need to be down here.  move it above where it belongs.\n\nthen do you still need the pylint disable ?\n\nfor that matter, do you need the sys.path manipulation ?",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a5be29e_3826a5a3",
+        "filename": "post-sync_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "i don\u0027t think this is necessary",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f9eba61_fa202396",
+        "filename": "post-sync_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "are you actually mocking this ?  or is code trying to load from /mock/ ?  if the latter, don\u0027t do assume any path on the host system doesn\u0027t exist.  use preper tempdirs instead.",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e42a9d98_a1d16000",
+        "filename": "post-sync_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "these mocks are getting excessive.  it seems like you should setup fakes instead.",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a00e6af3_5f786e4d",
+        "filename": "run_tests",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "this is unnecessary as the comment directly above explains",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6181885_95e1f012",
+        "filename": "run_tests",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-02T04:07:42Z",
+      "side": 1,
+      "message": "```suggestion\n        \"*.py\",\n```",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 24
+      },
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
