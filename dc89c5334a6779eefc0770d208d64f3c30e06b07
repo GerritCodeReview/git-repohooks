@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1377112_3ca3c135",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddcd9085_092d3b2e",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "230ee366_511a720d",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "this is inconsistent organization.  look at the rendered [TOC] and see how post-sync overview+configs are merged, but pre-upload overview \u0026 configs are sep sections.",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0753232_02901f71",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "230ee366_511a720d",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddf970aa_fb9826a3",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c39f7d43_c6ab1487",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c2f7072_a93da81a",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "don\u0027t require every post-sync hook to implement the same CLI",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3d494f5_b953dcce",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c2f7072_a93da81a",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -86,6 +158,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03db2844_fb93282d",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8cbbdc5_18bd7cc2",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35ac926a_3dc93eeb",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "```suggestion\n# Pre-upload Config Files\n```",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "007f1e52_6c26f10d",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35ac926a_3dc93eeb",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -120,6 +228,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "249f24bb_49cdc826",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45a188c8_9f6a327e",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b99034b3_580d635b",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "add typing to new code",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "963762fe_497c9790",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b99034b3_580d635b",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -154,6 +298,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07e94b7c_deea4636",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27a760cb_5d476928",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff9874f9_a160db39",
@@ -171,6 +333,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd63df96_87057fee",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff9874f9_a160db39",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "412b2385_9f989b11",
@@ -184,6 +364,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "manifests should contain GLOBAL-xxx configs, not non-global",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "991a7263_5638c09d",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "412b2385_9f989b11",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -211,6 +409,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be0a3938_014486d2",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fb6fc55_da22df28",
+      "range": {
+        "startLine": 70,
+        "startChar": 18,
+        "endLine": 70,
+        "endChar": 29
+      },
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebcbe8e6_bcf107b7",
@@ -224,6 +446,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "don\u0027t export random Python kwargs to the env",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97b82851_fbe42d56",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebcbe8e6_bcf107b7",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -245,6 +485,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c9ec8ab_c6fac49a",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1003b4e_f745e0a8",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d41ef94e_9075e222",
@@ -258,6 +516,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "no, let the script define its own shebang, and we respect it",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e7eba92_9829d1ec",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d41ef94e_9075e222",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -279,6 +555,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71b9932e_6b384ea9",
+        "filename": "post-sync.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19bca950_a9d9dc24",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d32ef520_0a3d51aa",
@@ -292,6 +586,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "this doesn\u0027t need to be down here.  move it above where it belongs.\n\nthen do you still need the pylint disable ?\n\nfor that matter, do you need the sys.path manipulation ?",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90cceb7b_4914a9fe",
+        "filename": "post-sync_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d32ef520_0a3d51aa",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -313,6 +625,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "309f2bad_74da0bf5",
+        "filename": "post-sync_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a5be29e_3826a5a3",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f9eba61_fa202396",
@@ -326,6 +656,24 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "are you actually mocking this ?  or is code trying to load from /mock/ ?  if the latter, don\u0027t do assume any path on the host system doesn\u0027t exist.  use preper tempdirs instead.",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "065eaeb9_f3b88caf",
+        "filename": "post-sync_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f9eba61_fa202396",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -347,6 +695,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8520c149_6f668e27",
+        "filename": "post-sync_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e42a9d98_a1d16000",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a00e6af3_5f786e4d",
@@ -364,6 +730,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "081fe21c_fb9f8f2b",
+        "filename": "run_tests",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a00e6af3_5f786e4d",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6181885_95e1f012",
@@ -377,6 +761,30 @@
       "writtenOn": "2026-04-02T04:07:42Z",
       "side": 1,
       "message": "```suggestion\n        \"*.py\",\n```",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 24
+      },
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53aaf86b_9232dcbc",
+        "filename": "run_tests",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6181885_95e1f012",
       "range": {
         "startLine": 93,
         "startChar": 0,

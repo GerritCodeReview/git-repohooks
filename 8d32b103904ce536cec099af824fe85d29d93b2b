@@ -52,6 +52,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f5bb62f_7d59e848",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9fcabb9_c785c33e",
+      "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb7a1bfb_461daab9",
@@ -65,6 +83,30 @@
       "writtenOn": "2026-04-02T00:04:31Z",
       "side": 1,
       "message": "repo doesn\u0027t pass this yet. are you planning on making a followup change to git-repo itself?",
+      "range": {
+        "startLine": 65,
+        "startChar": 5,
+        "endLine": 65,
+        "endChar": 36
+      },
+      "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c6adaed_5b37c74b",
+        "filename": "README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb7a1bfb_461daab9",
       "range": {
         "startLine": 65,
         "startChar": 5,
@@ -98,6 +140,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52393f42_703ba0d9",
+        "filename": "post_sync.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cefb0616_fca3c048",
+      "range": {
+        "startLine": 120,
+        "startChar": 18,
+        "endLine": 120,
+        "endChar": 44
+      },
+      "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a4a9f77_acd56e07",
@@ -111,6 +177,30 @@
       "writtenOn": "2026-04-02T00:04:31Z",
       "side": 1,
       "message": "duped?",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "8d32b103904ce536cec099af824fe85d29d93b2b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b59ec722_2d2075a0",
+        "filename": "run_tests",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-06T15:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a4a9f77_acd56e07",
       "range": {
         "startLine": 96,
         "startChar": 8,
