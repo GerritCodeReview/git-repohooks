@@ -368,7 +368,7 @@ def _run_project_hooks_in_cwd(
     Returns:
       All the results for this project.
     """
-    ret = rh.results.ProjectResults(project_name, proj_dir)
+    ret = rh.results.ProjectResults(project_name, proj_dir, [])
 
     try:
         config = _get_project_config(from_git)
