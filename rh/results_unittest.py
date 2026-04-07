@@ -86,7 +86,7 @@ class ProjectResultsTests(unittest.TestCase):
     def test_error_warning(self):
         """Check error & warning handling."""
         # No errors.
-        result = rh.results.ProjectResults("project", "workdir")
+        result = rh.results.ProjectResults("project", "workdir", [])
         self.assertFalse(result)
 
         # Warnings are not errors.
@@ -107,6 +107,18 @@ class ProjectResultsTests(unittest.TestCase):
             ]
         )
         self.assertTrue(result)
+
+    def test_shared_results_list(self):
+        """Check that ProjectResults instances do not share the results list."""
+        result1 = rh.results.ProjectResults("project1", "workdir1", [])
+        result2 = rh.results.ProjectResults("project2", "workdir2", [])
+
+        result1.add_results(
+            [rh.results.HookResult("hook", "project", "HEAD", True)]
+        )
+
+        self.assertEqual(len(result1.results), 1)
+        self.assertEqual(len(result2.results), 0)
 
 
 if __name__ == "__main__":

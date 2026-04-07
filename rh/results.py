@@ -99,7 +99,7 @@ class ProjectResults(NamedTuple):
     workdir: str
 
     # All the results from running all the hooks.
-    results: List[HookResult] = []
+    results: List[HookResult]
 
     # Whether there were any non-hook related errors.  For example, trying to
     # parse the project configuration.
