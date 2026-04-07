@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "239e9857_09ecec7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-07T15:26:13Z",
+      "side": 1,
+      "message": "really wish we had dataclasses.  might be a good reason to bump repo\u0027s requirements from 3.6 to 3.7.",
+      "revId": "a858b507ed6b67fb67076ac780ac3e75be3c8a88",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
