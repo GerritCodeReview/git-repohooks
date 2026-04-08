@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0aec72f_3a1f2029",
+        "filename": "rh/results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-08T18:33:50Z",
+      "side": 1,
+      "message": "the signature (keyword order) should match the class it\u0027s extending\n\nyou should also add typing to the new arguments",
+      "revId": "5eac34ce0b664b0c1e580f89a8faef3cee8fd7a1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
