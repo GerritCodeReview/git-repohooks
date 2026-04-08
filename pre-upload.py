@@ -311,6 +311,8 @@ def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
                 print("", file=sys.stderr)
                 return
 
+    fixes_applied = False
+
     # Walk all the fixups and run them one-by-one.
     for workdir, result in fixups:
         if mode == "some":
@@ -336,6 +338,15 @@ def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
             )
         else:
             print(f"[{Output.PASSED}] great success", file=sys.stderr)
+            fixes_applied = True
+
+    if fixes_applied and not any(projects_results):
+        print(
+            f"\n[{Output.FIXUP}] Fixes applied. Aborting upload to allow you to commit them.\n"
+            "Please amend your commit and try again.\n",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     print(
         f"\n[{Output.FIXUP}] Please amend & rebase your tree before "

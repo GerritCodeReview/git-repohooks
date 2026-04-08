@@ -77,9 +77,9 @@ class HookCommandResult(HookResult):
         project,
         commit,
         result,
+        warning: bool = False,
         files=(),
-        fixup_cmd=None,
-        warning=False,
+        fixup_cmd: Optional[List[str]] = None,
     ):
         HookResult.__init__(
             self,
