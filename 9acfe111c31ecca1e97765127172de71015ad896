@@ -16,6 +16,24 @@
       "message": "how about we:\n* add `warning\u003d` kwarg to `HookCommandResult`\n* change `HookCommandResult.is_warning` to also check `self._warning`\n* change `check_alint` to set `warning\u003dresult.returncode \u003d\u003d 6` when creating `HookCommandResult`\n\ni think that\u0027ll avoid bleeding the `77` magic number around more and still accomplish what you want",
       "revId": "9acfe111c31ecca1e97765127172de71015ad896",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a1a9501_9594703d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-04-08T10:36:29Z",
+      "side": 1,
+      "message": "Done. Thanks for the feedback!",
+      "parentUuid": "0545cce7_286b9188",
+      "revId": "9acfe111c31ecca1e97765127172de71015ad896",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
