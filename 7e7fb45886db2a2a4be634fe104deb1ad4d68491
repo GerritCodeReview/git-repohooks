@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05df8b6f_cc9f29c1",
+        "filename": "run_tests",
+        "patchSetId": 22
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T05:08:17Z",
+      "side": 0,
+      "message": "don\u0027t delete this comment.  it\u0027s still correct.",
+      "revId": "7e7fb45886db2a2a4be634fe104deb1ad4d68491",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "559e99d2_a637ecc6",
+        "filename": "run_tests",
+        "patchSetId": 22
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T05:08:17Z",
+      "side": 0,
+      "message": "keep `run_tests`",
+      "revId": "7e7fb45886db2a2a4be634fe104deb1ad4d68491",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89cbac41_ce69d9f3",
+        "filename": "tools/pylintrc",
+        "patchSetId": 22
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T05:08:17Z",
+      "side": 0,
+      "message": "why are you enabling this ?",
+      "revId": "7e7fb45886db2a2a4be634fe104deb1ad4d68491",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e608fad_42f16014",
+        "filename": "post-sync.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T05:08:17Z",
+      "side": 1,
+      "message": "have you tested this hook ?  this sees like it crashes immediately because the API doesn\u0027t match what repo requires.",
+      "revId": "87a2d4aef0a2fc2c0253f9568de7844d88ae3cf4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf416107_3d05da93",
+        "filename": "post-sync.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T05:08:17Z",
+      "side": 1,
+      "message": "add kwargs like pre-upload.py uses",
+      "revId": "87a2d4aef0a2fc2c0253f9568de7844d88ae3cf4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a9d12c4_2279877c",
+        "filename": "post-sync.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T05:08:17Z",
+      "side": 1,
+      "message": "this logic belongs in a `direct_main` function.  see pre-upload.py as an example.",
+      "revId": "87a2d4aef0a2fc2c0253f9568de7844d88ae3cf4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

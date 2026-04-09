@@ -248,6 +248,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd31a86a_2bb61b23",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T05:08:17Z",
+      "side": 1,
+      "message": "still in the latest PS",
+      "parentUuid": "249f24bb_49cdc826",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b99034b3_580d635b",
         "filename": "post-sync.py",
         "patchSetId": 10
@@ -744,6 +762,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "a00e6af3_5f786e4d",
+      "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a216ca2_a5b7070d",
+        "filename": "run_tests",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T05:08:17Z",
+      "side": 1,
+      "message": "still broken in the latest PS",
+      "parentUuid": "081fe21c_fb9f8f2b",
       "revId": "dc89c5334a6779eefc0770d208d64f3c30e06b07",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
