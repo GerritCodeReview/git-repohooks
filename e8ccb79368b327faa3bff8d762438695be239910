@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9a43a82_c3ad56a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-09T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e492d46d_e0a1d594",
+      "revId": "e8ccb79368b327faa3bff8d762438695be239910",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad3a0887_de505cd7",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-09T18:39:17Z",
       "side": 1,
       "message": "pretty sure this is still not the API for post-sync hooks\n\nplease review the repo docs\nhttps://gerrit.googlesource.com/git-repo/+/HEAD/docs/repo-hooks.md#post_sync",
+      "revId": "e8ccb79368b327faa3bff8d762438695be239910",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98d6b5d5_dbe41c4b",
+        "filename": "post-sync.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-09T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad3a0887_de505cd7",
       "revId": "e8ccb79368b327faa3bff8d762438695be239910",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
