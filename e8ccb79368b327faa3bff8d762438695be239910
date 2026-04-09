@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e492d46d_e0a1d594",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T18:39:17Z",
+      "side": 1,
+      "message": "CI is failing, so please make sure that is green before sending out for review",
+      "revId": "e8ccb79368b327faa3bff8d762438695be239910",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad3a0887_de505cd7",
+        "filename": "post-sync.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-09T18:39:17Z",
+      "side": 1,
+      "message": "pretty sure this is still not the API for post-sync hooks\n\nplease review the repo docs\nhttps://gerrit.googlesource.com/git-repo/+/HEAD/docs/repo-hooks.md#post_sync",
+      "revId": "e8ccb79368b327faa3bff8d762438695be239910",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
