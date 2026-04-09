@@ -16,6 +16,24 @@
       "message": "the signature (keyword order) should match the class it\u0027s extending\n\nyou should also add typing to the new arguments",
       "revId": "5eac34ce0b664b0c1e580f89a8faef3cee8fd7a1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d13765f_ed975fe6",
+        "filename": "rh/results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-04-09T09:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0aec72f_3a1f2029",
+      "revId": "5eac34ce0b664b0c1e580f89a8faef3cee8fd7a1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
