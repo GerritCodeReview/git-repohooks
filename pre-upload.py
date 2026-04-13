@@ -28,7 +28,6 @@ import signal
 import sys
 from typing import List, Optional
 
-
 # Assert some minimum Python versions as we don't test or support any others.
 # See README.md for what version we may require.
 if sys.version_info < (3, 6):
@@ -50,7 +49,6 @@ import rh.git
 import rh.hooks
 import rh.terminal
 import rh.utils
-
 
 # Repohooks homepage.
 REPOHOOKS_URL = "https://android.googlesource.com/platform/tools/repohooks/"
@@ -269,7 +267,10 @@ def _get_project_config(from_git=False):
     return rh.config.PreUploadSettings(paths=paths, global_paths=global_paths)
 
 
-def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
+def _attempt_fixes(
+    projects_results: List[rh.results.ProjectResults],
+    commit_fixups: bool = False,
+) -> None:
     """Attempts to fix fixable results."""
     # Filter out any result that has a fixup.
     fixups = []
@@ -311,6 +312,8 @@ def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
                 print("", file=sys.stderr)
                 return
 
+    fixes_applied = False
+
     # Walk all the fixups and run them one-by-one.
     for workdir, result in fixups:
         if mode == "some":
@@ -336,6 +339,45 @@ def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
             )
         else:
             print(f"[{Output.PASSED}] great success", file=sys.stderr)
+            fixes_applied = True
+            if commit_fixups:
+                # Stage the files modified by the fixup.
+                rh.utils.run(
+                    ["git", "add", "--"] + list(result.files), cwd=workdir
+                )
+
+                # Check if there are any staged changes before committing.
+                diff_result = rh.utils.run(
+                    ["git", "diff", "--cached", "--quiet"],
+                    cwd=workdir,
+                    check=False,
+                )
+                if diff_result.returncode == 0:
+                    print(
+                        f"[{Output.FIXUP}] No changes to commit for fixup",
+                        file=sys.stderr,
+                    )
+                    continue
+
+                # Get the subject line of the commit being fixed.
+                desc = rh.git.get_commit_desc(result.commit, cwd=workdir)
+                subject = desc.split("\n", 1)[0]
+
+                # Create a fixup commit.
+                rh.utils.run(
+                    ["git", "commit", "-m", f"fixup! {subject}", "--"]
+                    + list(result.files),
+                    cwd=workdir,
+                )
+
+    if fixes_applied and commit_fixups:
+        print(
+            f"\n[{Output.FIXUP}] Fixes applied and fixup commits created.\n"
+            "Please run 'git rebase -i --autosquash' and then repo upload "
+            "again.\n",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     print(
         f"\n[{Output.FIXUP}] Please amend & rebase your tree before "
@@ -424,7 +466,7 @@ def _run_project_hooks_in_cwd(
         """Run a hook, gather stats, and process its results."""
         start = datetime.datetime.now()
         results = hook.hook(project, commit, desc, diff)
-        (error, warning) = _process_hook_results(results)
+        error, warning = _process_hook_results(results)
         duration = datetime.datetime.now() - start
         return (hook, results, error, warning, duration)
 
@@ -542,6 +584,7 @@ def _run_projects_hooks(
     jobs: Optional[int] = None,
     from_git: bool = False,
     commit_list: Optional[List[str]] = None,
+    commit_fixups: bool = False,
 ) -> bool:
     """Run all the hooks
 
@@ -554,6 +597,7 @@ def _run_projects_hooks(
       commit_list: A list of commits to run hooks against.  If None or empty
           list then we'll automatically get the list of commits that would be
           uploaded.
+      commit_fixups: Automatically create fixup! commits for hook fixes.
 
     Returns:
       True if everything passed, else False.
@@ -574,7 +618,7 @@ def _run_projects_hooks(
             # very minimal, so we don't add it then.
             print("", file=sys.stderr)
 
-    _attempt_fixes(results)
+    _attempt_fixes(results, commit_fixups=commit_fixups)
     return not any(results)
 
 
@@ -596,7 +640,10 @@ def main(project_list, worktree_list=None, **_kwargs):
     """
     if not worktree_list:
         worktree_list = [None] * len(project_list)
-    if not _run_projects_hooks(project_list, worktree_list):
+    commit_fixups = _kwargs.get("commit_fixups", False)
+    if not _run_projects_hooks(
+        project_list, worktree_list, commit_fixups=commit_fixups
+    ):
         color = rh.terminal.Color()
         print(
             color.color(color.RED, "FATAL")
@@ -682,6 +729,11 @@ def direct_main(argv):
         "automatically chooses an appropriate number for the "
         "current system.",
     )
+    parser.add_argument(
+        "--commit-fixups",
+        action="store_true",
+        help="Automatically create fixup! commits for hook fixes",
+    )
     parser.add_argument("commits", nargs="*", help="Check specific commits")
     opts = parser.parse_args(argv)
 
@@ -712,6 +764,7 @@ def direct_main(argv):
             jobs=opts.jobs,
             from_git=opts.git,
             commit_list=opts.commits,
+            commit_fixups=opts.commit_fixups,
         ):
             return 0
     except KeyboardInterrupt:
