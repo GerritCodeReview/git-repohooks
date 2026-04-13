@@ -67,6 +67,7 @@ class Output(object):
     FAILED = COLOR.color(COLOR.RED, "FAILED")
     WARNING = COLOR.color(COLOR.YELLOW, "WARNING")
     FIXUP = COLOR.color(COLOR.MAGENTA, "FIXUP")
+    AUTOSQUASH = COLOR.color(COLOR.MAGENTA, "AUTOSQUASH")
 
     # How long a hook is allowed to run before we warn that it is "too slow".
     _SLOW_HOOK_DURATION = datetime.timedelta(seconds=30)
@@ -479,6 +480,7 @@ def _run_projects_hooks(
     from_git: bool = False,
     commit_list: Optional[List[str]] = None,
     commit_fixups: bool = False,
+    autosquash: bool = False,
 ) -> bool:
     """Run all the hooks
 
@@ -511,7 +513,7 @@ def _run_projects_hooks(
             # very minimal, so we don't add it then.
             print("", file=sys.stderr)
 
-    _attempt_fixes(results, commit_fixups=commit_fixups)
+    _attempt_fixes(results, commit_fixups=commit_fixups, autosquash=autosquash)
     return not any(results)
 
 
@@ -534,8 +536,12 @@ def main(project_list, worktree_list=None, **_kwargs):
     if not worktree_list:
         worktree_list = [None] * len(project_list)
     commit_fixups = _kwargs.get("commit_fixups", False)
+    autosquash = _kwargs.get("autosquash", False)
     if not _run_projects_hooks(
-        project_list, worktree_list, commit_fixups=commit_fixups
+        project_list,
+        worktree_list,
+        commit_fixups=commit_fixups,
+        autosquash=autosquash,
     ):
         color = rh.terminal.Color()
         print(
@@ -605,6 +611,11 @@ def direct_main(argv):
         help="Automatically create fixup! commits for hook fixes",
     )
     parser.add_argument(
+        "--autosquash",
+        action="store_true",
+        help="Automatically squash fixup! commits",
+    )
+    parser.add_argument(
         "--dir",
         default=None,
         help="The directory that the project lives in.  If not "
@@ -658,6 +669,7 @@ def direct_main(argv):
             from_git=opts.git,
             commit_list=opts.commits,
             commit_fixups=opts.commit_fixups,
+            autosquash=opts.autosquash,
         ):
             return 0
     except KeyboardInterrupt:
