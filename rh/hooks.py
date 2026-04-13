@@ -23,7 +23,6 @@ import re
 import sys
 from typing import Callable, NamedTuple
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -333,11 +332,18 @@ def _get_build_os_name():
     return "linux-x86"
 
 
-def _check_cmd(hook_name, project, commit, cmd, fixup_cmd=None, **kwargs):
+def _check_cmd(
+    hook_name, project, commit, cmd, fixup_cmd=None, files=(), **kwargs
+):
     """Runs |cmd| and returns its result as a HookCommandResult."""
     return [
         rh.results.HookCommandResult(
-            hook_name, project, commit, _run(cmd, **kwargs), fixup_cmd=fixup_cmd
+            hook_name,
+            project,
+            commit,
+            _run(cmd, **kwargs),
+            fixup_cmd=fixup_cmd,
+            files=files,
         )
     ]
 
@@ -488,7 +494,14 @@ def check_clang_format(project, commit, _desc, diff, options=None):
     ] + options.args(("--style", "file", "--commit", commit), diff)
     cmd = [tool] + tool_args
     fixup_cmd = [tool, "--fix"] + tool_args
-    return _check_cmd("clang-format", project, commit, cmd, fixup_cmd=fixup_cmd)
+    return _check_cmd(
+        "clang-format",
+        project,
+        commit,
+        cmd,
+        fixup_cmd=fixup_cmd,
+        files=[x.file for x in diff],
+    )
 
 
 def check_google_java_format(project, commit, _desc, _diff, options=None):
@@ -1317,6 +1330,7 @@ def check_alint(project, commit, _desc, diff, options=None):
             project,
             commit,
             result,
+            files=[x.file for x in diff],
             fixup_cmd=fixup_cmd,
             warning=result.returncode == 6,
         )

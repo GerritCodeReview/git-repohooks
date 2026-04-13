@@ -28,7 +28,6 @@ import signal
 import sys
 from typing import List, Optional
 
-
 # Assert some minimum Python versions as we don't test or support any others.
 # See README.md for what version we may require.
 if sys.version_info < (3, 6):
@@ -50,7 +49,6 @@ import rh.git
 import rh.hooks
 import rh.terminal
 import rh.utils
-
 
 # Repohooks homepage.
 REPOHOOKS_URL = "https://android.googlesource.com/platform/tools/repohooks/"
@@ -336,6 +334,44 @@ def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
             )
         else:
             print(f"[{Output.PASSED}] great success", file=sys.stderr)
+            fixes_applied = True
+            if commit_fixups:
+                # Stage the files modified by the fixup.
+                rh.utils.run(
+                    ["git", "add", "--"] + list(result.files), cwd=workdir
+                )
+
+                # Check if there are any staged changes before committing.
+                diff_result = rh.utils.run(
+                    ["git", "diff", "--cached", "--quiet"],
+                    cwd=workdir,
+                    check=False,
+                )
+                if diff_result.returncode == 0:
+                    print(
+                        f"[{Output.FIXUP}] No changes to commit for fixup",
+                        file=sys.stderr,
+                    )
+                    continue
+
+                # Get the subject line of the commit being fixed.
+                desc = rh.git.get_commit_desc(result.commit, cwd=workdir)
+                subject = desc.split("\n", 1)[0]
+
+                # Create a fixup commit.
+                rh.utils.run(
+                    ["git", "commit", "-m", f"fixup! {subject}", "--"]
+                    + list(result.files),
+                    cwd=workdir,
+                )
+
+    if fixes_applied and commit_fixups:
+        print(
+            f"\n[{Output.FIXUP}] Fixes applied and fixup commits created.\n"
+            "Please run 'git rebase -i --autosquash' and then repo upload again.\n",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     print(
         f"\n[{Output.FIXUP}] Please amend & rebase your tree before "
@@ -424,7 +460,7 @@ def _run_project_hooks_in_cwd(
         """Run a hook, gather stats, and process its results."""
         start = datetime.datetime.now()
         results = hook.hook(project, commit, desc, diff)
-        (error, warning) = _process_hook_results(results)
+        error, warning = _process_hook_results(results)
         duration = datetime.datetime.now() - start
         return (hook, results, error, warning, duration)
 
