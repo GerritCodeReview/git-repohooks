@@ -67,7 +67,13 @@ def run_black() -> int:
         "run_tests",
         "tools/cpplint.py-update",
     ]
-    argv = ["--diff", "--check", ROOT_DIR] + extra_programs
+    argv = [
+        "--diff",
+        "--check",
+        "--exclude",
+        r"/\.venv|tools/cpplint\.py",
+        str(ROOT_DIR),
+    ] + extra_programs
     log_cmd("black", argv)
     return subprocess.run(
         [sys.executable, "-m", "black"] + argv,

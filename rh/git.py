@@ -187,10 +187,10 @@ def get_commits(ignore_merged_commits=False):
     return rh.utils.run(cmd, capture_output=True).stdout.split()
 
 
-def get_commit_desc(commit):
+def get_commit_desc(commit, cwd=None):
     """Returns the full commit message of a commit."""
     cmd = ["git", "diff-tree", "-s", "--always", "--format=%B", commit]
-    return rh.utils.run(cmd, capture_output=True).stdout
+    return rh.utils.run(cmd, cwd=cwd, capture_output=True).stdout
 
 
 def find_repo_root(path=None, outer=False):
