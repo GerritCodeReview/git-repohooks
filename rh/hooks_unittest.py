@@ -21,7 +21,6 @@ import sys
 import unittest
 from unittest import mock
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -1196,6 +1195,7 @@ class BuiltinHooksTests(unittest.TestCase):
             self.project, commit, "desc", diff, options=self.options
         )
         self.assertIsNotNone(ret)
+        self.assertEqual(ret[0].files, ["file.txt"])
         self.assertIsNone(ret[0].fixup_cmd)
 
         # Test error with fix.
