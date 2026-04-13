@@ -270,9 +270,14 @@ def _get_project_config(from_git=False):
     return rh.config.PreUploadSettings(paths=paths, global_paths=global_paths)
 
 
-def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
+def _attempt_fixes(
+    projects_results: List[rh.results.ProjectResults],
+    commit_fixups: bool = False,
+) -> None:
     """Attempts to fix fixable results."""
-    rh.fixups.attempt_fixes(projects_results, Output)
+    rh.fixups.attempt_fixes(
+        projects_results, Output, commit_fixups=commit_fixups
+    )
 
 
 def _run_project_hooks_in_cwd(
@@ -473,6 +478,7 @@ def _run_projects_hooks(
     jobs: Optional[int] = None,
     from_git: bool = False,
     commit_list: Optional[List[str]] = None,
+    commit_fixups: bool = False,
 ) -> bool:
     """Run all the hooks
 
@@ -505,7 +511,7 @@ def _run_projects_hooks(
             # very minimal, so we don't add it then.
             print("", file=sys.stderr)
 
-    _attempt_fixes(results)
+    _attempt_fixes(results, commit_fixups=commit_fixups)
     return not any(results)
 
 
@@ -527,7 +533,10 @@ def main(project_list, worktree_list=None, **_kwargs):
     """
     if not worktree_list:
         worktree_list = [None] * len(project_list)
-    if not _run_projects_hooks(project_list, worktree_list):
+    commit_fixups = _kwargs.get("commit_fixups", False)
+    if not _run_projects_hooks(
+        project_list, worktree_list, commit_fixups=commit_fixups
+    ):
         color = rh.terminal.Color()
         print(
             color.color(color.RED, "FATAL")
@@ -591,6 +600,11 @@ def direct_main(argv):
         help="This hook is called from git instead of repo",
     )
     parser.add_argument(
+        "--commit-fixups",
+        action="store_true",
+        help="Automatically create fixup! commits for hook fixes",
+    )
+    parser.add_argument(
         "--dir",
         default=None,
         help="The directory that the project lives in.  If not "
@@ -643,6 +657,7 @@ def direct_main(argv):
             jobs=opts.jobs,
             from_git=opts.git,
             commit_list=opts.commits,
+            commit_fixups=opts.commit_fixups,
         ):
             return 0
     except KeyboardInterrupt:
