@@ -14,6 +14,7 @@
 
 """Helper functions for attempting automated fixes."""
 
+import os
 import sys
 from typing import List
 
@@ -27,6 +28,7 @@ def attempt_fixes(
     projects_results: List[rh.results.ProjectResults],
     output_cls,
     commit_fixups: bool = False,
+    autosquash: bool = False,
 ) -> None:
     """Attempts to fix fixable results."""
     # Filter out any result that has a fixup.
@@ -133,14 +135,66 @@ def attempt_fixes(
                 )
                 fixup_commits_created = True
 
+    autosquashed = False
+    if autosquash:
+        workdirs = set(r.workdir for r in projects_results)
+        for workdir in workdirs:
+            cmd = ["git", "log", "--oneline", "@{u}..HEAD"]
+            try:
+                git_log = rh.utils.run(
+                    cmd, cwd=workdir, capture_output=True
+                ).stdout
+                has_fixups = any(
+                    line.split(" ", 1)[1].startswith("fixup!")
+                    for line in git_log.splitlines()
+                    if " " in line
+                )
+            except rh.utils.CalledProcessError:
+                has_fixups = False
+
+            if has_fixups:
+                print(
+                    f"[{output_cls.AUTOSQUASH}] Found fixup! commits in "
+                    f"{workdir}, autosquashing...",
+                    file=sys.stderr,
+                )
+                env = os.environ.copy()
+                env["GIT_SEQUENCE_EDITOR"] = "true"
+                try:
+                    rh.utils.run(
+                        ["git", "rebase", "-i", "--autosquash", "@{u}"],
+                        cwd=workdir,
+                        env=env,
+                    )
+                    print(
+                        f"[{output_cls.AUTOSQUASH}] Autosquash completed.",
+                        file=sys.stderr,
+                    )
+                    autosquashed = True
+                except rh.utils.CalledProcessError as e:
+                    print(
+                        f"[{output_cls.WARNING}] Autosquash failed: {e}",
+                        file=sys.stderr,
+                    )
+                    sys.exit(1)
+
     if fixes_applied and commit_fixups:
         if fixup_commits_created:
-            print(
-                f"\n[{output_cls.FIXUP}] Fixes applied and fixup commits created.\n"
-                "Please run 'git rebase -i --autosquash' and then repo upload "
-                "again.\n",
-                file=sys.stderr,
-            )
+            if autosquashed:
+                print(
+                    f"\n[{output_cls.AUTOSQUASH}] Fixes applied and fixup commits "
+                    "squashed automatically.\n"
+                    "Please review your changes and then repo upload again.\n",
+                    file=sys.stderr,
+                )
+            else:
+                print(
+                    f"\n[{output_cls.FIXUP}] Fixes applied and fixup commits "
+                    "created.\n"
+                    "Please run 'git rebase -i --autosquash' and then repo "
+                    "upload again.\n",
+                    file=sys.stderr,
+                )
         else:
             print(
                 f"\n[{output_cls.FIXUP}] Fixes applied directly (or no changes "
@@ -150,10 +204,17 @@ def attempt_fixes(
             )
         sys.exit(1)
 
-    if fixes_applied:
+    if autosquashed:
         print(
-            f"\n[{output_cls.FIXUP}] Please amend & rebase your tree before "
-            "attempting to upload again.\n",
+            f"\n[{output_cls.AUTOSQUASH}] Fixup commits squashed automatically.\n"
+            "Please review your changes and then repo upload again.\n",
             file=sys.stderr,
         )
         sys.exit(1)
+
+    print(
+        f"\n[{output_cls.FIXUP}] Please amend & rebase your tree before "
+        "attempting to upload again.\n",
+        file=sys.stderr,
+    )
+    sys.exit(1)

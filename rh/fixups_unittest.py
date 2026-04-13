@@ -127,7 +127,8 @@ class AttemptFixesTests(unittest.TestCase):
             results=[hook_result],
         )
 
-        rh.fixups.attempt_fixes([project_results], self.output_cls)
+        with self.assertRaises(SystemExit):
+            rh.fixups.attempt_fixes([project_results], self.output_cls)
 
         mock_prompt.assert_called_once()
         mock_run.assert_not_called()
@@ -179,6 +180,46 @@ class AttemptFixesTests(unittest.TestCase):
         self.assertTrue(mock_run.called)
         mock_run.assert_any_call(['git', 'add', '--', 'file1.py'], cwd='/tmp/test_project')
         mock_run.assert_any_call(['git', 'commit', '-m', 'fixup! Subject line', '--', 'file1.py'], cwd='/tmp/test_project')
+
+
+    @mock.patch('rh.terminal.boolean_prompt')
+    @mock.patch('rh.utils.run')
+    def test_attempt_fixes_autosquash(self, mock_run, mock_boolean_prompt):
+        """Test attempt_fixes with autosquash=True."""
+        mock_boolean_prompt.return_value = True
+        # Mock run for:
+        # 1. git log (returns a fixup! commit)
+        # 2. git rebase
+
+        def side_effect(cmd, cwd=None, capture_output=False, env=None, check=True):
+            if cmd[0:2] == ['git', 'log']:
+                return mock.Mock(stdout="abc1234 fixup! Subject line\n")
+            elif cmd[0:2] == ['git', 'rebase']:
+                return mock.Mock(returncode=0)
+            return mock.Mock(returncode=0)
+
+        mock_run.side_effect = side_effect
+
+        hook_result = rh.results.HookResult(
+            hook='test_hook',
+            project='test_project',
+            commit='HEAD',
+            error='error',
+            files=['file1.py'],
+            fixup_cmd=['fix_cmd'],
+        )
+        project_results = rh.results.ProjectResults(
+            project='test_project',
+            workdir='/tmp/test_project',
+            results=[hook_result],
+        )
+
+        with self.assertRaises(SystemExit):
+            rh.fixups.attempt_fixes([project_results], self.output_cls, autosquash=True)
+
+        self.assertTrue(mock_run.called)
+        mock_run.assert_any_call(['git', 'log', '--oneline', '@{u}..HEAD'], cwd='/tmp/test_project', capture_output=True)
+        mock_run.assert_any_call(['git', 'rebase', '-i', '--autosquash', '@{u}'], cwd='/tmp/test_project', env=mock.ANY)
 
 
 if __name__ == '__main__':
