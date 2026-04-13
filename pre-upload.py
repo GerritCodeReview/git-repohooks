@@ -479,6 +479,7 @@ def _run_projects_hooks(
     jobs: Optional[int] = None,
     from_git: bool = False,
     commit_list: Optional[List[str]] = None,
+    commit_fixups: bool = False,
 ) -> bool:
     """Run all the hooks
 
@@ -511,7 +512,7 @@ def _run_projects_hooks(
             # very minimal, so we don't add it then.
             print("", file=sys.stderr)
 
-    rh.fixups.attempt_fixes(results, Output)
+    rh.fixups.attempt_fixes(results, Output, commit_fixups=commit_fixups)
     return not any(results)
 
 
@@ -533,7 +534,10 @@ def main(project_list, worktree_list=None, **_kwargs):
     """
     if not worktree_list:
         worktree_list = [None] * len(project_list)
-    if not _run_projects_hooks(project_list, worktree_list):
+    commit_fixups = _kwargs.get("commit_fixups", False)
+    if not _run_projects_hooks(
+        project_list, worktree_list, commit_fixups=commit_fixups
+    ):
         color = rh.terminal.Color()
         print(
             color.color(color.RED, "FATAL")
@@ -596,6 +600,11 @@ def direct_main(argv):
         action="store_true",
         help="This hook is called from git instead of repo",
     )
+    parser.add_argument(
+        "--commit-fixups",
+        action="store_true",
+        help="Automatically create fixup! commits for hook fixes",
+    )
 
     parser.add_argument(
         "--dir",
@@ -650,6 +659,7 @@ def direct_main(argv):
             jobs=opts.jobs,
             from_git=opts.git,
             commit_list=opts.commits,
+            commit_fixups=opts.commit_fixups,
         ):
             return 0
     except KeyboardInterrupt:
