@@ -40,16 +40,16 @@ class HookResult(object):
         """Initialize.
 
         Args:
-          hook: The name of the hook.
-          project: The name of the project.
-          commit: The git commit sha.
-          error: A string representation of the hook's result.  Empty on
-              success.
-          warning: Whether this result is a warning, not an error.
-          files: The list of files that were involved in the hook execution.
-          fixup_cmd: A command that can automatically fix errors found in the
-              hook's execution.  Can be None if the hook does not support
-              automatic fixups.
+            hook: The name of the hook.
+            project: The name of the project.
+            commit: The git commit sha.
+            error: A string representation of the hook's result.  Empty on
+                success.
+            warning: Whether this result is a warning, not an error.
+            files: The list of files that were involved in the hook execution.
+            fixup_cmd: A command that can automatically fix errors found in the
+                hook's execution.  Can be None if the hook does not support
+                automatic fixups.
         """
         self.hook = hook
         self.project = project

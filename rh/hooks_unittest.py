@@ -375,10 +375,10 @@ class BuiltinHooksTests(unittest.TestCase):
         """Helper for testing commit message hooks.
 
         Args:
-          func: The hook function to test.
-          accept: Whether all the |msgs| should be accepted.
-          msgs: List of messages to test.
-          files: List of files to pass to the hook.
+            func: The hook function to test.
+            accept: Whether all the |msgs| should be accepted.
+            msgs: List of messages to test.
+            files: List of files to pass to the hook.
         """
         if files:
             diff = [rh.git.RawDiffEntry(file=x) for x in files]
@@ -399,9 +399,9 @@ class BuiltinHooksTests(unittest.TestCase):
         """Helper for testing hooks that filter by files and run external tools.
 
         Args:
-          mock_check: The mock of _check_cmd.
-          func: The hook function to test.
-          files: A list of files that we'd check.
+            mock_check: The mock of _check_cmd.
+            func: The hook function to test.
+            files: A list of files that we'd check.
         """
         # First call should do nothing as there are no files to check.
         ret = func(self.project, "commit", "desc", (), options=self.options)

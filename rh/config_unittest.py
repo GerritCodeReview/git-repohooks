@@ -55,7 +55,7 @@ class FileTestCase(unittest.TestCase):
         """Helper to write out a config file for testing.
 
         Returns:
-          Path to the file where the configuration was written.
+            Path to the file where the configuration was written.
         """
         path = os.path.join(self.tempdir, filename)
         with open(path, "w", encoding="utf-8") as fp:

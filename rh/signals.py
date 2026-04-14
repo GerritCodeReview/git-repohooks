@@ -28,8 +28,8 @@ def relay_signal(handler, signum, frame):
     """Notify a listener returned from getsignal of receipt of a signal.
 
     Returns:
-      True if it was relayed to the target, False otherwise.
-      False in particular occurs if the target isn't relayable.
+        True if it was relayed to the target, False otherwise.
+        False in particular occurs if the target isn't relayable.
     """
     if handler in (None, signal.SIG_IGN):
         return True

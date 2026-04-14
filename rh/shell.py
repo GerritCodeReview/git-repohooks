@@ -61,10 +61,10 @@ def quote(s):
     run real programs and not shell ones.
 
     Args:
-      s: The string to quote.
+        s: The string to quote.
 
     Returns:
-      A safely (possibly quoted) string.
+        A safely (possibly quoted) string.
     """
     # If callers pass down bad types, don't blow up.
     if isinstance(s, bytes):
@@ -100,10 +100,10 @@ def unquote(s):
     The behaviour is undefined on malformed strings.
 
     Args:
-      s: An escaped string.
+        s: An escaped string.
 
     Returns:
-      The unescaped version of the string.
+        The unescaped version of the string.
     """
     if not s:
         return ""
@@ -134,18 +134,18 @@ def cmd_to_str(cmd):
     quotes to keep them grouped, even if an argument has spaces in it.
 
     Examples:
-      ['a', 'b'] ==> "'a' 'b'"
-      ['a b', 'c'] ==> "'a b' 'c'"
-      ['a', 'b\'c'] ==> '\'a\' "b\'c"'
-      [u'a', "/'$b"] ==> '\'a\' "/\'$b"'
-      [] ==> ''
-      See unittest for additional (tested) examples.
+        ['a', 'b'] ==> "'a' 'b'"
+        ['a b', 'c'] ==> "'a b' 'c'"
+        ['a', 'b\'c'] ==> '\'a\' "b\'c"'
+        [u'a', "/'$b"] ==> '\'a\' "/\'$b"'
+        [] ==> ''
+        See unittest for additional (tested) examples.
 
     Args:
-      cmd: List of command arguments.
+        cmd: List of command arguments.
 
     Returns:
-      String representing full command.
+        String representing full command.
     """
     # Use str before repr to translate unicode strings to regular strings.
     return " ".join(quote(arg) for arg in cmd)
