@@ -28,8 +28,8 @@ THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
 
 # pylint: disable=wrong-import-position
-import rh.hooks
-import rh.shell
+import rh.hooks  # isort: skip
+import rh.shell  # isort: skip
 
 
 class Error(Exception):
@@ -54,8 +54,8 @@ class RawConfigParser(configparser.RawConfigParser):
         """Return the options in |section|.
 
         Args:
-            section: The section to look up.
-            default: What to return if |section| does not exist.
+          section: The section to look up.
+          default: What to return if |section| does not exist.
         """
         try:
             return configparser.RawConfigParser.options(self, section)
@@ -102,9 +102,9 @@ class PreUploadConfig(object):
         """Initialize.
 
         Args:
-            config: A configparse.ConfigParser instance.
-            source: Where this config came from. This is used in error messages
-                to facilitate debugging. It is not necessarily a valid path.
+          config: A configparse.ConfigParser instance.
+          source: Where this config came from. This is used in error messages to
+              facilitate debugging. It is not necessarily a valid path.
         """
         self.config = config if config else RawConfigParser()
         self.source = source
@@ -279,7 +279,7 @@ class PreUploadFile(PreUploadConfig):
     constant.
 
     Attributes:
-        path: The path of the file.
+      path: The path of the file.
     """
 
     FILENAME = None
@@ -288,7 +288,7 @@ class PreUploadFile(PreUploadConfig):
         """Initialize.
 
         Args:
-            path: The config file to load.
+          path: The config file to load.
         """
         super().__init__(source=path)
 
@@ -305,10 +305,10 @@ class PreUploadFile(PreUploadConfig):
         """Search for files within paths that matches the class FILENAME.
 
         Args:
-            paths: List of directories to look for config files.
+          paths: List of directories to look for config files.
 
         Yields:
-            For each valid file found, an instance is created and returned.
+          For each valid file found, an instance is created and returned.
         """
         for path in paths:
             path = os.path.join(path, cls.FILENAME)
@@ -351,8 +351,8 @@ class PreUploadSettings(PreUploadConfig):
         All the config files found will be merged together in order.
 
         Args:
-            paths: The directories to look for config files.
-            global_paths: The directories to look for global config files.
+          paths: The directories to look for config files.
+          global_paths: The directories to look for global config files.
         """
         super().__init__()
 
@@ -366,4 +366,26 @@ class PreUploadSettings(PreUploadConfig):
 
         # We validated configs in isolation, now do one final pass altogether.
         self.source = "{" + "|".join(self.paths) + "}"
+        self._validate()
+
+
+class PostSyncSettings(PreUploadConfig):
+    """Settings for `repo post-sync` hooks."""
+
+    VALID_SECTIONS = {PreUploadConfig.CUSTOM_HOOKS_SECTION}
+
+    def __init__(self, path):
+        """Initialize.
+
+        Args:
+          path: The config file to load (GLOBAL-POSTSYNC.cfg).
+        """
+        super().__init__(source=path)
+        self.path = path
+        if os.path.exists(path):
+            try:
+                self.config.read(path)
+            except configparser.ParsingError as e:
+                raise ValidationError(f"{path}: {e}") from e
+
         self._validate()
