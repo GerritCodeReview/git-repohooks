@@ -34,6 +34,24 @@
       "parentUuid": "a77efc0c_069f7e45",
       "revId": "63f729c9c13123b72d5c3b6e06df14c19c251980",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6ea2f5e_158a3347",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T17:51:12Z",
+      "side": 1,
+      "message": "if you\u0027re in sync with the tool versions we use, then you don\u0027t need this CL -- `./run_tests` passes w/out it.  so let\u0027s not throw style changes in that aren\u0027t required/enforced\n\n2 blank lines between imports \u0026 code is correct per our style guide.  not sure why black isn\u0027t enforcing it.  i can check the settings.",
+      "parentUuid": "ebe637b7_75e463d7",
+      "revId": "63f729c9c13123b72d5c3b6e06df14c19c251980",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
