@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcff370f_14e29b77",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c39b429f_94f86787",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a270ba2a_224929a9",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-14T06:03:12Z",
       "side": 1,
       "message": "who is this for ?\n\nyou\u0027re growing this file without bounds forever",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9183fbf_9a0a9d25",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "Revmoved.",
+      "parentUuid": "a270ba2a_224929a9",
       "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc988f9_6152b3e4",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd7615fc_0284e858",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9dd5498_04bc77a2",
@@ -69,6 +123,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a3092e_e9b1e28f",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "I have removed this heuristic entirely. As you noted, it was undocumented and arbitrary. The script now simply passes the duration to the hooks without trying to     \n   guess the sync type.",
+      "parentUuid": "b9dd5498_04bc77a2",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "517dd77b_0fc74111",
@@ -82,6 +154,24 @@
       "writtenOn": "2026-04-14T06:03:12Z",
       "side": 1,
       "message": "why is this a warning ?  missing scripts should be an error.",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b663035d_454b5ab7",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "You are right. I have changed it from a warning to an error, and the script now returns 1 (fails) if a registered hook script is not found.",
+      "parentUuid": "517dd77b_0fc74111",
       "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -126,6 +216,48 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5203643_7aada117",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "ah! Good catch. Since  find_repo_root()  throws an exception on failure, that check was indeed dead code. I have removed it.",
+      "parentUuid": "e36e1414_b62fe4eb",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 16
+      },
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e3c77c0_963dc8bc",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "Sorry, yes, since find_repo_root()  throws an exception on failure, that check was indeed dead code. I have removed it.",
+      "parentUuid": "db6c3022_a23acc1b",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71c5a133_f593f418",
@@ -139,6 +271,30 @@
       "writtenOn": "2026-04-14T06:03:12Z",
       "side": 1,
       "message": "who is setting this env var ?  it isn\u0027t repo which means it\u0027s never set.  humans are basically never going to run this script themselves.",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 20
+      },
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d2191e7_d24d06ec",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "I have removed the fallback to this environment variable. Since it\u0027s not set by  repo , it was useless overhead.",
+      "parentUuid": "71c5a133_f593f418",
       "range": {
         "startLine": 219,
         "startChar": 0,
@@ -166,6 +322,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33d9ede1_45464f95",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "I have added type hints to  direct_main  and other new functions as requested.",
+      "parentUuid": "4150c708_557bf023",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d430fda_1c20faef",
@@ -183,6 +357,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21aa7336_98ef4853",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "I have updated the docstrings to use 4-space indentation for the arguments list. rest f the cleanup in a new cl.",
+      "parentUuid": "5d430fda_1c20faef",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9f3c0ae_f6a32fc8",
@@ -196,6 +388,24 @@
       "writtenOn": "2026-04-14T06:03:12Z",
       "side": 1,
       "message": "huh ?  repo doesn\u0027t invoke the script as a program.  it would never come through this entry point.  this is purely for humans.  silently ignoring arguments from humans doesn\u0027t make sense.",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd13b05_20d42ab9",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-04-14T17:44:01Z",
+      "side": 1,
+      "message": "I have removed the parsing of ignored positional arguments from  direct_main . Since this entry point is only for humans running it directly, it makes more sense to fail loudly if they pass unexpected arguments.",
+      "parentUuid": "a9f3c0ae_f6a32fc8",
       "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
