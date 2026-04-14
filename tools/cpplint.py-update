@@ -22,7 +22,6 @@ import re
 import sys
 import urllib.request
 
-
 # Since this is manually run by repohooks developers, we can safely require more
 # recent versions of Python.
 assert sys.version_info >= (3, 9), f"Python 3.9+ required; found {sys.version}"
