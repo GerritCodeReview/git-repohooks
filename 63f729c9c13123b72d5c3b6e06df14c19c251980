@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a77efc0c_069f7e45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T17:14:44Z",
+      "side": 1,
+      "message": "the codebase has already been formatted with black.  ./run_tests enforces it.\n\nit might be that the version of black you\u0027re using is diff from what we have pinned.",
+      "revId": "63f729c9c13123b72d5c3b6e06df14c19c251980",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
