@@ -30,7 +30,6 @@ import re
 import sys
 from typing import Any, Dict
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))

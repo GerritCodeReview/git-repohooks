@@ -22,7 +22,6 @@ import unittest
 
 import android_test_mapping_format
 
-
 _VALID_TEST_MAPPING = r"""
 {
   "presubmit": [

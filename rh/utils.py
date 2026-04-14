@@ -24,7 +24,6 @@ import sys
 import tempfile
 import time
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -421,7 +420,7 @@ def run(
             old_sigterm = None
 
         try:
-            (result.stdout, result.stderr) = proc.communicate(input)
+            result.stdout, result.stderr = proc.communicate(input)
         finally:
             if old_sigint is not None:
                 signal.signal(signal.SIGINT, old_sigint)
