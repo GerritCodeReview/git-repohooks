@@ -28,8 +28,8 @@ THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
 
 # pylint: disable=wrong-import-position
-import rh.hooks
-import rh.shell
+import rh.hooks  # isort: skip
+import rh.shell  # isort: skip
 
 
 class Error(Exception):
@@ -366,4 +366,26 @@ class PreUploadSettings(PreUploadConfig):
 
         # We validated configs in isolation, now do one final pass altogether.
         self.source = "{" + "|".join(self.paths) + "}"
+        self._validate()
+
+
+class PostSyncSettings(PreUploadConfig):
+    """Settings for `repo post-sync` hooks."""
+
+    VALID_SECTIONS = {PreUploadConfig.CUSTOM_HOOKS_SECTION}
+
+    def __init__(self, path):
+        """Initialize.
+
+        Args:
+          path: The config file to load (GLOBAL-POSTSYNC.cfg).
+        """
+        super().__init__(source=path)
+        self.path = path
+        if os.path.exists(path):
+            try:
+                self.config.read(path)
+            except configparser.ParsingError as e:
+                raise ValidationError(f"{path}: {e}") from e
+
         self._validate()
