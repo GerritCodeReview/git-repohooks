@@ -1,0 +1,203 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c39b429f_94f86787",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "this is the only placeholder that might make sense.  why do you need to define any of the others ?",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a270ba2a_224929a9",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "who is this for ?\n\nyou\u0027re growing this file without bounds forever",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd7615fc_0284e858",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "create a proper structured class in rh/config.py for it called PostSyncSettings.  you don\u0027t need all the same layers/scaffolding as preupload since you only support a global file, but the basic structure will make it a lot easier to understand \u0026 cleanly extend.  this implementation has every spaghetti splatted into a single function which makes following \u0026 testing \u0026 extending very difficult.  not to mention it\u0027s duplicating logic from other parts of repohooks that can \u0026 could be shared.",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9dd5498_04bc77a2",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "this isn\u0027t documented anywhere",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "517dd77b_0fc74111",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "why is this a warning ?  missing scripts should be an error.",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e36e1414_b62fe4eb",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "this feels overly complicated.  why do you need to support all of this ?  why can\u0027t you just call `rh.git.find_repo_root()` when you need it like we do in pre-upload ?",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 16
+      },
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db6c3022_a23acc1b",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "this final codepath would never run.  `rh.git.find_repo_root()` throws an exception if it can\u0027t find the root.",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71c5a133_f593f418",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "who is setting this env var ?  it isn\u0027t repo which means it\u0027s never set.  humans are basically never going to run this script themselves.",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 20
+      },
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4150c708_557bf023",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "new funcs should having typing info",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d430fda_1c20faef",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "use 4 space indent\n\ni know most of the existing repohooks code is inconsistent, but that\u0027s because when i reformatted it with black, i missed updating the docstrings.  i should throw AI at it to reformat for me to fix.",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9f3c0ae_f6a32fc8",
+        "filename": "post-sync.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-14T06:03:12Z",
+      "side": 1,
+      "message": "huh ?  repo doesn\u0027t invoke the script as a program.  it would never come through this entry point.  this is purely for humans.  silently ignoring arguments from humans doesn\u0027t make sense.",
+      "revId": "34c93c59fc868fcac51ef4a46d5c4f8641ad45b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
