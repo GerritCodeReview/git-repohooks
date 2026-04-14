@@ -50,7 +50,7 @@ class Placeholders(object):
         """Initialize.
 
         Args:
-          diff: The list of files that changed.
+            diff: The list of files that changed.
         """
         self.diff = diff
 
@@ -58,10 +58,10 @@ class Placeholders(object):
         """Perform place holder expansion on all of |args|.
 
         Args:
-          args: The args to perform expansion on.
+            args: The args to perform expansion on.
 
         Returns:
-          The updated |args| list.
+            The updated |args| list.
         """
         all_vars = set(self.vars())
         replacements = dict((var, self.get(var)) for var in all_vars)
@@ -173,8 +173,8 @@ class ExclusionScope(object):
         """Initialize.
 
         Args:
-          scope: A list of shell-style wildcards (fnmatch) or regular
-              expression. Regular expressions must start with the ^ character.
+            scope: A list of shell-style wildcards (fnmatch) or regular
+                expression. Regular expressions must start with the ^ character.
         """
         self._scope = []
         for path in scope:
@@ -187,7 +187,7 @@ class ExclusionScope(object):
         """Checks if |proj_dir| matches the excluded paths.
 
         Args:
-          proj_dir: The relative path of the project.
+            proj_dir: The relative path of the project.
         """
         for exclusion_path in self._scope:
             if hasattr(exclusion_path, "match"):
@@ -205,9 +205,9 @@ class HookOptions(object):
         """Initialize.
 
         Args:
-          name: The name of the hook.
-          args: The override commandline arguments for the hook.
-          tool_paths: A dictionary with tool names to paths.
+            name: The name of the hook.
+            args: The override commandline arguments for the hook.
+            tool_paths: A dictionary with tool names to paths.
         """
         self.name = name
         self._args = args
@@ -223,11 +223,11 @@ class HookOptions(object):
         """Gets the hook arguments, after performing place holder expansion.
 
         Args:
-          default_args: The list to return if |self._args| is empty.
-          diff: The list of files that changed in the current commit.
+            default_args: The list to return if |self._args| is empty.
+            diff: The list of files that changed in the current commit.
 
         Returns:
-          A list with arguments.
+            A list with arguments.
         """
         args = self._args
         if not args:
@@ -243,10 +243,10 @@ class HookOptions(object):
         name will be returned and will be run from the user's $PATH.
 
         Args:
-          tool_name: The name of the executable.
+            tool_name: The name of the executable.
 
         Returns:
-          The path of the tool with all optional place holders expanded.
+            The path of the tool with all optional place holders expanded.
         """
         assert tool_name in TOOL_PATHS
         if tool_name not in self._tool_paths:
@@ -279,11 +279,12 @@ def _match_regex_list(subject, expressions):
     """Try to match a list of regular expressions to a string.
 
     Args:
-      subject: The string to match regexes on.
-      expressions: An iterable of regular expressions to check for matches with.
+        subject: The string to match regexes on.
+        expressions: An iterable of regular expressions to check for matches
+            with.
 
     Returns:
-      Whether the passed in subject matches any of the passed in regexes.
+        Whether the passed in subject matches any of the passed in regexes.
     """
     for expr in expressions:
         if re.search(expr, subject):
@@ -295,17 +296,17 @@ def _filter_diff(diff, include_list, exclude_list=()):
     """Filter out files based on the conditions passed in.
 
     Args:
-      diff: list of diff objects to filter.
-      include_list: list of regex that when matched with a file path will cause
-          it to be added to the output list unless the file is also matched with
-          a regex in the exclude_list.
-      exclude_list: list of regex that when matched with a file will prevent it
-          from being added to the output list, even if it is also matched with a
-          regex in the include_list.
+        diff: list of diff objects to filter.
+        include_list: list of regex that when matched with a file path will
+            cause it to be added to the output list unless the file is also
+            matched with a regex in the exclude_list.
+        exclude_list: list of regex that when matched with a file will prevent
+            it from being added to the output list, even if it is also matched
+            with a regex in the include_list.
 
     Returns:
-      A list of filepaths that contain files matched in the include_list and not
-      in the exclude_list.
+        A list of filepaths that contain files matched in the include_list and
+        not in the exclude_list.
     """
     filtered = []
     for d in diff:
@@ -323,7 +324,7 @@ def _get_build_os_name():
     """Gets the build OS name.
 
     Returns:
-      A string in a format usable to get prebuilt tool paths.
+        A string in a format usable to get prebuilt tool paths.
     """
     system = platform.system()
     if "Darwin" in system or "Macintosh" in system:

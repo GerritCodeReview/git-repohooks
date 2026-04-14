@@ -74,7 +74,7 @@ class Output(object):
         """Create a new Output object for a specified project.
 
         Args:
-          project_name: name of project.
+            project_name: name of project.
         """
         self.project_name = project_name
         self.hooks = None
@@ -91,7 +91,7 @@ class Output(object):
         """Keep track of how many commits we'll be running.
 
         Args:
-          num_commits: Number of commits to be run.
+            num_commits: Number of commits to be run.
         """
         self.num_commits = num_commits
         self.commit_index = 1
@@ -100,9 +100,9 @@ class Output(object):
         """Emit status for new commit.
 
         Args:
-          hooks: All the hooks to be run for this commit.
-          commit: commit hash.
-          commit_summary: commit summary.
+            hooks: All the hooks to be run for this commit.
+            commit: commit hash.
+            commit_summary: commit summary.
         """
         status_line = (
             f"[{self.COMMIT} "
@@ -150,8 +150,8 @@ class Output(object):
         """Print an error for a single hook.
 
         Args:
-          hook: The hook that generated the output.
-          error: error string.
+            hook: The hook that generated the output.
+            error: error string.
         """
         self.error(f"{hook.name} hook", error)
 
@@ -159,8 +159,8 @@ class Output(object):
         """Print a warning for a single hook.
 
         Args:
-          hook: The hook that generated the output.
-          warning: warning string.
+            hook: The hook that generated the output.
+            warning: warning string.
         """
         status_line = f"[{self.WARNING}] {hook.name}"
         rh.terminal.print_status_line(status_line, print_newline=True)
@@ -170,8 +170,8 @@ class Output(object):
         """Print a general error.
 
         Args:
-          header: A unique identifier for the source of this error.
-          error: error string.
+            header: A unique identifier for the source of this error.
+            error: error string.
         """
         status_line = f"[{self.FAILED}] {header}"
         rh.terminal.print_status_line(status_line, print_newline=True)
@@ -208,11 +208,11 @@ def _process_hook_results(results):
     """Returns an error string if an error occurred.
 
     Args:
-      results: A list of HookResult objects, or None.
+        results: A list of HookResult objects, or None.
 
     Returns:
-      error output if an error occurred, otherwise None
-      warning output if an error occurred, otherwise None
+        error output if an error occurred, otherwise None
+        warning output if an error occurred, otherwise None
     """
     if not results:
         return (None, None)
@@ -247,10 +247,11 @@ def _process_hook_results(results):
 def _get_project_config(from_git=False):
     """Returns the configuration for a project.
 
-    Args:
-      from_git: If true, we are called from git directly and repo should not be
-          used.
     Expects to be called from within the project root.
+
+    Args:
+        from_git: If true, we are called from git directly and repo should not
+            be used.
     """
     if from_git:
         global_paths = (rh.git.find_repo_root(),)
@@ -355,18 +356,18 @@ def _run_project_hooks_in_cwd(
     """Run the project-specific hooks in the cwd.
 
     Args:
-      project_name: The name of this project.
-      proj_dir: The directory for this project (for passing on in metadata).
-      output: Helper for summarizing output/errors to the user.
-      jobs: How many hooks to run in parallel.
-      from_git: If true, we are called from git directly and repo should not be
-          used.
-      commit_list: A list of commits to run hooks against.  If None or empty
-          list then we'll automatically get the list of commits that would be
-          uploaded.
+        project_name: The name of this project.
+        proj_dir: The directory for this project (for passing on in metadata).
+        output: Helper for summarizing output/errors to the user.
+        jobs: How many hooks to run in parallel.
+        from_git: If true, we are called from git directly and repo should not
+            be used.
+        commit_list: A list of commits to run hooks against.  If None or empty
+            list then we'll automatically get the list of commits that would be
+            uploaded.
 
     Returns:
-      All the results for this project.
+        All the results for this project.
     """
     ret = rh.results.ProjectResults(project_name, proj_dir, [])
 
@@ -484,18 +485,18 @@ def _run_project_hooks(
     """Run the project-specific hooks in |proj_dir|.
 
     Args:
-      project_name: The name of project to run hooks for.
-      proj_dir: If non-None, this is the directory the project is in.  If None,
-          we'll ask repo.
-      jobs: How many hooks to run in parallel.
-      from_git: If true, we are called from git directly and repo should not be
-          used.
-      commit_list: A list of commits to run hooks against.  If None or empty
-          list then we'll automatically get the list of commits that would be
-          uploaded.
+        project_name: The name of project to run hooks for.
+        proj_dir: If non-None, this is the directory the project is in.  If
+            None, we'll ask repo.
+        jobs: How many hooks to run in parallel.
+        from_git: If true, we are called from git directly and repo should not
+            be used.
+        commit_list: A list of commits to run hooks against.  If None or empty
+            list then we'll automatically get the list of commits that would be
+            uploaded.
 
     Returns:
-      All the results for this project.
+        All the results for this project.
     """
     output = Output(project_name)
 
@@ -546,17 +547,17 @@ def _run_projects_hooks(
     """Run all the hooks
 
     Args:
-      project_list: List of project names.
-      worktree_list: List of project checkouts.
-      jobs: How many hooks to run in parallel.
-      from_git: If true, we are called from git directly and repo should not be
-          used.
-      commit_list: A list of commits to run hooks against.  If None or empty
-          list then we'll automatically get the list of commits that would be
-          uploaded.
+        project_list: List of project names.
+        worktree_list: List of project checkouts.
+        jobs: How many hooks to run in parallel.
+        from_git: If true, we are called from git directly and repo should not
+            be used.
+        commit_list: A list of commits to run hooks against.  If None or empty
+            list then we'll automatically get the list of commits that would be
+            uploaded.
 
     Returns:
-      True if everything passed, else False.
+        True if everything passed, else False.
     """
     results = []
     for project, worktree in zip(project_list, worktree_list):
@@ -587,12 +588,12 @@ def main(project_list, worktree_list=None, **_kwargs):
     obscure error message.
 
     Args:
-      project_list: List of projects to run on.
-      worktree_list: A list of directories.  It should be the same length as
-          project_list, so that each entry in project_list matches with a
-          directory in worktree_list.  If None, we will attempt to calculate
-          the directories automatically.
-      kwargs: Leave this here for forward-compatibility.
+        project_list: List of projects to run on.
+        worktree_list: A list of directories.  It should be the same length as
+            project_list, so that each entry in project_list matches with a
+            directory in worktree_list.  If None, we will attempt to calculate
+            the directories automatically.
+        kwargs: Leave this here for forward-compatibility.
     """
     if not worktree_list:
         worktree_list = [None] * len(project_list)
@@ -611,8 +612,8 @@ def _identify_project(path, from_git=False):
     """Identify the repo project associated with the given path.
 
     Returns:
-      A string indicating what project is associated with the path passed in or
-      a blank string upon failure.
+        A string indicating what project is associated with the path passed in
+        or a blank string upon failure.
     """
     if from_git:
         cmd = ["git", "rev-parse", "--show-toplevel"]
@@ -645,13 +646,13 @@ def direct_main(argv):
     """Run hooks directly (outside of the context of repo).
 
     Args:
-      argv: The command line args to process.
+        argv: The command line args to process.
 
     Returns:
-      0 if no pre-upload failures, 1 if failures.
+        0 if no pre-upload failures, 1 if failures.
 
     Raises:
-      BadInvocation: On some types of invocation errors.
+        BadInvocation: On some types of invocation errors.
     """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(

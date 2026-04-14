@@ -69,10 +69,10 @@ def _filter_comments(json_data: str) -> str:
     """Removes '//'-format comments in TEST_MAPPING file to valid format.
 
     Args:
-        json_data: TEST_MAPPING file content (as a string).
+          json_data: TEST_MAPPING file content (as a string).
 
     Returns:
-        Valid json string without comments.
+          Valid json string without comments.
     """
     return "".join(
         "\n" if _COMMENTS_RE.match(x) else x for x in json_data.splitlines()
@@ -83,11 +83,11 @@ def _validate_import(entry: Dict[str, Any], test_mapping_file: str):
     """Validates an import setting.
 
     Args:
-        entry: A dictionary of an import setting.
-        test_mapping_file: Path to the TEST_MAPPING file to be validated.
+          entry: A dictionary of an import setting.
+          test_mapping_file: Path to the TEST_MAPPING file to be validated.
 
     Raises:
-        InvalidTestMappingError: if the import setting is invalid.
+          InvalidTestMappingError: if the import setting is invalid.
     """
     if len(entry) != 1:
         raise InvalidTestMappingError(
@@ -105,11 +105,11 @@ def _validate_test(test: Dict[str, Any], test_mapping_file: str) -> bool:
     """Returns whether a test declaration is valid.
 
     Args:
-        test: A dictionary of a test declaration.
-        test_mapping_file: Path to the TEST_MAPPING file to be validated.
+          test: A dictionary of a test declaration.
+          test_mapping_file: Path to the TEST_MAPPING file to be validated.
 
     Raises:
-        InvalidTestMappingError: if the a test declaration is invalid.
+          InvalidTestMappingError: if the a test declaration is invalid.
     """
     if _NAME not in test:
         raise InvalidTestMappingError(

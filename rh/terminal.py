@@ -50,8 +50,8 @@ class Color(object):
         """Create a new Color object, optionally disabling color output.
 
         Args:
-          enabled: True if color output should be enabled.  If False then this
-              class will not add color codes at all.
+            enabled: True if color output should be enabled.  If False then this
+                class will not add color codes at all.
         """
         self._enabled = enabled
 
@@ -59,11 +59,11 @@ class Color(object):
         """Returns a start color code.
 
         Args:
-          color: Color to use, e.g. BLACK, RED, etc...
+            color: Color to use, e.g. BLACK, RED, etc...
 
         Returns:
-          If color is enabled, returns an ANSI sequence to start the given
-          color, otherwise returns empty string
+            If color is enabled, returns an ANSI sequence to start the given
+            color, otherwise returns empty string
         """
         if self.enabled:
             return self.COLOR_START % (color + 30)
@@ -73,8 +73,8 @@ class Color(object):
         """Returns a stop color code.
 
         Returns:
-          If color is enabled, returns an ANSI color reset sequence, otherwise
-          returns empty string
+            If color is enabled, returns an ANSI color reset sequence, otherwise
+            returns empty string
         """
         if self.enabled:
             return self.RESET
@@ -84,12 +84,14 @@ class Color(object):
         """Returns text with conditionally added color escape sequences.
 
         Args:
-          color: Text color -- one of the color constants defined in this class.
-          text: The text to color.
+            color: Text color -- one of the color constants defined in this
+                class.
+            text: The text to color.
 
         Returns:
-          If self._enabled is False, returns the original text.  If it's True,
-          returns text with color escape sequences based on the value of color.
+            If self._enabled is False, returns the original text.  If it's True,
+            returns text with color escape sequences based on the value of
+            color.
         """
         if not self.enabled:
             return text
@@ -116,8 +118,8 @@ def print_status_line(line, print_newline=False):
     """Clears the current terminal line, and prints |line|.
 
     Args:
-      line: String to print.
-      print_newline: Print a newline at the end, if sys.stderr is a TTY.
+        line: String to print.
+        print_newline: Print a newline at the end, if sys.stderr is a TTY.
     """
     if sys.stderr.isatty():
         output = "\r" + line + CSI_ERASE_LINE_AFTER
@@ -138,11 +140,11 @@ def str_prompt(
     """Helper function for processing user input.
 
     Args:
-        prompt: The question to present to the user.
-        lower: Whether to lowercase the response.
+          prompt: The question to present to the user.
+          lower: Whether to lowercase the response.
 
     Returns:
-        The string the user entered, or None if EOF (e.g. Ctrl+D).
+          The string the user entered, or None if EOF (e.g. Ctrl+D).
     """
     prompt = f'{prompt} ({"/".join(choices)})? '
     try:
@@ -168,14 +170,14 @@ def boolean_prompt(
     """Helper function for processing boolean choice prompts.
 
     Args:
-      prompt: The question to present to the user.
-      default: Boolean to return if the user just presses enter.
-      true_value: The text to display that represents a True returned.
-      false_value: The text to display that represents a False returned.
-      prolog: The text to display before prompt.
+        prompt: The question to present to the user.
+        default: Boolean to return if the user just presses enter.
+        true_value: The text to display that represents a True returned.
+        false_value: The text to display that represents a False returned.
+        prolog: The text to display before prompt.
 
     Returns:
-      True or False.
+        True or False.
     """
     true_value, false_value = true_value.lower(), false_value.lower()
     true_text, false_text = true_value, false_value

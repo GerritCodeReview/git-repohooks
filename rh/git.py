@@ -45,7 +45,7 @@ def get_upstream_branch():
     """Returns the upstream tracking branch of the current branch.
 
     Raises:
-      Error if there is no tracking branch
+        Error if there is no tracking branch
     """
     cmd = ["git", "symbolic-ref", "HEAD"]
     result = rh.utils.run(cmd, capture_output=True)
@@ -144,11 +144,11 @@ def raw_diff(path, target):
     """Return the parsed raw format diff of target
 
     Args:
-      path: Path to the git repository to diff in.
-      target: The target to diff.
+        path: Path to the git repository to diff in.
+        target: The target to diff.
 
     Returns:
-      A list of RawDiffEntry's.
+        A list of RawDiffEntry's.
     """
     entries = []
 
@@ -174,7 +174,7 @@ def get_affected_files(commit):
     """Returns list of file paths that were modified/added.
 
     Returns:
-      A list of modified/added (and perhaps deleted) files
+        A list of modified/added (and perhaps deleted) files
     """
     return raw_diff(os.getcwd(), f"{commit}^-")
 
@@ -197,7 +197,7 @@ def find_repo_root(path=None, outer=False):
     """Locate the top level of this repo checkout starting at |path|.
 
     Args:
-      outer: Whether to find the outermost manifest, or the sub-manifest.
+        outer: Whether to find the outermost manifest, or the sub-manifest.
     """
     if path is None:
         path = os.getcwd()
