@@ -21,7 +21,6 @@ from pathlib import Path
 import re
 import sys
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 # This default assumes an Android checkout.
