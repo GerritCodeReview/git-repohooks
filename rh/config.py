@@ -22,7 +22,6 @@ from pathlib import Path
 import shlex
 import sys
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))

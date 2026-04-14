@@ -19,7 +19,6 @@ from pathlib import Path
 import sys
 import unittest
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -30,7 +29,6 @@ sys.path.insert(0, str(THIS_DIR.parent))
 import rh
 import rh.results
 import rh.utils
-
 
 COMPLETED_PROCESS_PASS = rh.utils.CompletedProcess(returncode=0)
 COMPLETED_PROCESS_FAIL = rh.utils.CompletedProcess(returncode=1)

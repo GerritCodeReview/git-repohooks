@@ -28,7 +28,6 @@ import signal
 import sys
 from typing import List, Optional
 
-
 # Assert some minimum Python versions as we don't test or support any others.
 # See README.md for what version we may require.
 if sys.version_info < (3, 6):
@@ -50,7 +49,6 @@ import rh.git
 import rh.hooks
 import rh.terminal
 import rh.utils
-
 
 # Repohooks homepage.
 REPOHOOKS_URL = "https://android.googlesource.com/platform/tools/repohooks/"
@@ -424,7 +422,7 @@ def _run_project_hooks_in_cwd(
         """Run a hook, gather stats, and process its results."""
         start = datetime.datetime.now()
         results = hook.hook(project, commit, desc, diff)
-        (error, warning) = _process_hook_results(results)
+        error, warning = _process_hook_results(results)
         duration = datetime.datetime.now() - start
         return (hook, results, error, warning, duration)
 
