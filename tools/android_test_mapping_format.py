@@ -40,6 +40,7 @@ sys.path.insert(0, str(THIS_DIR.parent))
 # pylint: disable=wrong-import-position
 import rh.git
 
+
 _IMPORTS = "imports"
 _NAME = "name"
 _OPTIONS = "options"

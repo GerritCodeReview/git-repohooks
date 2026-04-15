@@ -44,10 +44,10 @@ sys.path.insert(0, str(THIS_DIR.parent))
 # relative imports because this is an executable program, not a module.
 # pylint: disable=wrong-import-position
 import rh
-import rh.results
 import rh.config
 import rh.git
 import rh.hooks
+import rh.results
 import rh.terminal
 import rh.utils
 
