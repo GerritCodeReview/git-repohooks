@@ -19,8 +19,8 @@ import argparse
 import errno
 import os
 from pathlib import Path
-import sys
 import subprocess
+import sys
 from typing import Dict, List, Optional, Set
 
 

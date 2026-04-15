@@ -102,12 +102,32 @@ def run_pylint() -> int:
     ).returncode
 
 
+def run_isort():
+    """Returns the exit code from isort."""
+    argv = ["--version-number"]
+    log_cmd("isort", argv)
+    subprocess.run(
+        [sys.executable, "-m", "isort"] + argv,
+        check=True,
+        cwd=ROOT_DIR,
+    )
+
+    argv = ["--check", ROOT_DIR]
+    log_cmd("isort", argv)
+    return subprocess.run(
+        [sys.executable, "-m", "isort"] + argv,
+        check=False,
+        cwd=ROOT_DIR,
+    ).returncode
+
+
 def main(argv):
     """The main entry."""
     checks = (
         functools.partial(run_pytest, argv),
         run_black,
         run_pylint,
+        run_isort,
     )
     # Run all the tests all the time to get full feedback.  Don't exit on the
     # first error as that makes it more difficult to iterate in the CQ.

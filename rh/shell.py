@@ -14,8 +14,8 @@
 
 """Functions for working with shell code."""
 
-from pathlib import Path
 import pathlib
+from pathlib import Path
 import sys
 
 

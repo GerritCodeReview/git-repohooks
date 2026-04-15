@@ -30,8 +30,8 @@ sys.path.insert(0, str(THIS_DIR.parent))
 # We have to import our local modules after the sys.path tweak.  We can't use
 # relative imports because this is an executable program, not a module.
 # pylint: disable=wrong-import-position
-import rh.hooks
 import rh.config
+import rh.hooks
 
 
 class PreUploadConfigTests(unittest.TestCase):
