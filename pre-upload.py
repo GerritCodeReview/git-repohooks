@@ -26,7 +26,7 @@ import os
 from pathlib import Path
 import signal
 import sys
-from typing import List, Optional
+from typing import List, Optional, Sequence, Set, Tuple
 
 
 # Assert some minimum Python versions as we don't test or support any others.
@@ -70,16 +70,16 @@ class Output(object):
     # How long a hook is allowed to run before we warn that it is "too slow".
     _SLOW_HOOK_DURATION = datetime.timedelta(seconds=30)
 
-    def __init__(self, project_name):
+    def __init__(self, project_name: str) -> None:
         """Create a new Output object for a specified project.
 
         Args:
             project_name: name of project.
         """
         self.project_name = project_name
-        self.hooks = None
-        self.num_hooks = None
-        self.num_commits = None
+        self.hooks: Optional[Set[rh.hooks.CallableHook]] = None
+        self.num_hooks = 0
+        self.num_commits = 0
         self.commit_index = 0
         self.success = True
         self.start_time = datetime.datetime.now()
@@ -96,7 +96,12 @@ class Output(object):
         self.num_commits = num_commits
         self.commit_index = 1
 
-    def commit_start(self, hooks, commit, commit_summary):
+    def commit_start(
+        self,
+        hooks: List[rh.hooks.CallableHook],
+        commit: str,
+        commit_summary: str,
+    ) -> None:
         """Emit status for new commit.
 
         Args:
@@ -117,8 +122,9 @@ class Output(object):
         self.num_hooks = len(hooks)
         self.hook_banner()
 
-    def hook_banner(self):
+    def hook_banner(self) -> None:
         """Display the banner for current set of hooks."""
+        assert self.hooks is not None, "Must call commit_start() first"
         pending = ", ".join(x.name for x in self.hooks)
         status_line = (
             f"[{self.RUNNING} "
@@ -130,8 +136,13 @@ class Output(object):
             status_line = status_line[0 : cols + self._banner_esc_chars]
         rh.terminal.print_status_line(status_line)
 
-    def hook_finish(self, hook, duration):
+    def hook_finish(
+        self,
+        hook: rh.hooks.CallableHook,
+        duration: datetime.timedelta,
+    ) -> None:
         """Finish processing any per-hook state."""
+        assert self.hooks is not None, "Must call commit_start() first"
         self.hooks.remove(hook)
         if duration >= self._SLOW_HOOK_DURATION:
             d = rh.utils.timedelta_str(duration)
@@ -146,7 +157,7 @@ class Output(object):
         if self.hooks:
             self.hook_banner()
 
-    def hook_error(self, hook, error):
+    def hook_error(self, hook: rh.hooks.CallableHook, error: str) -> None:
         """Print an error for a single hook.
 
         Args:
@@ -155,7 +166,7 @@ class Output(object):
         """
         self.error(f"{hook.name} hook", error)
 
-    def hook_warning(self, hook, warning):
+    def hook_warning(self, hook: rh.hooks.CallableHook, warning: str) -> None:
         """Print a warning for a single hook.
 
         Args:
@@ -185,6 +196,8 @@ class Output(object):
     ) -> None:
         """Display summary of possible fixups for a single hook."""
         for result in (x for x in hook_results if x.fixup_cmd):
+            # Workaround mypy unable to peer inside the loop generator above.
+            assert result.fixup_cmd
             cmd = result.fixup_cmd + list(result.files)
             for line in (
                 f"[{self.FIXUP}] {result.hook} has automated fixups available",
@@ -193,7 +206,7 @@ class Output(object):
             ):
                 rh.terminal.print_status_line(line, print_newline=True)
 
-    def finish(self):
+    def finish(self) -> None:
         """Print summary for all the hooks."""
         header = self.PASSED if self.success else self.FAILED
         status = "passed" if self.success else "failed"
@@ -244,7 +257,7 @@ def _process_hook_results(results):
     )
 
 
-def _get_project_config(from_git=False):
+def _get_project_config(from_git: bool = False) -> rh.config.PreUploadSettings:
     """Returns the configuration for a project.
 
     Expects to be called from within the project root.
@@ -254,11 +267,11 @@ def _get_project_config(from_git=False):
             be used.
     """
     if from_git:
-        global_paths = (rh.git.find_repo_root(),)
+        global_paths: Sequence[str] = (rh.git.find_repo_root(),)
     else:
         global_paths = (
             # Load the global config found in the manifest repo.
-            (os.path.join(rh.git.find_repo_root(), ".repo", "manifests")),
+            os.path.join(rh.git.find_repo_root(), ".repo", "manifests"),
             # Load the global config found in the root of the repo checkout.
             rh.git.find_repo_root(),
         )
@@ -273,7 +286,7 @@ def _get_project_config(from_git=False):
 def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
     """Attempts to fix fixable results."""
     # Filter out any result that has a fixup.
-    fixups = []
+    fixups: List[Tuple[str, rh.results.HookResult]] = []
     for project_results in projects_results:
         fixups.extend(
             (project_results.workdir, x) for x in project_results.fixups
@@ -314,6 +327,10 @@ def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
 
     # Walk all the fixups and run them one-by-one.
     for workdir, result in fixups:
+        # ProjectResults.fixups only yields results that have a fixup command,
+        # but mypy is not able to see that extended logic.
+        assert result.fixup_cmd
+
         if mode == "some":
             if not rh.terminal.boolean_prompt(
                 f"Run {result.hook} fixup for {result.commit}"
@@ -507,7 +524,9 @@ def _run_project_hooks(
         if not proj_dirs:
             print(f"{project_name} cannot be found.", file=sys.stderr)
             print("Please specify a valid project.", file=sys.stderr)
-            return False
+            return rh.results.ProjectResults(
+                project_name, "", [], internal_failure=True
+            )
         if len(proj_dirs) > 1:
             print(
                 f"{project_name} is associated with multiple directories.",
@@ -517,7 +536,9 @@ def _run_project_hooks(
                 "Please specify a directory to help disambiguate.",
                 file=sys.stderr,
             )
-            return False
+            return rh.results.ProjectResults(
+                project_name, "", [], internal_failure=True
+            )
         proj_dir = proj_dirs[0]
 
     pwd = os.getcwd()
@@ -608,7 +629,7 @@ def main(project_list, worktree_list=None, **_kwargs):
         sys.exit(1)
 
 
-def _identify_project(path, from_git=False):
+def _identify_project(path: str, from_git: bool = False) -> str:
     """Identify the repo project associated with the given path.
 
     Returns:
@@ -642,7 +663,7 @@ def _identify_project(path, from_git=False):
         return rh.utils.run(cmd, capture_output=True, cwd=path).stdout.strip()
 
 
-def direct_main(argv):
+def direct_main(argv: List[str]) -> int:
     """Run hooks directly (outside of the context of repo).
 
     Args:

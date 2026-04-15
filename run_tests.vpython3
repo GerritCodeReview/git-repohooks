@@ -62,7 +62,7 @@ wheel: <
 # Required by black==25.1.0
 wheel: <
   name: "infra/python/wheels/mypy-extensions-py3"
-  version: "version:0.4.3"
+  version: "version:1.0.0"
 >
 
 # Required by black==25.1.0
@@ -127,4 +127,9 @@ wheel: <
 wheel: <
   name: "infra/python/wheels/dill-py3"
   version: "version:0.3.7"
+>
+
+wheel: <
+  name: "infra/python/wheels/mypy-py3"
+  version: "version:1.2.0"
 >

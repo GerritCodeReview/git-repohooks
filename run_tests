@@ -67,7 +67,7 @@ def run_black() -> int:
         "run_tests",
         "tools/cpplint.py-update",
     ]
-    argv = ["--diff", "--check", ROOT_DIR] + extra_programs
+    argv = ["--diff", "--check", str(ROOT_DIR)] + extra_programs
     log_cmd("black", argv)
     return subprocess.run(
         [sys.executable, "-m", "black"] + argv,
@@ -102,7 +102,7 @@ def run_pylint() -> int:
     ).returncode
 
 
-def run_isort():
+def run_isort() -> int:
     """Returns the exit code from isort."""
     argv = ["--version-number"]
     log_cmd("isort", argv)
@@ -112,7 +112,7 @@ def run_isort():
         cwd=ROOT_DIR,
     )
 
-    argv = ["--check", ROOT_DIR]
+    argv = ["--check", str(ROOT_DIR)]
     log_cmd("isort", argv)
     return subprocess.run(
         [sys.executable, "-m", "isort"] + argv,
@@ -121,13 +121,33 @@ def run_isort():
     ).returncode
 
 
-def main(argv):
+def run_mypy() -> int:
+    """Returns the exit code from mypy."""
+    argv = ["--version"]
+    log_cmd("mypy", argv)
+    subprocess.run(
+        [sys.executable, "-m", "mypy"] + argv,
+        check=True,
+        cwd=ROOT_DIR,
+    )
+
+    argv = ["rh", "pre-upload.py", "run_tests"]
+    log_cmd("mypy", argv)
+    return subprocess.run(
+        [sys.executable, "-m", "mypy"] + argv,
+        check=False,
+        cwd=ROOT_DIR,
+    ).returncode
+
+
+def main(argv: List[str]) -> int:
     """The main entry."""
     checks = (
-        functools.partial(run_pytest, argv),
+        lambda: run_pytest(argv),
         run_black,
         run_pylint,
         run_isort,
+        run_mypy,
     )
     # Run all the tests all the time to get full feedback.  Don't exit on the
     # first error as that makes it more difficult to iterate in the CQ.
