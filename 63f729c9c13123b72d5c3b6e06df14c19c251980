@@ -70,6 +70,24 @@
       "parentUuid": "f6ea2f5e_158a3347",
       "revId": "63f729c9c13123b72d5c3b6e06df14c19c251980",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdfe9945_70d6c377",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-04-15T03:58:52Z",
+      "side": 1,
+      "message": "i guess we rely on isort in other projects to enforce the 2 blank lines rule after imports.  i\u0027ll see about enabling it in repohooks too.",
+      "parentUuid": "bc762c8b_7d286e8f",
+      "revId": "63f729c9c13123b72d5c3b6e06df14c19c251980",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
