@@ -23,6 +23,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from typing import IO, Optional, Sequence, Union
 
 
 THIS_FILE = Path(__file__).resolve()
@@ -255,7 +256,7 @@ class _Popen(subprocess.Popen):
 # We use the keyword arg |input| which trips up pylint checks.
 # pylint: disable=redefined-builtin
 def run(
-    cmd,
+    cmd: Sequence[Union[str, Path]],
     redirect_stdout=False,
     redirect_stderr=False,
     cwd=None,
@@ -306,8 +307,8 @@ def run(
         redirect_stdout, redirect_stderr = True, True
 
     # Set default for variables.
-    popen_stdout = None
-    popen_stderr = None
+    popen_stdout: Optional[IO[bytes]] = None
+    popen_stderr: Optional[Union[int, IO[bytes]]] = None
     stdin = None
     result = CompletedProcess()
 
@@ -315,7 +316,7 @@ def run(
     # a self-explanatory exception will be thrown.
     kill_timeout = float(kill_timeout)
 
-    def _get_tempfile():
+    def _get_tempfile() -> IO[bytes]:
         try:
             return tempfile.TemporaryFile(buffering=0)
         except EnvironmentError as e:
@@ -431,14 +432,12 @@ def run(
 
             if popen_stdout:
                 # The linter is confused by how stdout is a file & an int.
-                # pylint: disable=maybe-no-member,no-member
                 popen_stdout.seek(0)
                 result.stdout = popen_stdout.read()
                 popen_stdout.close()
 
-            if popen_stderr and popen_stderr != subprocess.STDOUT:
+            if popen_stderr and not isinstance(popen_stderr, int):
                 # The linter is confused by how stderr is a file & an int.
-                # pylint: disable=maybe-no-member,no-member
                 popen_stderr.seek(0)
                 result.stderr = popen_stderr.read()
                 popen_stderr.close()

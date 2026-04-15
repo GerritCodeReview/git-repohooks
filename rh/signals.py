@@ -17,6 +17,7 @@
 from pathlib import Path
 import signal
 import sys
+from typing import Any, Callable, Union
 
 
 THIS_FILE = Path(__file__).resolve()
@@ -24,18 +25,24 @@ THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
 
 
-def relay_signal(handler, signum, frame):
+def relay_signal(
+    handler: Union[Callable[[int, Any], Any], int, None],
+    signum: int,
+    frame: Any,
+) -> bool:
     """Notify a listener returned from getsignal of receipt of a signal.
 
     Returns:
         True if it was relayed to the target, False otherwise.
         False in particular occurs if the target isn't relayable.
     """
-    if handler in (None, signal.SIG_IGN):
+    if handler is None or handler == signal.SIG_IGN:
         return True
-    if handler == signal.SIG_DFL:
+    elif handler == signal.SIG_DFL:
         # This scenario is a fairly painful to handle fully, thus we just
         # state we couldn't handle it and leave it to client code.
         return False
+    elif isinstance(handler, int):
+        raise ValueError(f"Unknown handler '{handler}'")
     handler(signum, frame)
     return True

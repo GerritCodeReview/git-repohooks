@@ -16,12 +16,15 @@
 
 from pathlib import Path
 import sys
-from typing import List, NamedTuple, Optional
+from typing import Iterable, Iterator, List, NamedTuple, Optional
 
 
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
+
+# pylint: disable=wrong-import-position
+import rh.utils
 
 
 class HookResult(object):
@@ -29,14 +32,14 @@ class HookResult(object):
 
     def __init__(
         self,
-        hook,
-        project,
-        commit,
-        error,
+        hook: str,
+        project: str,
+        commit: str,
+        error: str,
         warning: bool = False,
-        files=(),
+        files: Iterable[str] = (),
         fixup_cmd: Optional[List[str]] = None,
-    ):
+    ) -> None:
         """Initialize.
 
         Args:
@@ -59,11 +62,11 @@ class HookResult(object):
         self.files = files
         self.fixup_cmd = fixup_cmd
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         """Whether this result is an error."""
         return bool(self.error) and not self.is_warning()
 
-    def is_warning(self):
+    def is_warning(self) -> bool:
         """Whether this result is a non-fatal warning."""
         return self._warning
 
@@ -73,14 +76,14 @@ class HookCommandResult(HookResult):
 
     def __init__(
         self,
-        hook,
-        project,
-        commit,
-        result,
+        hook: str,
+        project: str,
+        commit: str,
+        result: rh.utils.CompletedProcess,
         warning: bool = False,
-        files=(),
+        files: Iterable[str] = (),
         fixup_cmd: Optional[List[str]] = None,
-    ):
+    ) -> None:
         HookResult.__init__(
             self,
             hook,
@@ -93,11 +96,11 @@ class HookCommandResult(HookResult):
         )
         self.result = result
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         """Whether this result is an error."""
         return not self.is_warning() and self.result.returncode not in (None, 0)
 
-    def is_warning(self):
+    def is_warning(self) -> bool:
         """Whether this result is a non-fatal warning."""
         return self._warning or self.result.returncode == 77
 
@@ -121,12 +124,12 @@ class ProjectResults(NamedTuple):
             self.results.extend(results)
 
     @property
-    def fixups(self):
+    def fixups(self) -> Iterator[HookResult]:
         """Yield results that have a fixup available."""
         yield from (
             x for x in self.results if (x or x.is_warning()) and x.fixup_cmd
         )
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         """Whether there are any errors in this set of results."""
         return self.internal_failure or any(self.results)
