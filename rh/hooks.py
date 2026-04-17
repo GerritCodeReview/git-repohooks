@@ -1304,9 +1304,13 @@ def check_alint(project, commit, _desc, diff, options=None):
     result = _run(cmd)
 
     # alint returns exit code 5 or 6 if there are findings with fixes available.
+    # Only provide fixup command if we are checking HEAD, as alint fix is not
+    # supported for non-head commits.
+    head_hash = rh.git.get_commit_for_ref("HEAD")
+    is_head = commit in ("HEAD", head_hash)
     fixup_cmd = (
         [alint_path, "fix", "--no_amend", "--commit", commit]
-        if result.returncode in (5, 6)
+        if is_head and result.returncode in (5, 6)
         else None
     )
 
