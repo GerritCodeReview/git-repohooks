@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd8410f0_f5fbe939",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-17T17:34:46Z",
+      "side": 1,
+      "message": "removing myself as a reviewer since I\u0027m not familiar with alint",
+      "revId": "b57a112ff78576ed9717d04b5e7705f3853f3a42",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
