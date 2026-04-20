@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e1cb20c_b2c9802d",
+        "filename": "rh/config.py",
+        "patchSetId": 41
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-20T20:48:22Z",
+      "side": 1,
+      "message": "this method seems to duplicate checks in `PreUploadConfig._validate`. would `super()._validate()` here work? for consistency and deduplication",
+      "range": {
+        "startLine": 392,
+        "startChar": 4,
+        "endLine": 392,
+        "endChar": 24
+      },
+      "revId": "c8b7e61db1f70a830e06652c07854cdcd1833dcb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
