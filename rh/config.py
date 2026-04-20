@@ -22,7 +22,6 @@ import shlex
 import sys
 from pathlib import Path
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -37,7 +36,6 @@ class Error(Exception):
 
 
 class ValidationError(Error):
-
     """Config file has unknown sections/keys or other values."""
 
 

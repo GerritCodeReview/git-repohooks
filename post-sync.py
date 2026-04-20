@@ -25,7 +25,6 @@ import sys
 from pathlib import Path
 from typing import List, Optional
 
-
 # Assert some minimum Python versions as we don't test or support any others.
 if sys.version_info < (3, 6):
     print("repohooks: error: Python-3.6+ is required", file=sys.stderr)
@@ -49,7 +48,6 @@ import rh.utils  # isort: skip
 
 class PostSyncPlaceholders(rh.hooks.Placeholders):
     """Placeholders for post-sync hooks."""
-
 
     def __init__(self, repo_root: Path, sync_duration: Optional[int] = None):
         """Initialize.
