@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab172712_464dccb1",
+        "filename": "rh/config.py",
+        "patchSetId": 52
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-21T17:15:47Z",
+      "side": 1,
+      "message": "there are a lot of formatting changes that undo https://gerrit-review.git.corp.google.com/c/git-repohooks/+/573041 . can we revert these?",
+      "range": {
+        "startLine": 57,
+        "startChar": 9,
+        "endLine": 57,
+        "endChar": 10
+      },
+      "revId": "b4c4fd37b2ece903b609ec832b281a357bf813fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03cd4edc_929b9b6d",
+        "filename": "tools/pylintrc",
+        "patchSetId": 52
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-21T17:15:47Z",
+      "side": 1,
+      "message": "nit: delete empty newline",
+      "revId": "b4c4fd37b2ece903b609ec832b281a357bf813fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
