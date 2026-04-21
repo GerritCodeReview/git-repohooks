@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b22bf52e_81e8191f",
+        "filename": "rh/config.py",
+        "patchSetId": 53
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-04-21T18:53:37Z",
+      "side": 1,
+      "message": "still some indentation changes remaining here and below til L355",
+      "range": {
+        "startLine": 282,
+        "startChar": 5,
+        "endLine": 282,
+        "endChar": 6
+      },
+      "revId": "4648df4c5acfa45904fd86d6a5a20bbe3c2266a2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
