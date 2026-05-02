@@ -50,16 +50,18 @@ import rh.utils  # isort: skip
 class PostSyncPlaceholders(rh.hooks.Placeholders):
     """Placeholders for post-sync hooks."""
 
-    def __init__(self, repo_root: Path, sync_duration: Optional[int] = None):
+    def __init__(self, repo_root: Path, sync_duration: Optional[int] = None, sync_type: Optional[str] = None):
         """Initialize.
 
         Args:
             repo_root: The top level of the repo checkout.
             sync_duration: The total time taken by the sync operation.
+            sync_type: The type of sync operation executed.
         """
         super().__init__()
         self._repo_root = repo_root
         self._sync_duration = sync_duration
+        self._sync_type = sync_type
 
     @property
     def var_REPO_ROOT(self) -> str:
@@ -73,17 +75,17 @@ class PostSyncPlaceholders(rh.hooks.Placeholders):
 
     @property
     def var_REPO_SYNC_DURATION(self) -> str:
-        """The total time taken by the sync operation.
+        """The total time taken by the sync operation."""
+        return str(self._sync_duration) if self._sync_duration is not None else ""
 
-        Validation of this value is deferred to the hook scripts.
-        """
-        return (
-            str(self._sync_duration) if self._sync_duration is not None else ""
-        )
+    @property
+    def var_REPO_SYNC_TYPE(self) -> str:
+        """The type of sync operation executed."""
+        return str(self._sync_type) if self._sync_type is not None else ""
 
 
 def _run_post_sync_hooks(
-    repo_root_path: Path, sync_duration_seconds: Optional[int]
+    repo_root_path: Path, sync_duration_seconds: Optional[int], sync_type: Optional[str]
 ) -> int:
     """Run the registered post-sync hooks."""
 
@@ -100,17 +102,13 @@ def _run_post_sync_hooks(
     if not settings.custom_hooks:
         return 0
 
-    # Prepare environment for the subprocess calls.
+    # Prepare environment for the subprocess calls (Explicitly omitting sync variables)
     extra_env = {
         "REPO_ROOT": str(repo_root_path),
     }
-    if sync_duration_seconds is not None:
-        extra_env["REPO_HOOK_SYNC_DURATION_SECONDS"] = str(
-            sync_duration_seconds
-        )
 
     exit_code = 0
-    placeholders = PostSyncPlaceholders(repo_root_path, sync_duration_seconds)
+    placeholders = PostSyncPlaceholders(repo_root_path, sync_duration_seconds, sync_type)
     color = rh.terminal.Color()
 
     for name in settings.custom_hooks:
@@ -158,35 +156,24 @@ def _run_post_sync_hooks(
 
 
 def main(repo_topdir=None, **kwargs) -> int:
-    """Main function invoked directly by repo.
-
-    We must use the name "main" as that is what repo requires.
-
-    Args:
-      repo_topdir: The absolute path to the top-level directory of the repo
-        workspace.
-      kwargs: Leave this here for forward-compatibility.
-    """
+    """Main function invoked directly by repo."""
     if not repo_topdir:
         try:
             repo_root = rh.git.find_repo_root()
-        except Exception as e:  # pylint: disable=broad-exception-caught
+        except Exception as e:
             print(f"error: {e}", file=sys.stderr)
             return 1
     else:
         repo_root = repo_topdir
 
     sync_duration_seconds = kwargs.get("sync_duration_seconds")
+    sync_type = kwargs.get("sync_type")
 
-    return _run_post_sync_hooks(Path(repo_root), sync_duration_seconds)
+    return _run_post_sync_hooks(Path(repo_root), sync_duration_seconds, sync_type)
 
 
 def direct_main(argv: List[str]) -> int:
-    """Run hooks directly (outside of the context of repo).
-
-    Args:
-        argv: The command line args to process.
-    """
+    """Run hooks directly (outside of the context of repo)."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--repo-root", help="The top level of the repo checkout."
@@ -196,11 +183,16 @@ def direct_main(argv: List[str]) -> int:
         type=int,
         help="The total time taken by the sync operation.",
     )
+    parser.add_argument(
+        "--sync-type",
+        help="The type of sync operation executed.",
+    )
 
     opts = parser.parse_args(argv)
     return main(
         repo_topdir=opts.repo_root,
         sync_duration_seconds=opts.sync_duration_seconds,
+        sync_type=opts.sync_type,
     )
 
 
