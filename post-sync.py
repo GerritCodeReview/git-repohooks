@@ -21,6 +21,7 @@ registered post-sync hooks.
 """
 
 import argparse
+import os
 from pathlib import Path
 import sys
 from typing import List, Optional
@@ -47,43 +48,6 @@ import rh.terminal  # isort: skip
 import rh.utils  # isort: skip
 
 
-class PostSyncPlaceholders(rh.hooks.Placeholders):
-    """Placeholders for post-sync hooks."""
-
-    def __init__(self, repo_root: Path, sync_duration: Optional[int] = None, sync_type: Optional[str] = None):
-        """Initialize.
-
-        Args:
-            repo_root: The top level of the repo checkout.
-            sync_duration: The total time taken by the sync operation.
-            sync_type: The type of sync operation executed.
-        """
-        super().__init__()
-        self._repo_root = repo_root
-        self._sync_duration = sync_duration
-        self._sync_type = sync_type
-
-    @property
-    def var_REPO_ROOT(self) -> str:
-        """The absolute path of the root of the repo checkout."""
-        return str(self._repo_root)
-
-    @property
-    def var_REPO_OUTER_ROOT(self) -> str:
-        """The absolute path of the outermost root of the repo checkout."""
-        return str(self._repo_root)
-
-    @property
-    def var_REPO_SYNC_DURATION(self) -> str:
-        """The total time taken by the sync operation."""
-        return str(self._sync_duration) if self._sync_duration is not None else ""
-
-    @property
-    def var_REPO_SYNC_TYPE(self) -> str:
-        """The type of sync operation executed."""
-        return str(self._sync_type) if self._sync_type is not None else ""
-
-
 def _run_post_sync_hooks(
     repo_root_path: Path, sync_duration_seconds: Optional[int], sync_type: Optional[str]
 ) -> int:
@@ -102,13 +66,19 @@ def _run_post_sync_hooks(
     if not settings.custom_hooks:
         return 0
 
+    # Hydrate the global environment so base rh.hooks.Placeholders can read them
+    if sync_duration_seconds is not None:
+        os.environ["REPO_SYNC_DURATION"] = str(sync_duration_seconds)
+    if sync_type is not None:
+        os.environ["REPO_SYNC_TYPE"] = str(sync_type)
+
     # Prepare environment for the subprocess calls (Explicitly omitting sync variables)
     extra_env = {
         "REPO_ROOT": str(repo_root_path),
     }
 
     exit_code = 0
-    placeholders = PostSyncPlaceholders(repo_root_path, sync_duration_seconds, sync_type)
+    placeholders = rh.hooks.Placeholders(repo_root=repo_root_path)
     color = rh.terminal.Color()
 
     for name in settings.custom_hooks:
