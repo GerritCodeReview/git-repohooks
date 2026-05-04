@@ -46,13 +46,15 @@ class Placeholders(object):
     You can return either a string or an iterable (e.g. a list or tuple).
     """
 
-    def __init__(self, diff=()):
+    def __init__(self, diff=(), repo_root=None):
         """Initialize.
 
         Args:
             diff: The list of files that changed.
+            repo_root: Optional top level of the repo checkout.
         """
         self.diff = diff
+        self._repo_root = Path(repo_root) if repo_root else None
 
     def expand_vars(self, args):
         """Perform place holder expansion on all of |args|.
@@ -149,12 +151,22 @@ class Placeholders(object):
     @property
     def var_REPO_ROOT(self):
         """The root of the repo (sub-manifest) checkout."""
-        return rh.git.find_repo_root()
+        return str(self._repo_root) if self._repo_root else rh.git.find_repo_root()
 
     @property
     def var_REPO_OUTER_ROOT(self):
         """The root of the repo (outer) checkout."""
-        return rh.git.find_repo_root(outer=True)
+        return str(self._repo_root) if self._repo_root else rh.git.find_repo_root(outer=True)
+
+    @property
+    def var_REPO_SYNC_DURATION(self):
+        """The total time taken by the sync operation."""
+        return os.environ.get("REPO_SYNC_DURATION", "")
+
+    @property
+    def var_REPO_SYNC_TYPE(self):
+        """The type of sync operation executed."""
+        return os.environ.get("REPO_SYNC_TYPE", "")
 
     @property
     def var_BUILD_OS(self):
