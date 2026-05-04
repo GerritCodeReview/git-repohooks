@@ -120,6 +120,7 @@ are automatically expanded for you:
   project is in a submanifest, this points to the root of the submanifest.
 * `${REPO_OUTER_ROOT}`: The absolute path of the root of the repo checkout.
   This always points to the root of the overall repo checkout.
+* `${REPO_SYNC_DURATION}`: The total time taken by the sync operation (post-sync hooks only).
 * `${BUILD_OS}`: The string `darwin-x86` for macOS and the string `linux-x86`
   for Linux/x86.
 

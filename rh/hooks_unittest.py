@@ -232,6 +232,13 @@ class PlaceholderTests(unittest.TestCase):
         os.environ["REPO_PROJECT"] = "platform/foo/bar"
         self.assertEqual(self.replacer.get("REPO_PROJECT"), "platform/foo/bar")
 
+    def testREPO_SYNC_DURATION(self):
+        """Verify handling of REPO_SYNC_DURATION."""
+        os.environ["REPO_SYNC_DURATION"] = ""
+        self.assertEqual(self.replacer.get("REPO_SYNC_DURATION"), "")
+        os.environ["REPO_SYNC_DURATION"] = "100"
+        self.assertEqual(self.replacer.get("REPO_SYNC_DURATION"), "100")
+
     @mock.patch.object(rh.hooks, "_get_build_os_name", return_value="vapier os")
     def testBUILD_OS(self, m):
         """Verify handling of BUILD_OS."""
