@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "932eb8c0_d4be8d90",
+        "filename": "post-sync.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-05-05T04:54:14Z",
+      "side": 1,
+      "message": "I am removing synd_type until it is supported in repo itself.",
+      "parentUuid": "a51f648b_7f989e51",
+      "range": {
+        "startLine": 142,
+        "startChar": 4,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "45bf840556e1a69645f1daeec55c823d1c91f7aa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05a666bc_e9405e97",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d52dfa3_3c65ba43",
+        "filename": "post-sync.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-05-05T04:54:14Z",
+      "side": 1,
+      "message": "1. For the CLI Parser: In  post-sync.py \u0027s  direct_main  function, the  --sync-duration-seconds  argument was previously hardcoded as  type\u003dint . I have updated it to  type\u003dfloat  so   \n  that it safely accepts and preserves decimal values when running hooks manually outside of  repo .\n  2. For the Placeholder ( REPO_SYNC_DURATION ): Python\u0027s native  str()  function automatically handles floating-point numbers correctly (e.g.,  str(12.345)  becomes  \"12.345\" ). Since we\n  populate the environment variable using  str(sync_duration_seconds)  before expanding placeholders, the  ${REPO_SYNC_DURATION}  token will correctly evaluate to the full float string   \n  without any truncation.",
+      "parentUuid": "05a666bc_e9405e97",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 16
+      },
+      "revId": "45bf840556e1a69645f1daeec55c823d1c91f7aa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fcca845_441d6f31",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-05-05T02:19:38Z",
       "side": 1,
       "message": "this is a little ambiguous, and could refer to any combination:\n* initial / incremental\n* interleaved / phased\n* local-only / network-only / both",
+      "range": {
+        "startLine": 162,
+        "startChar": 26,
+        "endLine": 162,
+        "endChar": 49
+      },
+      "revId": "45bf840556e1a69645f1daeec55c823d1c91f7aa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcdfce44_5f295ab3",
+        "filename": "post-sync.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-05-05T04:54:14Z",
+      "side": 1,
+      "message": "Removing as per comment above.",
+      "parentUuid": "0fcca845_441d6f31",
       "range": {
         "startLine": 162,
         "startChar": 26,
