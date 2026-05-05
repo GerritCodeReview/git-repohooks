@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51f648b_7f989e51",
+        "filename": "post-sync.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-05T02:19:38Z",
+      "side": 1,
+      "message": "sync type isn\u0027t a thing in repo yet, do you also plan on adding this to repo?",
+      "range": {
+        "startLine": 142,
+        "startChar": 4,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "45bf840556e1a69645f1daeec55c823d1c91f7aa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05a666bc_e9405e97",
+        "filename": "post-sync.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-05T02:19:38Z",
+      "side": 1,
+      "message": "we had changed duration seconds to a float, do we need to update this (and above with `REPO_SYNC_DURATION`)?",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 16
+      },
+      "revId": "45bf840556e1a69645f1daeec55c823d1c91f7aa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fcca845_441d6f31",
+        "filename": "post-sync.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-05T02:19:38Z",
+      "side": 1,
+      "message": "this is a little ambiguous, and could refer to any combination:\n* initial / incremental\n* interleaved / phased\n* local-only / network-only / both",
+      "range": {
+        "startLine": 162,
+        "startChar": 26,
+        "endLine": 162,
+        "endChar": 49
+      },
+      "revId": "45bf840556e1a69645f1daeec55c823d1c91f7aa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
