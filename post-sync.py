@@ -127,11 +127,6 @@ def _run_post_sync_hooks(
             hook_path = repo_root_path / hook_path
 
         if not hook_path.exists():
-            print(
-                f"error: Registered post-sync hook '{name}' not found: "
-                f"{hook_path}",
-                file=sys.stderr,
-            )
             return 1
 
         # Replace the first element with the resolved path.
@@ -180,7 +175,6 @@ def main(repo_topdir=None, **kwargs) -> int:
 
     return _run_post_sync_hooks(Path(repo_root), sync_duration_seconds)
 
-
 def direct_main(argv: List[str]) -> int:
     """Run hooks directly (outside of the context of repo).
 
@@ -192,9 +186,7 @@ def direct_main(argv: List[str]) -> int:
         "--repo-root", help="The top level of the repo checkout."
     )
     parser.add_argument(
-        "--sync-duration-seconds",
-        type=int,
-        help="The total time taken by the sync operation.",
+        "--sync-duration-seconds", help="The total time taken by the sync operation.",
     )
 
     opts = parser.parse_args(argv)
