@@ -127,11 +127,6 @@ def _run_post_sync_hooks(
             hook_path = repo_root_path / hook_path
 
         if not hook_path.exists():
-            print(
-                f"error: Registered post-sync hook '{name}' not found: "
-                f"{hook_path}",
-                file=sys.stderr,
-            )
             return 1
 
         # Replace the first element with the resolved path.
@@ -193,7 +188,7 @@ def direct_main(argv: List[str]) -> int:
     )
     parser.add_argument(
         "--sync-duration-seconds",
-        type=int,
+        default="",
         help="The total time taken by the sync operation.",
     )
 
