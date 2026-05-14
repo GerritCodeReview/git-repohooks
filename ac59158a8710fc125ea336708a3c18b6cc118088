@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b9b10ac_47f9fde3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1133306
+      },
+      "writtenOn": "2026-05-14T00:52:38Z",
+      "side": 1,
+      "message": "The better approach is to remove [this line](https://source.corp.google.com/h/googleplex-android/platform/manifest/+/main-without-vendor:GLOBAL-POSTSYNC.cfg;l\u003d2;drc\u003d9ef6db6a281ecaa5dedb643dd686ef77267c75ac) so that we don\u0027t even try to add the hook when `vendor/google/tools` is (correctly and intentionally) not present on the manifest branch.",
+      "revId": "ac59158a8710fc125ea336708a3c18b6cc118088",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
