@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a09e9d90_af3385b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-15T17:23:47Z",
+      "side": 1,
+      "message": "nit: remove, this doesn\u0027t seem relevant to this change (at current patchset)",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 62
+      },
+      "revId": "efb6ddc8e5b0860318e86f468f514121bfad5ff9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c56d869c_26327a28",
+        "filename": "README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-15T17:23:47Z",
+      "side": 1,
+      "message": "nit: mention that this is in seconds (repo sometimes uses minutes instead of seconds for sync metrics)",
+      "range": {
+        "startLine": 123,
+        "startChar": 31,
+        "endLine": 123,
+        "endChar": 69
+      },
+      "revId": "efb6ddc8e5b0860318e86f468f514121bfad5ff9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16df4e3_f863967e",
+        "filename": "post-sync.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-15T17:23:47Z",
+      "side": 1,
+      "message": "this comment seems to contradict how L71 has `REPO_SYNC_DURATION` inherited from the global env? we should update this comment",
+      "range": {
+        "startLine": 73,
+        "startChar": 52,
+        "endLine": 73,
+        "endChar": 86
+      },
+      "revId": "efb6ddc8e5b0860318e86f468f514121bfad5ff9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a7e1a5_cee932a6",
+        "filename": "rh/hooks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-15T17:23:47Z",
+      "side": 1,
+      "message": "we return `self._repo_root` if it exists, for both var_REPO_ROOT and var_REPO_OUTER_ROOT, but IIUC these can be different?",
+      "range": {
+        "startLine": 162,
+        "startChar": 12,
+        "endLine": 163,
+        "endChar": 30
+      },
+      "revId": "efb6ddc8e5b0860318e86f468f514121bfad5ff9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
