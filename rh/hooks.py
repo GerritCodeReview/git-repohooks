@@ -624,29 +624,49 @@ def check_commit_msg_changeid_field(project, commit, desc, _diff, options=None):
     if options.args():
         raise ValueError(f"commit msg {field} check takes no options")
 
-    found = []
+    num_valid = 0
+    num_total = 0
+    loose_re = re.compile(rf"^{field}:", re.IGNORECASE)
     for line in desc.splitlines():
         if check_re.match(line):
-            found.append(line)
+            num_valid += 1
+            num_total += 1
+        elif loose_re.match(line):
+            num_total += 1
 
-    if not found:
+    ret = []
+    if num_total > num_valid:
+        ret.append(
+            rh.results.HookResult(
+                f'commit msg: "{field}:" check',
+                project,
+                commit,
+                error=(
+                    f'Commit message has invalid casing for "{field}:".  '
+                    f'It must match exact case "{field}:".'
+                ),
+            )
+        )
+
+    if num_valid == 0 and not ret:
         error = (
             f'Commit message is missing a "{field}:" line.  It must match the\n'
             f"following case-sensitive regex:\n\n    {regex}"
         )
-    elif len(found) > 1:
+    elif num_total > 1:
         error = (
             f'Commit message has too many "{field}:" lines.  There can be '
             "only one."
         )
     else:
-        return None
+        return ret or None
 
-    return [
+    ret.append(
         rh.results.HookResult(
             f'commit msg: "{field}:" check', project, commit, error=error
         )
-    ]
+    )
+    return ret
 
 
 PREBUILT_APK_MSG = """Commit message is missing required prebuilt APK
