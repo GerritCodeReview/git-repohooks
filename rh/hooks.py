@@ -1355,7 +1355,7 @@ def check_alint(project, commit, _desc, diff, options=None):
     head_hash = rh.git.get_commit_for_ref("HEAD")
     is_head = commit in ("HEAD", head_hash)
     fixup_cmd = (
-        [alint_path, "fix", "--no_amend", "--commit", commit]
+        [alint_path, "fix", "-y", "--no_amend", "--commit", commit]
         if is_head and result.returncode in (5, 6)
         else None
     )
