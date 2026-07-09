@@ -201,17 +201,19 @@ class ExclusionScope(object):
 class HookOptions(object):
     """Holder class for hook options."""
 
-    def __init__(self, name, args, tool_paths):
+    def __init__(self, name, args, tool_paths, yes=False):
         """Initialize.
 
         Args:
             name: The name of the hook.
             args: The override commandline arguments for the hook.
             tool_paths: A dictionary with tool names to paths.
+            yes: Answer yes to all safe prompts.
         """
         self.name = name
         self._args = args
         self._tool_paths = tool_paths
+        self.yes = yes
 
     @staticmethod
     def expand_vars(args, diff=()):
@@ -1308,8 +1310,12 @@ def check_alint(project, commit, _desc, diff, options=None):
     # supported for non-head commits.
     head_hash = rh.git.get_commit_for_ref("HEAD")
     is_head = commit in ("HEAD", head_hash)
+    yes = options.yes if options else False
+    alint_fix_args = ["fix", "--no_amend", "--commit", commit]
+    if yes:
+        alint_fix_args.insert(1, "-y")
     fixup_cmd = (
-        [alint_path, "fix", "--no_amend", "--commit", commit]
+        [alint_path] + alint_fix_args
         if is_head and result.returncode in (5, 6)
         else None
     )

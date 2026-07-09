@@ -1211,6 +1211,20 @@ class BuiltinHooksTests(unittest.TestCase):
             self.assertFalse(ret[0].is_warning())
             self.assertEqual(ret[0].result.returncode, 5)
 
+            # Test error with fix and options.yes (HEAD commit).
+            mock_run.return_value = rh.utils.CompletedProcess(returncode=5)
+            yes_options = rh.hooks.HookOptions("alint", [], {}, yes=True)
+            ret = rh.hooks.check_alint(
+                self.project, commit, "desc", diff, options=yes_options
+            )
+            self.assertIsNotNone(ret)
+            self.assertEqual(
+                ret[0].fixup_cmd,
+                ["alint", "fix", "-y", "--no_amend", "--commit", commit],
+            )
+            self.assertFalse(ret[0].is_warning())
+            self.assertEqual(ret[0].result.returncode, 5)
+
             # Test warning with fix (HEAD commit).
             mock_run.return_value = rh.utils.CompletedProcess(returncode=6)
             ret = rh.hooks.check_alint(
