@@ -395,6 +395,27 @@ class BuiltinHooksTests(unittest.TestCase):
                     bool(ret), msg="Should have rejected: {{{" + desc + "}}}"
                 )
 
+    def _test_commit_message_errors(
+        self, func, desc, expected_errors, files=None
+    ):
+        """Helper for testing hooks that reject messages with error strings."""
+        if files:
+            diff = [rh.git.RawDiffEntry(file=x) for x in files]
+        else:
+            diff = []
+        ret = func(self.project, "commit", desc, diff, options=self.options)
+        self.assertIsNotNone(ret, msg=f"Should have rejected: {{{desc}}}")
+        assert len(ret) == len(expected_errors)
+        errors = [r.error for r in ret]
+        for expected in expected_errors:
+            self.assertTrue(
+                any(expected in e for e in errors),
+                msg=(
+                    f'Expected error substring "{expected}" '
+                    f"not found in {errors}"
+                ),
+            )
+
     def _test_file_filter(self, mock_check, func, files):
         """Helper for testing hooks that filter by files and run external tools.
 
@@ -587,22 +608,69 @@ class BuiltinHooksTests(unittest.TestCase):
         )
 
     def test_commit_msg_changeid_field(self, _mock_check, _mock_run):
-        """Verify the commit_msg_changeid_field builtin hook."""
-        # Check some good messages.
+        """Verify check_commit_msg_changeid_field accepts valid messages."""
         self._test_commit_messages(
             rh.hooks.check_commit_msg_changeid_field,
             True,
             ("subj\n\nChange-Id: I1234\n",),
         )
 
-        # Check some bad messages.
-        self._test_commit_messages(
+    def test_commit_msg_changeid_field_invalid_casing(
+        self, _mock_check, _mock_run
+    ):
+        """Verify check_commit_msg_changeid_field rejects bad casing."""
+        self._test_commit_message_errors(
             rh.hooks.check_commit_msg_changeid_field,
-            False,
+            "subj\n\nChange-ID: I1234\n",
+            ("invalid casing",),
+        )
+
+    def test_commit_msg_changeid_field_invalid_format(
+        self, _mock_check, _mock_run
+    ):
+        """Verify check_commit_msg_changeid_field rejects malformed IDs."""
+        self._test_commit_message_errors(
+            rh.hooks.check_commit_msg_changeid_field,
+            "subj\n\nChange-Id: 1234\n",
+            ('invalid "Change-Id:" value format',),
+        )
+
+    def test_commit_msg_changeid_field_duplicates(self, _mock_check, _mock_run):
+        """Verify check_commit_msg_changeid_field rejects duplicate footers."""
+        self._test_commit_message_errors(
+            rh.hooks.check_commit_msg_changeid_field,
+            "subj\n\nChange-Id: I1234\nChange-Id: I5678\n",
+            ('too many "Change-Id:" lines',),
+        )
+
+    def test_commit_msg_changeid_field_missing(self, _mock_check, _mock_run):
+        """Verify check_commit_msg_changeid_field rejects missing footers."""
+        self._test_commit_message_errors(
+            rh.hooks.check_commit_msg_changeid_field,
+            "subj",
+            ('missing a "Change-Id:" line',),
+        )
+
+    def test_commit_msg_changeid_field_valid_and_invalid_casing(
+        self, _mock_check, _mock_run
+    ):
+        """Verify check_commit_msg_changeid_field catches casing/duplicates."""
+        self._test_commit_message_errors(
+            rh.hooks.check_commit_msg_changeid_field,
+            "subj\n\nChange-Id: I1234\nChange-ID: I5678\n",
+            ("invalid casing", 'too many "Change-Id:" lines'),
+        )
+
+    def test_commit_msg_changeid_field_valid_and_invalid_format(
+        self, _mock_check, _mock_run
+    ):
+        """Verify check_commit_msg_changeid_field catches format/duplicates."""
+        self._test_commit_message_errors(
+            rh.hooks.check_commit_msg_changeid_field,
+            "subj\n\nChange-Id: I1234\nChange-Id: 5678\n",
             (
-                "subj",
-                "subj\n\nChange-Id: 1234\n",
-                "subj\n\nChange-ID: I1234\n",
+                'invalid "Change-Id:" value format',
+                'too many "Change-Id:" lines',
             ),
         )
 
