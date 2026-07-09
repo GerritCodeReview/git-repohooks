@@ -618,35 +618,81 @@ def check_commit_msg_bug_field(project, commit, desc, _diff, options=None):
 def check_commit_msg_changeid_field(project, commit, desc, _diff, options=None):
     """Check the commit message for a 'Change-Id:' line."""
     field = "Change-Id"
-    regex = rf"^{field}: I[a-f0-9]+$"
-    check_re = re.compile(regex)
+    exact_prefix = f"{field}:"
+    lower_prefix = exact_prefix.lower()
+    value_pattern = r"I[a-f0-9]+$"
+    valid_line_re = re.compile(rf"^{exact_prefix} {value_pattern}")
 
     if options.args():
         raise ValueError(f"commit msg {field} check takes no options")
 
-    found = []
+    total_count = 0
+    has_casing_error = False
+    has_format_error = False
     for line in desc.splitlines():
-        if check_re.match(line):
-            found.append(line)
+        line_lower = line.lower()
+        if line_lower.startswith(lower_prefix):
+            total_count += 1
+            if not line.startswith(exact_prefix):
+                has_casing_error = True
+            elif not valid_line_re.match(line):
+                has_format_error = True
 
-    if not found:
-        error = (
-            f'Commit message is missing a "{field}:" line.  It must match the\n'
-            f"following case-sensitive regex:\n\n    {regex}"
+    ret = []
+    if has_casing_error:
+        ret.append(
+            rh.results.HookResult(
+                f'commit msg: "{field}:" check',
+                project,
+                commit,
+                error=(
+                    f'Commit message has invalid casing for "{field}:".  '
+                    f'It must match exact case "{field}:".'
+                ),
+            )
         )
-    elif len(found) > 1:
-        error = (
-            f'Commit message has too many "{field}:" lines.  There can be '
-            "only one."
-        )
-    else:
-        return None
 
-    return [
-        rh.results.HookResult(
-            f'commit msg: "{field}:" check', project, commit, error=error
+    if has_format_error:
+        ret.append(
+            rh.results.HookResult(
+                f'commit msg: "{field}:" check',
+                project,
+                commit,
+                error=(
+                    f'Commit message has an invalid "{field}:" value format.  '
+                    f"It must start with 'I' followed by hex digits "
+                    f"(regex: {value_pattern})."
+                ),
+            )
         )
-    ]
+
+    if total_count == 0:
+        ret.append(
+            rh.results.HookResult(
+                f'commit msg: "{field}:" check',
+                project,
+                commit,
+                error=(
+                    f'Commit message is missing a "{field}:" line.  '
+                    f"It must match the following case-sensitive regex:\n\n    "
+                    f"^{exact_prefix} {value_pattern}"
+                ),
+            )
+        )
+    elif total_count > 1:
+        ret.append(
+            rh.results.HookResult(
+                f'commit msg: "{field}:" check',
+                project,
+                commit,
+                error=(
+                    f'Commit message has too many "{field}:" lines.  '
+                    "There can be only one."
+                ),
+            )
+        )
+
+    return ret or None
 
 
 PREBUILT_APK_MSG = """Commit message is missing required prebuilt APK
