@@ -283,7 +283,9 @@ def _get_project_config(from_git: bool = False) -> rh.config.PreUploadSettings:
     return rh.config.PreUploadSettings(paths=paths, global_paths=global_paths)
 
 
-def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
+def _attempt_fixes(
+    projects_results: List[rh.results.ProjectResults], yes: bool = False
+) -> None:
     """Attempts to fix fixable results."""
     # Filter out any result that has a fixup.
     fixups: List[Tuple[str, rh.results.HookResult]] = []
@@ -303,7 +305,9 @@ def _attempt_fixes(projects_results: List[rh.results.ProjectResults]) -> None:
     # If there's more than one fixup available, ask if they want to blindly run
     # them all, or prompt for them one-by-one.
     mode = "some"
-    if len(fixups) > 1:
+    if yes:
+        mode = "all"
+    elif len(fixups) > 1:
         while True:
             response = rh.terminal.str_prompt(
                 "What would you like to do",
@@ -564,6 +568,7 @@ def _run_projects_hooks(
     jobs: Optional[int] = None,
     from_git: bool = False,
     commit_list: Optional[List[str]] = None,
+    yes: bool = False,
 ) -> bool:
     """Run all the hooks
 
@@ -576,6 +581,7 @@ def _run_projects_hooks(
         commit_list: A list of commits to run hooks against.  If None or empty
             list then we'll automatically get the list of commits that would be
             uploaded.
+        yes: Answer yes to all safe prompts.
 
     Returns:
         True if everything passed, else False.
@@ -596,11 +602,11 @@ def _run_projects_hooks(
             # very minimal, so we don't add it then.
             print("", file=sys.stderr)
 
-    _attempt_fixes(results)
+    _attempt_fixes(results, yes=yes)
     return not any(results)
 
 
-def main(project_list, worktree_list=None, **_kwargs):
+def main(project_list, worktree_list=None, yes=False, **_kwargs):
     """Main function invoked directly by repo.
 
     We must use the name "main" as that is what repo requires.
@@ -614,11 +620,12 @@ def main(project_list, worktree_list=None, **_kwargs):
             project_list, so that each entry in project_list matches with a
             directory in worktree_list.  If None, we will attempt to calculate
             the directories automatically.
+        yes: Answer yes to all safe prompts.
         kwargs: Leave this here for forward-compatibility.
     """
     if not worktree_list:
         worktree_list = [None] * len(project_list)
-    if not _run_projects_hooks(project_list, worktree_list):
+    if not _run_projects_hooks(project_list, worktree_list, yes=yes):
         color = rh.terminal.Color()
         print(
             color.color(color.RED, "FATAL")
@@ -704,6 +711,12 @@ def direct_main(argv: List[str]) -> int:
         "automatically chooses an appropriate number for the "
         "current system.",
     )
+    parser.add_argument(
+        "-y",
+        "--yes",
+        action="store_true",
+        help="Answer yes to all safe prompts",
+    )
     parser.add_argument("commits", nargs="*", help="Check specific commits")
     opts = parser.parse_args(argv)
 
@@ -734,6 +747,7 @@ def direct_main(argv: List[str]) -> int:
             jobs=opts.jobs,
             from_git=opts.git,
             commit_list=opts.commits,
+            yes=opts.yes,
         ):
             return 0
     except KeyboardInterrupt:
