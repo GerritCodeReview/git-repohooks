@@ -625,16 +625,20 @@ def check_commit_msg_changeid_field(project, commit, desc, _diff, options=None):
         raise ValueError(f"commit msg {field} check takes no options")
 
     found = []
+    loose_found = 0
+    loose_re = re.compile(r"^change-id:", re.IGNORECASE)
     for line in desc.splitlines():
         if check_re.match(line):
             found.append(line)
+        if loose_re.match(line.strip()):
+            loose_found += 1
 
     if not found:
         error = (
             f'Commit message is missing a "{field}:" line.  It must match the\n'
             f"following case-sensitive regex:\n\n    {regex}"
         )
-    elif len(found) > 1:
+    elif loose_found > 1:
         error = (
             f'Commit message has too many "{field}:" lines.  There can be '
             "only one."
