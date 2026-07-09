@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1d183fb_22de068e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:35:18Z",
+      "side": 1,
+      "message": "`hooks:` or `check_commit_msg_changeid_field:`",
+      "revId": "e92de0c22f08f921511354336a1d3e63004349f1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7db267d5_19c4a8da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:35:18Z",
+      "side": 1,
+      "message": "delete these",
+      "revId": "e92de0c22f08f921511354336a1d3e63004349f1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe7e410_08a8ff44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:35:18Z",
+      "side": 1,
+      "message": "does Gerrit accept the other cases ?  or does it only accept `Change-Id` ?  if it only accepts `Change-Id` exactly, then we should reject non-matching case.",
+      "revId": "e92de0c22f08f921511354336a1d3e63004349f1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13625c35_cb7e21fd",
+        "filename": "rh/hooks.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:35:18Z",
+      "side": 1,
+      "message": "does this need to be lowercase ?  just re-use `field` ?",
+      "revId": "e92de0c22f08f921511354336a1d3e63004349f1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
