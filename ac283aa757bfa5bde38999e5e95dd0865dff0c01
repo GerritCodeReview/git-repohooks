@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6307d85_5387bd9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-09T19:06:12Z",
+      "side": 1,
+      "message": "Done. Updated commit subject prefix to `hooks:`.",
+      "parentUuid": "c1d183fb_22de068e",
+      "revId": "ac283aa757bfa5bde38999e5e95dd0865dff0c01",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6965f8ba_138c02b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-09T19:06:12Z",
+      "side": 1,
+      "message": "Done. Removed automated tracking footers.",
+      "parentUuid": "7db267d5_19c4a8da",
+      "revId": "ac283aa757bfa5bde38999e5e95dd0865dff0c01",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57a5b2ba_6a7cbbf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-09T19:06:12Z",
+      "side": 1,
+      "message": "Yes, Gerrit server only recognizes exact case `Change-Id: I...`. If a commit has only a non-matching case (like `Change-ID:`), `if not found and loose_found \u003d\u003d 0:` already rejects it. If it has a non-matching case alongside a valid Change-Id, we now explicitly check `elif loose_found !\u003d len(found):` to reject non-matching cases with an explicit error.",
+      "parentUuid": "cfe7e410_08a8ff44",
+      "revId": "ac283aa757bfa5bde38999e5e95dd0865dff0c01",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7980bf0f_9d427d54",
+        "filename": "rh/hooks.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-09T19:06:12Z",
+      "side": 1,
+      "message": "Done. Reused the `field` variable: `rf\"^{field}:\"` with `re.IGNORECASE`.",
+      "parentUuid": "13625c35_cb7e21fd",
+      "revId": "ac283aa757bfa5bde38999e5e95dd0865dff0c01",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
