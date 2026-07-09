@@ -603,6 +603,9 @@ class BuiltinHooksTests(unittest.TestCase):
                 "subj",
                 "subj\n\nChange-Id: 1234\n",
                 "subj\n\nChange-ID: I1234\n",
+                "subj\n\nChange-Id: I1234\nChange-Id: I5678\n",
+                "subj\n\nChange-Id: I1234\nChange-ID: I5678\n",
+                "subj\n\nChange-id: I1234\nChange-ID: I5678\n",
             ),
         )
 
