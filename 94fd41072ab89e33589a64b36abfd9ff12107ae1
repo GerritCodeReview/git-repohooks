@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c7b4823_d19b7dfa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-09T22:10:04Z",
+      "side": 1,
+      "message": "Using simple integer counters (`num_valid` and `num_total`) instead of list tracking, while returning multiple `HookResult` objects simultaneously. I hope the naming makes the logic easier to follow.\n\nAlso updated the missing-line check to `if num_valid \u003d\u003d 0 and not ret:` so that a simple casing typo does not produce a redundant \u0027missing Change-Id\u0027 error.",
+      "parentUuid": "a7dfb1bb_fcb425f4",
+      "revId": "94fd41072ab89e33589a64b36abfd9ff12107ae1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
