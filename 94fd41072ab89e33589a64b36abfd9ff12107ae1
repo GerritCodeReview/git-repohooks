@@ -17,6 +17,29 @@
       "parentUuid": "a7dfb1bb_fcb425f4",
       "revId": "94fd41072ab89e33589a64b36abfd9ff12107ae1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61dfafdb_a66f17f6",
+        "filename": "rh/hooks.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-09T22:18:28Z",
+      "side": 1,
+      "message": "I think in theory this should not be included if we only check for case - should probably be a separate test and message?",
+      "range": {
+        "startLine": 621,
+        "startChar": 25,
+        "endLine": 621,
+        "endChar": 36
+      },
+      "revId": "94fd41072ab89e33589a64b36abfd9ff12107ae1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
