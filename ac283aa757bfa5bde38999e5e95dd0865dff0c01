@@ -55,6 +55,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7dfb1bb_fcb425f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T19:39:39Z",
+      "side": 1,
+      "message": "i think the logic can be simplified then.  the current counter tracking is pretty difficult to keep straight.\n\n```\n    found_bad_case \u003d False\n    ...\n        if check_re.match(line):\n            found.append(line)\n        elif loose_re.match(line):\n            found_bad_case \u003d True\n    ...\n```\n\nyou can also return more than one error result.  you don\u0027t need to try and condense it down here.\n\n```\nret \u003d []\nif found_bad_case:\n    ret +\u003d [rh.results.HookResult(...)]\nif len(found) !\u003d 1:\n    ... add the existing HookResult logic ...\nreturn ret\n```",
+      "parentUuid": "57a5b2ba_6a7cbbf1",
+      "revId": "ac283aa757bfa5bde38999e5e95dd0865dff0c01",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7980bf0f_9d427d54",
