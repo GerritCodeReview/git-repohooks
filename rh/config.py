@@ -169,12 +169,14 @@ class PreUploadConfig(object):
             func = functools.partial(rh.hooks.check_custom, options=options)
             yield rh.hooks.CallableHook(hook, func, scope)
 
-    def callable_builtin_hooks(self) -> Iterator[rh.hooks.CallableHook]:
+    def callable_builtin_hooks(
+        self, yes: bool = False
+    ) -> Iterator[rh.hooks.CallableHook]:
         """Yield a CallableHook for each hook to be executed."""
         scope = rh.hooks.ExclusionScope([])
         for hook in self.builtin_hooks:
             options = rh.hooks.HookOptions(
-                hook, self.builtin_hook_option(hook), self.tool_paths
+                hook, self.builtin_hook_option(hook), self.tool_paths, yes=yes
             )
             func = functools.partial(
                 rh.hooks.BUILTIN_HOOKS[hook], options=options
