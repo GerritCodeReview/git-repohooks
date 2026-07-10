@@ -1,0 +1,23 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "636568a5_40eb49ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-10T05:39:11Z",
+      "side": 1,
+      "message": "Done. All automated tracking footers (TAG/CONV/Flag) have been removed from the commit message.",
+      "parentUuid": "7db267d5_19c4a8da",
+      "isAi": true,
+      "revId": "f4bdb572cb26c4c4f1362ccd5e01aa30c8d23703",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
