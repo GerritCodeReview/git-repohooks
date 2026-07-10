@@ -1,0 +1,29 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "058a6fe3_5f3d43a9",
+        "filename": "rh/hooks.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-10T05:16:42Z",
+      "side": 1,
+      "message": "Done. Separated tag casing validation from value format validation into distinct error reports and tests, and refactored string matching to use fast prefix checks with DRY state tracking.",
+      "parentUuid": "61dfafdb_a66f17f6",
+      "range": {
+        "startLine": 621,
+        "startChar": 25,
+        "endLine": 621,
+        "endChar": 36
+      },
+      "isAi": true,
+      "revId": "f17e0d1e0ffdc0988a03859e5d6c07c49c89485e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
