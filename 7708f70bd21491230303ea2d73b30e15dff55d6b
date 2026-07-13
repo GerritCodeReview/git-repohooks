@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "40a3218a_0e06574b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-13T17:04:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d394bfa3_6232945b",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "96936a72_cb9c0b6f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -69,6 +87,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1998f57_8350e6d9",
+        "filename": "pre-upload.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-13T17:04:20Z",
+      "side": 1,
+      "message": "I think that is fine - it goes with the intention of passing \"yes\" to all safe prompts for the repo command.",
+      "parentUuid": "b10dd7d3_f6e91eb5",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65b459f4_b5bd2921",
@@ -82,6 +118,24 @@
       "writtenOn": "2026-07-13T05:48:28Z",
       "side": 1,
       "message": "don\u0027t use os.path APIs.  look at other unittests and copy their boilerplate.",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6327cb04_03372bf7",
+        "filename": "pre-upload_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-13T17:04:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65b459f4_b5bd2921",
       "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -103,6 +157,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2dd4126_23be7081",
+        "filename": "pre-upload_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-13T17:04:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b61c69a_5fc046d1",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb3eea1a_843216de",
@@ -116,6 +188,24 @@
       "writtenOn": "2026-07-13T05:48:28Z",
       "side": 1,
       "message": "you didn\u0027t mark the file as +x or give it a shebang, so this code is never executed\n\nif we\u0027re only going to run it via pytest (which is fine), then rewrite the tests from unittest.TestCase to pytest tests",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e02ae635_ff59b8da",
+        "filename": "pre-upload_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-13T17:04:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb3eea1a_843216de",
       "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -169,6 +259,24 @@
       "side": 1,
       "message": "repohooks already handles interactive prompting for fixups.  why is alint doing it a 2nd time ?",
       "parentUuid": "1ad55975_2dc56c55",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9e815c9_577cfaef",
+        "filename": "rh/hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-13T17:04:20Z",
+      "side": 1,
+      "message": "alint runs a variety of analyzers - we want to run each one through the user to ensure it doesn\u0027t make unintended changes. \n\nIf we were to update the fixup command to include a \"-y\" to alint, it\u0027d apply all the changes at once after the initial confirmation by user (which we want to avoid).",
+      "parentUuid": "ea7f9df0_e44ff92c",
       "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
