@@ -153,6 +153,24 @@
       "parentUuid": "1dfdc0e4_5d57f807",
       "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea7f9df0_e44ff92c",
+        "filename": "rh/hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-13T16:10:08Z",
+      "side": 1,
+      "message": "repohooks already handles interactive prompting for fixups.  why is alint doing it a 2nd time ?",
+      "parentUuid": "1ad55975_2dc56c55",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
