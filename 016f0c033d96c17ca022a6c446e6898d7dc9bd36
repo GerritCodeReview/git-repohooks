@@ -22,6 +22,30 @@
       },
       "revId": "016f0c033d96c17ca022a6c446e6898d7dc9bd36",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84aa7975_6cc31fda",
+        "filename": "rh/hooks_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 4992410
+      },
+      "writtenOn": "2026-07-13T17:33:55Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "bce46d8c_3a7877a8",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 9
+      },
+      "revId": "016f0c033d96c17ca022a6c446e6898d7dc9bd36",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
