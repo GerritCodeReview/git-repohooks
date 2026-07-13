@@ -52,6 +52,23 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b10dd7d3_f6e91eb5",
+        "filename": "pre-upload.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-07-13T15:19:50Z",
+      "side": 1,
+      "message": "FYI: I think this means that all fixup commands will automatically be run (not just alint). This will make the behavior consistent for all hooks with fixups with I think is good, but it\u0027s different than what we discussed.",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65b459f4_b5bd2921",
@@ -116,6 +133,24 @@
       "writtenOn": "2026-07-13T05:48:28Z",
       "side": 1,
       "message": "why do you need to plumb this logic down ?  the high-level code already automatically runs the fixup command that the hook registered.",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad55975_2dc56c55",
+        "filename": "rh/hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 4681583
+      },
+      "writtenOn": "2026-07-13T15:19:50Z",
+      "side": 1,
+      "message": "alint fix prompts the user to accept potential fixes, passing -y automatically accepts the fixes, so I think this is correct.",
+      "parentUuid": "1dfdc0e4_5d57f807",
       "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
