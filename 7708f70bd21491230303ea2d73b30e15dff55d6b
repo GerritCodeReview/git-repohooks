@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d394bfa3_6232945b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-13T05:48:28Z",
+      "side": 1,
+      "message": "same feedback on commit messages as your other CLs",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "96936a72_cb9c0b6f",
@@ -31,6 +48,74 @@
       "writtenOn": "2026-07-11T07:57:42Z",
       "side": 1,
       "message": "Yes",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65b459f4_b5bd2921",
+        "filename": "pre-upload_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-13T05:48:28Z",
+      "side": 1,
+      "message": "don\u0027t use os.path APIs.  look at other unittests and copy their boilerplate.",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b61c69a_5fc046d1",
+        "filename": "pre-upload_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-13T05:48:28Z",
+      "side": 1,
+      "message": "comments are full sentences, so periods at the end",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb3eea1a_843216de",
+        "filename": "pre-upload_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-13T05:48:28Z",
+      "side": 1,
+      "message": "you didn\u0027t mark the file as +x or give it a shebang, so this code is never executed\n\nif we\u0027re only going to run it via pytest (which is fine), then rewrite the tests from unittest.TestCase to pytest tests",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dfdc0e4_5d57f807",
+        "filename": "rh/hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-13T05:48:28Z",
+      "side": 1,
+      "message": "why do you need to plumb this logic down ?  the high-level code already automatically runs the fixup command that the hook registered.",
       "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
