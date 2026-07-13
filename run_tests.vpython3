@@ -62,7 +62,7 @@ wheel: <
 # Required by black==25.1.0
 wheel: <
   name: "infra/python/wheels/mypy-extensions-py3"
-  version: "version:1.0.0"
+  version: "version:1.1.0"
 >
 
 # Required by black==25.1.0
@@ -80,13 +80,13 @@ wheel: <
 # Required by black==25.1.0
 wheel: <
   name: "infra/python/wheels/pathspec-py3"
-  version: "version:0.9.0"
+  version: "version:1.0.4"
 >
 
 # Required by black==25.1.0
 wheel: <
   name: "infra/python/wheels/typing-extensions-py3"
-  version: "version:4.3.0"
+  version: "version:4.14.0"
 >
 
 # Required by black==25.1.0
@@ -131,5 +131,17 @@ wheel: <
 
 wheel: <
   name: "infra/python/wheels/mypy-py3"
-  version: "version:1.2.0"
+  version: "version:2.1.0"
+>
+
+# Required by mypy==2.1.0
+wheel: <
+  name: "infra/python/wheels/librt/${vpython_platform}"
+  version: "version:0.11.0"
+>
+
+# Required by mypy==2.1.0
+wheel: <
+  name: "infra/python/wheels/ast-serialize/${vpython_platform}"
+  version: "version:0.5.0"
 >
