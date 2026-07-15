@@ -279,6 +279,24 @@
       "parentUuid": "ea7f9df0_e44ff92c",
       "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06dede8f_be0a3b48",
+        "filename": "rh/hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-15T11:15:03Z",
+      "side": 1,
+      "message": "Updated the alint fixup command to always have \"-y\".",
+      "parentUuid": "b9e815c9_577cfaef",
+      "revId": "7708f70bd21491230303ea2d73b30e15dff55d6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
