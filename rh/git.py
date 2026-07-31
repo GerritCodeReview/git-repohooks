@@ -70,10 +70,19 @@ def get_upstream_branch() -> str:
     return full_upstream.replace("heads", "remotes/" + remote)
 
 
-def get_commit_for_ref(ref: str) -> str:
+def get_config(key: str, cwd: Optional[str] = None) -> Optional[str]:
+    """Returns the value for a git config key, or None if unset."""
+    cmd = ["git", "config", "--get", key]
+    result = rh.utils.run(cmd, capture_output=True, check=False, cwd=cwd)
+    if result.returncode == 0:
+        return result.stdout.strip()
+    return None
+
+
+def get_commit_for_ref(ref: str, cwd: Optional[str] = None) -> str:
     """Returns the latest commit for this ref."""
     cmd = ["git", "rev-parse", ref]
-    result = rh.utils.run(cmd, capture_output=True)
+    result = rh.utils.run(cmd, capture_output=True, cwd=cwd)
     return result.stdout.strip()
 
 
