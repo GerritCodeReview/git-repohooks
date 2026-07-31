@@ -49,6 +49,7 @@ import rh.git
 import rh.hooks
 import rh.results
 import rh.terminal
+import rh.trace
 import rh.utils
 
 
@@ -445,7 +446,8 @@ def _run_project_hooks_in_cwd(
     def _run_hook(hook, project, commit, desc, diff):
         """Run a hook, gather stats, and process its results."""
         start = datetime.datetime.now()
-        results = hook.hook(project, commit, desc, diff)
+        with rh.trace.record_region("repohook", hook.name, msg=commit):
+            results = hook.hook(project, commit, desc, diff)
         (error, warning) = _process_hook_results(results)
         duration = datetime.datetime.now() - start
         return (hook, results, error, warning, duration)
@@ -625,7 +627,13 @@ def main(project_list, worktree_list=None, yes=False, **_kwargs):
     """
     if not worktree_list:
         worktree_list = [None] * len(project_list)
-    if not _run_projects_hooks(project_list, worktree_list, yes=yes):
+    rh.trace.start_session()
+    success = False
+    try:
+        success = _run_projects_hooks(project_list, worktree_list, yes=yes)
+    finally:
+        rh.trace.exit_session(0 if success else 1)
+    if not success:
         color = rh.terminal.Color()
         print(
             color.color(color.RED, "FATAL")
