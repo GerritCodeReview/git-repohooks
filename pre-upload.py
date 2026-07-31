@@ -49,6 +49,7 @@ import rh.git
 import rh.hooks
 import rh.results
 import rh.terminal
+import rh.trace
 import rh.utils
 
 
@@ -445,7 +446,8 @@ def _run_project_hooks_in_cwd(
     def _run_hook(hook, project, commit, desc, diff):
         """Run a hook, gather stats, and process its results."""
         start = datetime.datetime.now()
-        results = hook.hook(project, commit, desc, diff)
+        with rh.trace.record_region("repohook", hook.name, msg=commit):
+            results = hook.hook(project, commit, desc, diff)
         (error, warning) = _process_hook_results(results)
         duration = datetime.datetime.now() - start
         return (hook, results, error, warning, duration)
@@ -586,24 +588,30 @@ def _run_projects_hooks(
     Returns:
         True if everything passed, else False.
     """
-    results = []
-    for project, worktree in zip(project_list, worktree_list):
-        result = _run_project_hooks(
-            project,
-            proj_dir=worktree,
-            jobs=jobs,
-            from_git=from_git,
-            commit_list=commit_list,
-        )
-        results.append(result)
-        if result:
-            # If a repo had failures, add a blank line to help break up the
-            # output.  If there were no failures, then the output should be
-            # very minimal, so we don't add it then.
-            print("", file=sys.stderr)
+    rh.trace.start_session()
+    ret = False
+    try:
+        results = []
+        for project, worktree in zip(project_list, worktree_list):
+            result = _run_project_hooks(
+                project,
+                proj_dir=worktree,
+                jobs=jobs,
+                from_git=from_git,
+                commit_list=commit_list,
+            )
+            results.append(result)
+            if result:
+                # If a repo had failures, add a blank line to help break up the
+                # output.  If there were no failures, then the output should be
+                # very minimal, so we don't add it then.
+                print("", file=sys.stderr)
 
-    _attempt_fixes(results, yes=yes)
-    return not any(results)
+        _attempt_fixes(results, yes=yes)
+        ret = not any(results)
+    finally:
+        rh.trace.exit_session(0 if ret else 1)
+    return ret
 
 
 def main(project_list, worktree_list=None, yes=False, **_kwargs):
