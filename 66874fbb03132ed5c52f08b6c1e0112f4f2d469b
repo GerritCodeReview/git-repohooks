@@ -1,0 +1,259 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "126e1a94_1b355198",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "```suggestion\nAdd Git Trace2 event logging\n```",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19d9649f_fff69487",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "were you going to add a trace level to repo itself for hooks ?",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7efd20f5_407d8d86",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "if there is no parent, shouldn\u0027t we omit it ?  we don\u0027t want \"repohooks/repohooks-xxx\".",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d730f703_1586a274",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "don\u0027t we have to use `SOCK_DGRAM` for `af_unix:dgram:` ?",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25f21a65_f49dfb5b",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "never catch Exception",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d167a593_1150f1f5",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "i don\u0027t think `exe` here literally means the program running us.  i think it\u0027s meant to be the version of our program.  repo uses the git commit.",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83777ab1_67a668e6",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "t_abs is not the current epoch, it\u0027s a delta of the program runtime\n\nhttps://www.kernel.org/pub/software/scm/git/docs/technical/api-trace2.html#_event_format",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eedf173a_e6400ccb",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "can\u0027t you just return ?",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebae0e0d_0fffe303",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "use datetime.datetime.now and never time.time everywhere",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a036f0a_ab388913",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "\"_unittest.py\"\n\nadd it to PREUPLOAD.cfg",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28d2511c_843ab0ff",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "```suggestion\n\"\"\"Unittests for the trace module.\"\"\"\n```",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00b2c716_23d00df5",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "i\u0027m not seeing why you\u0027re using `delete\u003dFalse`",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99efb1a5_eeeddb0b",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "always delete and catch+ignore io errors",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00bf6892_de951a82",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "these aren\u0027t lines, these are objects",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "668d4bf1_a463ab39",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-31T21:47:12Z",
+      "side": 1,
+      "message": "file needs to have a shebang \u0026 be +x for this to work",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
