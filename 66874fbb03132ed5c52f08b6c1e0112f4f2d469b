@@ -143,6 +143,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92b4b20a_f53cacee",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:56:13Z",
+      "side": 1,
+      "message": "AI states:\n\n```\nGoogle\u0027s local telemetry daemon (git-trace-daemon) listens on\n/run/git-trace-daemon.sock as a UNIX Stream Socket (socket.SOCK_STREAM), \ndefined in its systemd configuration (ListenStream\u003d/run/git-trace-daemon.sock).\n```\n\nLooks legit? Made an edit to handle either.",
+      "parentUuid": "03089d85_501e1141",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25f21a65_f49dfb5b",
         "filename": "rh/trace.py",
         "patchSetId": 1
