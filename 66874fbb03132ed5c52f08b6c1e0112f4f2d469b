@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0362d495_74a890ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "126e1a94_1b355198",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19d9649f_fff69487",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-07-31T21:47:12Z",
       "side": 1,
       "message": "were you going to add a trace level to repo itself for hooks ?",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1044461_91032a88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Yeah was planning on following up there.",
+      "parentUuid": "19d9649f_fff69487",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3cfe6180_cf2e8c2a",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Rewrote the scheme to consider this case. PTAL.",
+      "parentUuid": "7efd20f5_407d8d86",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d730f703_1586a274",
         "filename": "rh/trace.py",
         "patchSetId": 1
@@ -65,6 +119,24 @@
       "writtenOn": "2026-07-31T21:47:12Z",
       "side": 1,
       "message": "don\u0027t we have to use `SOCK_DGRAM` for `af_unix:dgram:` ?",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03089d85_501e1141",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Hmm. Looking into it.",
+      "parentUuid": "d730f703_1586a274",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -86,6 +158,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b791eb71_971b8d12",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "25f21a65_f49dfb5b",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d167a593_1150f1f5",
@@ -103,6 +193,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e7e106c_456995e6",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Yeah good catch.",
+      "parentUuid": "d167a593_1150f1f5",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83777ab1_67a668e6",
@@ -116,6 +224,24 @@
       "writtenOn": "2026-07-31T21:47:12Z",
       "side": 1,
       "message": "t_abs is not the current epoch, it\u0027s a delta of the program runtime\n\nhttps://www.kernel.org/pub/software/scm/git/docs/technical/api-trace2.html#_event_format",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d512dd_abfa43ac",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Ah. Thanks.",
+      "parentUuid": "83777ab1_67a668e6",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -139,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05d08fce_589419bf",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Context managers require at least one yield ya? Added a comment.",
+      "parentUuid": "eedf173a_e6400ccb",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ebae0e0d_0fffe303",
         "filename": "rh/trace.py",
         "patchSetId": 1
@@ -150,6 +294,24 @@
       "writtenOn": "2026-07-31T21:47:12Z",
       "side": 1,
       "message": "use datetime.datetime.now and never time.time everywhere",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "997484f3_ac8cbc10",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "ebae0e0d_0fffe303",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -167,6 +329,24 @@
       "writtenOn": "2026-07-31T21:47:12Z",
       "side": 1,
       "message": "\"_unittest.py\"\n\nadd it to PREUPLOAD.cfg",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44497a6e_fc61a3be",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Good call.",
+      "parentUuid": "6a036f0a_ab388913",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -205,6 +385,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de9a442_89bde263",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Rewritten to use tempfile.",
+      "parentUuid": "00b2c716_23d00df5",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99efb1a5_eeeddb0b",
@@ -218,6 +416,24 @@
       "writtenOn": "2026-07-31T21:47:12Z",
       "side": 1,
       "message": "always delete and catch+ignore io errors",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5a7cdc4_e02d7471",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "99efb1a5_eeeddb0b",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -239,6 +455,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c842b6ca_1588bf5a",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "renamed to events.",
+      "parentUuid": "00bf6892_de951a82",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "668d4bf1_a463ab39",
@@ -252,6 +486,24 @@
       "writtenOn": "2026-07-31T21:47:12Z",
       "side": 1,
       "message": "file needs to have a shebang \u0026 be +x for this to work",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46530c95_1138c11a",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-01T03:51:28Z",
+      "side": 1,
+      "message": "shebanged and +x.",
+      "parentUuid": "668d4bf1_a463ab39",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
