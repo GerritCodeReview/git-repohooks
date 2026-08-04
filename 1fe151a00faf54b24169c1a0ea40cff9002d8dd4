@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70d42427_c9683524",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-04T16:13:02Z",
+      "side": 1,
+      "message": "should we also look at `trace2.eventTarget`? https://git-scm.com/docs/api-trace2#_the_event_format_target",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 59
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032bbf53_bbb2d98b",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-04T16:13:02Z",
+      "side": 1,
+      "message": "I haven\u0027t verified this but doesn\u0027t `repo upload` set CWD to repo topdir, and not the repohooks checkout?",
+      "range": {
+        "startLine": 66,
+        "startChar": 7,
+        "endLine": 66,
+        "endChar": 74
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14229bc1_50321351",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-04T16:13:02Z",
+      "side": 1,
+      "message": "if `GIT_TRACE2_EVENT` is set to a non-path value like 0/false, this will end up writing a file. we should try to follow https://git-scm.com/docs/api-trace2#_enabling_a_target",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 33
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5b4d21d_e226adb5",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-04T16:13:02Z",
+      "side": 1,
+      "message": "nit: add return annotation",
+      "range": {
+        "startLine": 144,
+        "startChar": 59,
+        "endLine": 144,
+        "endChar": 60
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "860509de_6317da37",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-04T16:13:02Z",
+      "side": 1,
+      "message": "should this be `nesting`? reading https://git-scm.com/docs/api-trace2#Documentation/technical/api-trace2.txt-regionenter",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 27
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd562ac_bf04367f",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-04T16:13:02Z",
+      "side": 1,
+      "message": "same here, with `nesting` and `t_rel` from https://git-scm.com/docs/api-trace2#Documentation/technical/api-trace2.txt-regionleave",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 43
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
