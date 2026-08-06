@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22afcfd_1877af3f",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "Good call. Updated.",
+      "parentUuid": "70d42427_c9683524",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 59
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "032bbf53_bbb2d98b",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-08-04T16:13:02Z",
       "side": 1,
       "message": "I haven\u0027t verified this but doesn\u0027t `repo upload` set CWD to repo topdir, and not the repohooks checkout?",
+      "range": {
+        "startLine": 66,
+        "startChar": 7,
+        "endLine": 66,
+        "endChar": 74
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66b4ab82_178858bc",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "Yeah, you\u0027re right: Updated _get_exe_version() to pass the repohooks module directory as cwd so exe always reports the repohooks commit SHA.",
+      "parentUuid": "032bbf53_bbb2d98b",
       "range": {
         "startLine": 66,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13d937f7_4d3f35b9",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14229bc1_50321351",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 33
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5b4d21d_e226adb5",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-08-04T16:13:02Z",
       "side": 1,
       "message": "nit: add return annotation",
+      "range": {
+        "startLine": 144,
+        "startChar": 59,
+        "endLine": 144,
+        "endChar": 60
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c27876_3cdb5442",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5b4d21d_e226adb5",
       "range": {
         "startLine": 144,
         "startChar": 59,
@@ -116,6 +212,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cf881e2_ffe25b16",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "Very good call, thanks for catching this.",
+      "parentUuid": "860509de_6317da37",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 27
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dd562ac_bf04367f",
@@ -129,6 +249,30 @@
       "writtenOn": "2026-08-04T16:13:02Z",
       "side": 1,
       "message": "same here, with `nesting` and `t_rel` from https://git-scm.com/docs/api-trace2#Documentation/technical/api-trace2.txt-regionleave",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 43
+      },
+      "revId": "1fe151a00faf54b24169c1a0ea40cff9002d8dd4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "425c01b6_91a9fcec",
+        "filename": "rh/trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "yup, done.",
+      "parentUuid": "8dd562ac_bf04367f",
       "range": {
         "startLine": 171,
         "startChar": 0,

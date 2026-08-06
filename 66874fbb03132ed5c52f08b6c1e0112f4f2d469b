@@ -71,6 +71,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6f48cfa_4e2e5fba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "(will follow up in repo)",
+      "parentUuid": "c1044461_91032a88",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7efd20f5_407d8d86",
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Rewrote the scheme to consider this case. PTAL.",
       "parentUuid": "7efd20f5_407d8d86",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c34bfb51_a799e8cc",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "@gavinmak@google.com Mind taking a look to ensure I\u0027ve got this right?",
+      "parentUuid": "3cfe6180_cf2e8c2a",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -155,6 +191,24 @@
       "side": 1,
       "message": "AI states:\n\n```\nGoogle\u0027s local telemetry daemon (git-trace-daemon) listens on\n/run/git-trace-daemon.sock as a UNIX Stream Socket (socket.SOCK_STREAM), \ndefined in its systemd configuration (ListenStream\u003d/run/git-trace-daemon.sock).\n```\n\nLooks legit? Made an edit to handle either.",
       "parentUuid": "03089d85_501e1141",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "486d9291_faeeb503",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92b4b20a_f53cacee",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -299,6 +353,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87a8e15b_66d13462",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05d08fce_589419bf",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebae0e0d_0fffe303",
@@ -382,6 +454,24 @@
       "writtenOn": "2026-07-31T21:47:12Z",
       "side": 1,
       "message": "```suggestion\n\"\"\"Unittests for the trace module.\"\"\"\n```",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f58454cf_39ed3865",
+        "filename": "rh/trace_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-06T01:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28d2511c_843ab0ff",
       "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
