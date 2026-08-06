@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16c4dd0b_19297ac9",
+        "filename": "rh/trace.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-06T18:58:16Z",
+      "side": 1,
+      "message": "let\u0027s cache this, otherwise we call git config to get trace2.eventTarget each time",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 41
+      },
+      "revId": "1749e52acda3b991bdbb20dcb707e6d1530f1497",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9329a768_8b54ba7e",
+        "filename": "rh/trace.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-06T18:58:16Z",
+      "side": 1,
+      "message": "should this be `threading.current_thread().name` instead? since _run_hook/record_region is run with a `ThreadPoolExecutor`",
+      "range": {
+        "startLine": 91,
+        "startChar": 37,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "1749e52acda3b991bdbb20dcb707e6d1530f1497",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f67494ce_8d01eab8",
+        "filename": "rh/trace.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-08-06T18:58:16Z",
+      "side": 1,
+      "message": "from https://git-scm.com/docs/api-trace2#_enabling_a_target: \"`\u003cabsolute-pathname\u003e` - ... If the target already exists and is a directory, the traces will be written to files (one per process) underneath the given directory.\"\n\nas-is, if target is a dir, open will raise a `IsADirectoryError` and silently swallowed by the `except OSError`\n\nrepo solved this by checking isdir, then making a NamedTemporaryFile under it: https://cs.opensource.google/gerrit/gerrit/git-repo/+/main:git_trace2_event_log_base.py;l\u003d350-367;drc\u003da27dbcdb7bba1b8a2cc84112fa31c8f9f818604e",
+      "range": {
+        "startLine": 119,
+        "startChar": 17,
+        "endLine": 119,
+        "endChar": 42
+      },
+      "revId": "1749e52acda3b991bdbb20dcb707e6d1530f1497",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
