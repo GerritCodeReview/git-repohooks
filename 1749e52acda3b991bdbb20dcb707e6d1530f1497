@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed3d8679_1fb327f9",
+        "filename": "rh/trace.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-07T18:06:09Z",
+      "side": 1,
+      "message": "Added: @functools.lru_cache(maxsize\u003d1)",
+      "parentUuid": "16c4dd0b_19297ac9",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 41
+      },
+      "revId": "1749e52acda3b991bdbb20dcb707e6d1530f1497",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9329a768_8b54ba7e",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54be7370_5e31b646",
+        "filename": "rh/trace.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-07T18:06:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9329a768_8b54ba7e",
+      "range": {
+        "startLine": 91,
+        "startChar": 37,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "1749e52acda3b991bdbb20dcb707e6d1530f1497",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f67494ce_8d01eab8",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-08-06T18:58:16Z",
       "side": 1,
       "message": "from https://git-scm.com/docs/api-trace2#_enabling_a_target: \"`\u003cabsolute-pathname\u003e` - ... If the target already exists and is a directory, the traces will be written to files (one per process) underneath the given directory.\"\n\nas-is, if target is a dir, open will raise a `IsADirectoryError` and silently swallowed by the `except OSError`\n\nrepo solved this by checking isdir, then making a NamedTemporaryFile under it: https://cs.opensource.google/gerrit/gerrit/git-repo/+/main:git_trace2_event_log_base.py;l\u003d350-367;drc\u003da27dbcdb7bba1b8a2cc84112fa31c8f9f818604e",
+      "range": {
+        "startLine": 119,
+        "startChar": 17,
+        "endLine": 119,
+        "endChar": 42
+      },
+      "revId": "1749e52acda3b991bdbb20dcb707e6d1530f1497",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c8cf0d7_4643e461",
+        "filename": "rh/trace.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-07T18:06:09Z",
+      "side": 1,
+      "message": "In get_trace2_target() added a block:\n\n```\n    if os.path.isdir(target):\n        try:\n            with tempfile.NamedTemporaryFile(\n                dir\u003dtarget,\n                prefix\u003df\"repohooks-P{os.getpid():08x}-\",\n                delete\u003dFalse,\n            ) as fp:\n                return fp.name\n        except OSError:\n            return None\n```",
+      "parentUuid": "f67494ce_8d01eab8",
       "range": {
         "startLine": 119,
         "startChar": 17,
