@@ -178,6 +178,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0005aa4e_60485c2a",
+        "filename": "rh/trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1098470
+      },
+      "writtenOn": "2026-08-10T18:58:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cf4785f_dd8bb43a",
+      "revId": "66874fbb03132ed5c52f08b6c1e0112f4f2d469b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d730f703_1586a274",
