@@ -566,12 +566,12 @@ def check_ktfmt(project, commit, _desc, diff, options=None):
 
     ktfmt = options.tool_path("ktfmt")
     cmd = (
-        [ktfmt, "--dry-run"]
+        [ktfmt, "--dry-run", "--set-exit-if-changed"]
         + args
         + HookOptions.expand_vars(("${PREUPLOAD_FILES}",), filtered)
     )
     result = _run(cmd)
-    if result.stdout:
+    if result.returncode == 1:
         fixup_cmd = [ktfmt] + args
         return [
             rh.results.HookResult(

@@ -1149,7 +1149,7 @@ class BuiltinHooksTests(unittest.TestCase):
 
         # TODO: Actually pass some valid/invalid json data down.
 
-    def test_ktfmt(self, mock_check, _mock_run):
+    def test_ktfmt(self, mock_check, mock_run):
         """Verify the ktfmt builtin hook."""
         # First call should do nothing as there are no files to check.
         ret = rh.hooks.check_ktfmt(
@@ -1157,6 +1157,8 @@ class BuiltinHooksTests(unittest.TestCase):
         )
         self.assertIsNone(ret)
         self.assertFalse(mock_check.called)
+        # Mock the run to return 1 (files need formatting)
+        mock_run.return_value = rh.utils.CompletedProcess(returncode=1)
         # Check that .kt files are included by default.
         diff = [
             rh.git.RawDiffEntry(file="foo.kt"),
