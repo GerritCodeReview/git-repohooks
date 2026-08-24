@@ -285,7 +285,9 @@ def _get_project_config(from_git: bool = False) -> rh.config.PreUploadSettings:
 
 
 def _attempt_fixes(
-    projects_results: List[rh.results.ProjectResults], yes: bool = False
+    projects_results: List[rh.results.ProjectResults],
+    fix: bool = False,
+    yes: bool = False,
 ) -> None:
     """Attempts to fix fixable results."""
     # Filter out any result that has a fixup.
@@ -297,18 +299,19 @@ def _attempt_fixes(
     if not fixups:
         return
 
+    # Non-interactive without explicit --fix: do not prompt, do not mutate
+    # files.
+    if not fix and (yes or not sys.stdin.isatty()):
+        return
+
     if len(fixups) > 1:
         banner = f"Multiple fixups ({len(fixups)}) are available."
     else:
         banner = "Automated fixups are available."
     print(Output.COLOR.color(Output.COLOR.MAGENTA, banner), file=sys.stderr)
 
-    # If there's more than one fixup available, ask if they want to blindly run
-    # them all, or prompt for them one-by-one.
-    mode = "some"
-    if yes:
-        mode = "all"
-    elif len(fixups) > 1:
+    mode = "all" if fix else "some"
+    if not fix and len(fixups) > 1:
         while True:
             response = rh.terminal.str_prompt(
                 "What would you like to do",
@@ -570,6 +573,7 @@ def _run_projects_hooks(
     jobs: Optional[int] = None,
     from_git: bool = False,
     commit_list: Optional[List[str]] = None,
+    fix: bool = False,
     yes: bool = False,
 ) -> bool:
     """Run all the hooks
@@ -583,6 +587,7 @@ def _run_projects_hooks(
         commit_list: A list of commits to run hooks against.  If None or empty
             list then we'll automatically get the list of commits that would be
             uploaded.
+        fix: Automatically apply all automated fixup prompts.
         yes: Answer yes to all safe prompts.
 
     Returns:
@@ -607,14 +612,14 @@ def _run_projects_hooks(
                 # very minimal, so we don't add it then.
                 print("", file=sys.stderr)
 
-        _attempt_fixes(results, yes=yes)
+        _attempt_fixes(results, fix=fix, yes=yes)
         ret = not any(results)
     finally:
         rh.trace.exit_session(0 if ret else 1)
     return ret
 
 
-def main(project_list, worktree_list=None, yes=False, **_kwargs):
+def main(project_list, worktree_list=None, fix=False, yes=False, **_kwargs):
     """Main function invoked directly by repo.
 
     We must use the name "main" as that is what repo requires.
@@ -628,12 +633,13 @@ def main(project_list, worktree_list=None, yes=False, **_kwargs):
             project_list, so that each entry in project_list matches with a
             directory in worktree_list.  If None, we will attempt to calculate
             the directories automatically.
+        fix: Automatically apply all automated fixup prompts.
         yes: Answer yes to all safe prompts.
         kwargs: Leave this here for forward-compatibility.
     """
     if not worktree_list:
         worktree_list = [None] * len(project_list)
-    if not _run_projects_hooks(project_list, worktree_list, yes=yes):
+    if not _run_projects_hooks(project_list, worktree_list, fix=fix, yes=yes):
         color = rh.terminal.Color()
         print(
             color.color(color.RED, "FATAL")
@@ -720,6 +726,11 @@ def direct_main(argv: List[str]) -> int:
         "current system.",
     )
     parser.add_argument(
+        "--fix",
+        action="store_true",
+        help="Automatically apply all automated fixups without prompting",
+    )
+    parser.add_argument(
         "-y",
         "--yes",
         action="store_true",
@@ -755,6 +766,7 @@ def direct_main(argv: List[str]) -> int:
             jobs=opts.jobs,
             from_git=opts.git,
             commit_list=opts.commits,
+            fix=opts.fix,
             yes=opts.yes,
         ):
             return 0
