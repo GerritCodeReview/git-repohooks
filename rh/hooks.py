@@ -46,13 +46,32 @@ class Placeholders(object):
     You can return either a string or an iterable (e.g. a list or tuple).
     """
 
-    def __init__(self, diff=()):
+    def __init__(self, diff=(), fallback_subtrees=()):
         """Initialize.
 
         Args:
             diff: The list of files that changed.
+            fallback_subtrees: A list of fallback subtrees to search for paths.
         """
         self.diff = diff
+        self.fallback_subtrees = tuple(fallback_subtrees)
+
+    def _resolve_subtree_path(self, path, repo_root):
+        """Resolve path under project subtrees if not at workspace root."""
+        if repo_root and self.fallback_subtrees and isinstance(path, str):
+            clean_root = repo_root.rstrip(os.sep)
+            root_prefix = clean_root + os.sep
+            if path.startswith(root_prefix) and not os.path.exists(path):
+                rel_from_root = os.path.relpath(path, clean_root)
+                for subtree in self.fallback_subtrees:
+                    candidate = os.path.normpath(
+                        os.path.join(clean_root, subtree, rel_from_root)
+                    )
+                    if candidate.startswith(root_prefix) and os.path.exists(
+                        candidate
+                    ):
+                        return candidate
+        return path
 
     def expand_vars(self, args):
         """Perform place holder expansion on all of |args|.
@@ -108,7 +127,10 @@ class Placeholders(object):
                             r"\$\{(" + "|".join(all_vars) + r")\}", replace, arg
                         )
                     )
-        return ret
+
+        # Dynamic Subtree Resolution
+        repo_root = replacements.get("REPO_ROOT")
+        return [self._resolve_subtree_path(x, repo_root) for x in ret]
 
     @classmethod
     def vars(cls):
@@ -201,22 +223,24 @@ class ExclusionScope(object):
 class HookOptions(object):
     """Holder class for hook options."""
 
-    def __init__(self, name, args, tool_paths):
+    def __init__(self, name, args, tool_paths, fallback_subtrees=()):
         """Initialize.
 
         Args:
             name: The name of the hook.
             args: The override commandline arguments for the hook.
             tool_paths: A dictionary with tool names to paths.
+            fallback_subtrees: A list of fallback subtrees.
         """
         self.name = name
         self._args = args
         self._tool_paths = tool_paths
+        self._fallback_subtrees = tuple(fallback_subtrees)
 
     @staticmethod
-    def expand_vars(args, diff=()):
+    def expand_vars(args, diff=(), fallback_subtrees=()):
         """Perform place holder expansion on all of |args|."""
-        replacer = Placeholders(diff=diff)
+        replacer = Placeholders(diff=diff, fallback_subtrees=fallback_subtrees)
         return replacer.expand_vars(args)
 
     def args(self, default_args=(), diff=()):
@@ -233,7 +257,9 @@ class HookOptions(object):
         if not args:
             args = default_args
 
-        return self.expand_vars(args, diff=diff)
+        return self.expand_vars(
+            args, diff=diff, fallback_subtrees=self._fallback_subtrees
+        )
 
     def tool_path(self, tool_name):
         """Gets the path in which the |tool_name| executable can be found.
@@ -253,7 +279,9 @@ class HookOptions(object):
             return TOOL_PATHS[tool_name]
 
         tool_path = os.path.normpath(self._tool_paths[tool_name])
-        return self.expand_vars([tool_path])[0]
+        return self.expand_vars(
+            [tool_path], fallback_subtrees=self._fallback_subtrees
+        )[0]
 
 
 class CallableHook(NamedTuple):

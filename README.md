@@ -147,6 +147,10 @@ pre-upload checks.  The following options are recognized:
 
 * `ignore_merged_commits`: If set to `true`, the hooks will not run on commits
   that are merged.  Hooks will still run on the merge commit itself.
+* `fallback_subtrees`: A comma-separated list of relative subtree paths (e.g.
+  `android, kernel`) to search if a tool or file path anchored by `${REPO_ROOT}`
+  does not exist at the workspace root. Note: this option can only be set in
+  manifest-wide settings ([GLOBAL-PREUPLOAD.cfg](#global-preuploadcfg)).
 
 ## [Hook Scripts]
 

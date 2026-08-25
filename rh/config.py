@@ -99,7 +99,11 @@ class PreUploadConfig(object):
     }
 
     OPTION_IGNORE_MERGED_COMMITS = "ignore_merged_commits"
-    VALID_OPTIONS = {OPTION_IGNORE_MERGED_COMMITS}
+    OPTION_FALLBACK_SUBTREES = "fallback_subtrees"
+    VALID_OPTIONS = {
+        OPTION_IGNORE_MERGED_COMMITS,
+        OPTION_FALLBACK_SUBTREES,
+    }
 
     def __init__(
         self,
@@ -164,7 +168,10 @@ class PreUploadConfig(object):
         scope = rh.hooks.ExclusionScope([])
         for hook in self.custom_hooks:
             options = rh.hooks.HookOptions(
-                hook, self.custom_hook(hook), self.tool_paths
+                hook,
+                self.custom_hook(hook),
+                self.tool_paths,
+                fallback_subtrees=self.fallback_subtrees,
             )
             func = functools.partial(rh.hooks.check_custom, options=options)
             yield rh.hooks.CallableHook(hook, func, scope)
@@ -174,7 +181,10 @@ class PreUploadConfig(object):
         scope = rh.hooks.ExclusionScope([])
         for hook in self.builtin_hooks:
             options = rh.hooks.HookOptions(
-                hook, self.builtin_hook_option(hook), self.tool_paths
+                hook,
+                self.builtin_hook_option(hook),
+                self.tool_paths,
+                fallback_subtrees=self.fallback_subtrees,
             )
             func = functools.partial(
                 rh.hooks.BUILTIN_HOOKS[hook], options=options
@@ -195,6 +205,21 @@ class PreUploadConfig(object):
             ),
             False,
         )
+
+    @property
+    def fallback_subtrees(self) -> List[str]:
+        """List of fallback subtrees to search for paths."""
+        val = self.config.get(
+            self.OPTIONS_SECTION,
+            self.OPTION_FALLBACK_SUBTREES,
+            fallback="",
+        )
+        subtrees = []
+        for s in val.split(","):
+            cleaned = s.strip().strip("/\\")
+            if cleaned and ".." not in Path(cleaned).parts:
+                subtrees.append(cleaned)
+        return subtrees
 
     def update(self, preupload_config):
         """Merge settings from |preupload_config| into ourself."""
@@ -336,6 +361,15 @@ class LocalPreUploadFile(PreUploadFile):
             raise ValidationError(
                 f"{self.path}: [{self.BUILTIN_HOOKS_EXCLUDE_SECTION}] is not "
                 "valid in local files"
+            )
+
+        # Reject fallback_subtrees option for local config.
+        if self.config.has_option(
+            self.OPTIONS_SECTION, self.OPTION_FALLBACK_SUBTREES
+        ):
+            raise ValidationError(
+                f"{self.path}: [{self.OPTIONS_SECTION}]."
+                f"{self.OPTION_FALLBACK_SUBTREES} is not valid in local files"
             )
 
 
