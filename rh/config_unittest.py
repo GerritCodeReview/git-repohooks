@@ -98,6 +98,7 @@ cpplint = --some 'more args'
 
 [Options]
 ignore_merged_commits = true
+fallback_subtrees = android, kernel, bootloader
 """
         )
         rh.config.PreUploadFile(path)
@@ -156,6 +157,17 @@ cpplint = external/ 'test directory' ^vendor/(?!google/)
             rh.config.ValidationError, rh.config.LocalPreUploadFile, path
         )
 
+    def testInvalidFallbackSubtrees(self):
+        """Reject local config that specifies fallback_subtrees."""
+        path = self._write_config(
+            """[Options]
+fallback_subtrees = android, kernel
+"""
+        )
+        self.assertRaises(
+            rh.config.ValidationError, rh.config.LocalPreUploadFile, path
+        )
+
 
 class PreUploadSettingsTests(FileTestCase):
     """Tests for the PreUploadSettings class."""
@@ -189,6 +201,19 @@ cpplint = external/ 'test directory' ^vendor/(?!google/)
 """
         )
         rh.config.PreUploadSettings(global_paths=(self.tempdir,))
+
+    def testFallbackSubtrees(self):
+        """Verify fallback_subtrees property works and filters unsafe paths."""
+        self._write_global_config(
+            """[Options]
+fallback_subtrees = /android, kernel\\, \\bootloader/, ../escape, ,
+"""
+        )
+        config = rh.config.PreUploadSettings(global_paths=(self.tempdir,))
+        self.assertEqual(
+            config.fallback_subtrees,
+            ["android", "kernel", "bootloader"],
+        )
 
 
 if __name__ == "__main__":
