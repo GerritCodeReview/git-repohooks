@@ -21,7 +21,6 @@ import sys
 import tempfile
 import unittest
 
-
 THIS_FILE = Path(__file__).resolve()
 THIS_DIR = THIS_FILE.parent
 sys.path.insert(0, str(THIS_DIR.parent))
@@ -30,7 +29,6 @@ sys.path.insert(0, str(THIS_DIR.parent))
 # relative imports because this is an executable program, not a module.
 # pylint: disable=wrong-import-position,import-error
 import rh.utils
-
 
 CLANG_FORMAT = THIS_DIR / "clang-format.py"
 
@@ -105,6 +103,97 @@ class GitClangFormatExit(unittest.TestCase):
             self.assertIn(
                 "Error: Unable to automatically fix things", e.exception.stderr
             )
+
+
+@contextlib.contextmanager
+def fake_clang_format(data: str):
+    """Create a fake clang-format script."""
+    with tempfile.TemporaryDirectory(prefix="repohooks-tests") as tempdir:
+        tempdir = Path(tempdir)
+        script = tempdir / "clang-format-fake.sh"
+        script.write_text(f"#!/bin/sh\n{data}", encoding="utf-8")
+        script.chmod(0o755)
+        yield script
+
+
+def run_whole_file_clang_format(script, args, **kwargs):
+    """Helper to run clang-format.py --whole-file with fake script."""
+    kwargs.setdefault("capture_output", True)
+    return rh.utils.run(
+        [CLANG_FORMAT, "--clang-format", script, "--whole-file"] + args,
+        **kwargs,
+    )
+
+
+class WholeFileClangFormatTest(unittest.TestCase):
+    """Test whole-file clang-format execution."""
+
+    def test_clean_file(self):
+        """Test exit 0 when file is already formatted."""
+        with tempfile.TemporaryDirectory(prefix="repohooks-tests") as tempdir:
+            tempdir = Path(tempdir)
+            cpp_file = tempdir / "test.cpp"
+            cpp_file.write_text("int main() {}\n", encoding="utf-8")
+            with fake_clang_format("cat") as script:
+                result = run_whole_file_clang_format(
+                    script, ["--working-tree", "test.cpp"], cwd=tempdir
+                )
+                self.assertEqual(result.stdout, "")
+
+    def test_dirty_file(self):
+        """Test exit 1 when file has formatting errors."""
+        with tempfile.TemporaryDirectory(prefix="repohooks-tests") as tempdir:
+            tempdir = Path(tempdir)
+            cpp_file = tempdir / "test.cpp"
+            cpp_file.write_text("int   main()   {}\n", encoding="utf-8")
+            with fake_clang_format("echo 'int main() {}'") as script:
+                with self.assertRaises(rh.utils.CalledProcessError) as e:
+                    run_whole_file_clang_format(
+                        script, ["--working-tree", "test.cpp"], cwd=tempdir
+                    )
+                self.assertIn(
+                    "The following files have formatting errors",
+                    e.exception.stdout,
+                )
+                self.assertIn("test.cpp", e.exception.stdout)
+
+    def test_fix(self):
+        """Test --fix automatically updates the file."""
+        with tempfile.TemporaryDirectory(prefix="repohooks-tests") as tempdir:
+            tempdir = Path(tempdir)
+            rh.utils.run(["git", "init"], cwd=tempdir, capture_output=True)
+            cpp_file = tempdir / "test.cpp"
+            cpp_file.write_text("int   main()   {}\n", encoding="utf-8")
+            rh.utils.run(
+                ["git", "add", "test.cpp"], cwd=tempdir, capture_output=True
+            )
+            rh.utils.run(
+                ["git", "commit", "-m", "init"],
+                cwd=tempdir,
+                capture_output=True,
+            )
+            with fake_clang_format("echo 'int main() {}'") as script:
+                result = run_whole_file_clang_format(
+                    script, ["--working-tree", "--fix", "test.cpp"], cwd=tempdir
+                )
+                self.assertEqual(result.returncode, 0)
+                self.assertEqual(
+                    cpp_file.read_text(encoding="utf-8"), "int main() {}\n"
+                )
+
+    def test_extensions_filter(self):
+        """Test that files not matching extensions are skipped."""
+        with tempfile.TemporaryDirectory(prefix="repohooks-tests") as tempdir:
+            tempdir = Path(tempdir)
+            md_file = tempdir / "test.md"
+            md_file.write_text("some markdown\n", encoding="utf-8")
+            with fake_clang_format("echo 'reformatted'") as script:
+                result = run_whole_file_clang_format(
+                    script,
+                    ["--working-tree", "--extensions", "c,cpp", "test.md"],
+                    cwd=tempdir,
+                )
+                self.assertEqual(result.stdout, "")
 
 
 if __name__ == "__main__":
