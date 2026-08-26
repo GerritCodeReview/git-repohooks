@@ -191,7 +191,8 @@ canned hooks already included geared towards AOSP style guidelines.
 * `bpfmt`: Run Blueprint files (.bp) through `bpfmt`.
 * `checkpatch`: Run commits through the Linux kernel's `checkpatch.pl` script.
 * `clang_format`: Run git-clang-format against the commit. The default style is
-  `file`.
+  `file`. Supports `--whole-file` to format the entire file rather than just the
+  diff.
 * `commit_msg_bug_field`: Require a valid `Bug:` line.
 * `commit_msg_changeid_field`: Require a valid `Change-Id:` Gerrit line.
 * `commit_msg_prebuilt_apk_fields`: Require badging and build information for
