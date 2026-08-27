@@ -302,6 +302,16 @@ def _attempt_fixes(
     # Non-interactive without explicit --fix: do not prompt, do not mutate
     # files.
     if not fix and (yes or not sys.stdin.isatty()):
+        if len(fixups) > 1:
+            banner = f"Multiple fixups ({len(fixups)}) are available."
+        else:
+            banner = "Automated fixups are available."
+        banner += (
+            "\nTo apply them, run:\n"
+            "  repo upload --fix\n"
+            "Then amend and upload again.\n"
+        )
+        print(Output.COLOR.color(Output.COLOR.MAGENTA, banner), file=sys.stderr)
         return
 
     if len(fixups) > 1:
