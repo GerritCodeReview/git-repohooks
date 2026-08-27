@@ -302,6 +302,16 @@ def _attempt_fixes(
     # Non-interactive without explicit --fix: do not prompt, do not mutate
     # files.
     if not fix and (yes or not sys.stdin.isatty()):
+        if len(fixups) > 1:
+            banner = f"Multiple fixups ({len(fixups)}) are available."
+        else:
+            banner = "Automated fixups are available."
+        banner += (
+            "\nTo apply them, run:\n"
+            "  repo upload --fix\n"
+            "Then amend your commit (`git commit -a --amend`) and re-upload.\n"
+        )
+        print(Output.COLOR.color(Output.COLOR.MAGENTA, banner), file=sys.stderr)
         return
 
     if len(fixups) > 1:
@@ -363,11 +373,12 @@ def _attempt_fixes(
         else:
             print(f"[{Output.PASSED}] great success", file=sys.stderr)
 
-    print(
-        f"\n[{Output.FIXUP}] Please amend & rebase your tree before "
-        "attempting to upload again.\n",
-        file=sys.stderr,
-    )
+    if mode != "dry-run":
+        print(
+            f"\n[{Output.FIXUP}] Fixups applied. Please amend your commit "
+            "(`git commit -a --amend`) and upload again.\n",
+            file=sys.stderr,
+        )
 
 
 def _run_project_hooks_in_cwd(
