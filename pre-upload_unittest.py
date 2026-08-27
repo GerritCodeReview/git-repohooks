@@ -16,6 +16,7 @@
 """Unittests for pre-upload.py."""
 
 import importlib.util
+import io
 import os
 from pathlib import Path
 import sys
@@ -116,9 +117,12 @@ class PreUploadMainTests(unittest.TestCase):
         mock_prompt.assert_not_called()
         mock_run.assert_called_once()
 
+    @mock.patch("sys.stderr", new_callable=io.StringIO)
     @mock.patch("sys.stdin.isatty", return_value=False)
     @mock.patch("rh.utils.run")
-    def test_attempt_fixes_non_interactive_no_fix(self, mock_run, _mock_isatty):
+    def test_attempt_fixes_non_interactive_no_fix(
+        self, mock_run, _mock_isatty, mock_stderr
+    ):
         """Verify _attempt_fixes without fix in non-interactive mode does not run fixups."""
         hook_result = rh.results.HookResult(
             "test_hook",
@@ -134,6 +138,7 @@ class PreUploadMainTests(unittest.TestCase):
         pre_upload._attempt_fixes([proj_result], fix=False, yes=True)
 
         mock_run.assert_not_called()
+        self.assertIn("repo upload --fix", mock_stderr.getvalue())
 
 
 if __name__ == "__main__":
