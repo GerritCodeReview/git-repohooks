@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feea06a2_502dc6cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-05T07:16:23Z",
+      "side": 1,
+      "message": "this whole project is \"repohooks\", so that scope doesn\u0027t make sense\n\nyou\u0027re modifying tools, so prob better:\n\n`tools: clang-format: ...`",
+      "revId": "c14d29d166afd737091de7b95d5c3bb7a82a7c88",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b4264da_75e10462",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-05T07:16:23Z",
+      "side": 1,
+      "message": "these tags aren\u0027t used in OSS projects",
+      "revId": "c14d29d166afd737091de7b95d5c3bb7a82a7c88",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dc34a7e_8deda909",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-05T07:16:23Z",
+      "side": 1,
+      "message": "we don\u0027t document any of the other supported options, so let\u0027s not one-off this either",
+      "revId": "c14d29d166afd737091de7b95d5c3bb7a82a7c88",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11a21d72_73e3bb47",
+        "filename": "tools/clang-format.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-05T07:16:23Z",
+      "side": 1,
+      "message": "you\u0027ve basically re-implemented git-clang-format ?",
+      "revId": "c14d29d166afd737091de7b95d5c3bb7a82a7c88",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
